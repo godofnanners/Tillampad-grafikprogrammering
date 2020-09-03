@@ -28,10 +28,10 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <FxCompile Include="VertexShader.hlsl" />
-    <FxCompile Include="PixelShader.hlsl" />
+    <FxCompile Include="..\Engine\PixelShader.hlsl" />
+    <FxCompile Include="..\Engine\VertexShader.hlsl" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="ShaderStructs.hlsli" />
+    <None Include="..\Engine\ShaderStructs.hlsli" />
   </ItemGroup>
 </Project>

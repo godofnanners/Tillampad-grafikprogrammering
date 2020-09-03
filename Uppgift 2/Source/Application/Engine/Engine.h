@@ -14,7 +14,6 @@ public:
 private:
 	CWindowHandler myWindowHandler;
 	CDirectX11Framework* myFramework;
-	//CScene& myScene;
 	CForwardRenderer myForwardrenderer;
 };
 

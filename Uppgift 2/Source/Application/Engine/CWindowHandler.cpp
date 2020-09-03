@@ -36,7 +36,8 @@ bool CWindowHandler::Init(SWindowData aWindowData)
 	windowclass.hCursor = LoadCursor(nullptr, IDC_ARROW);
 	windowclass.lpszClassName = className;
 	RegisterClass(&windowclass);
-
+	
+	myWindowData = aWindowData;
 	myWindowHandle = CreateWindow(className, L"My Awesome Game", WS_OVERLAPPEDWINDOW | WS_POPUP | WS_VISIBLE, aWindowData.myX, aWindowData.myY, aWindowData.myWidth, aWindowData.myHeight, nullptr, nullptr, nullptr, this);
 	return true;
 }
@@ -45,3 +46,14 @@ HWND CWindowHandler::GetWindowHandle()
 {
 	return myWindowHandle;
 }
+
+const int CWindowHandler::GetWidth()
+{
+	return myWindowData.myWidth;
+}
+
+const int CWindowHandler::GetHeight()
+{
+	return myWindowData.myHeight;
+}
+

@@ -110,6 +110,11 @@ CModel* CModelFactory::LoadModel(std::string aFilePath)
 	return nullptr;
 }
 
+void CModelFactory::Init(ID3D11Device* aDevice)
+{
+	myDevice = aDevice;
+}
+
 CModelFactory::CModelFactory()
 {
 	myDevice = nullptr;

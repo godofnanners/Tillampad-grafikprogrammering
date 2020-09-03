@@ -4,6 +4,7 @@
 #include <vector>
 #include "CModelInstance.h"
 #include "CScene.h"
+#include "CModelFactory.h"
 Engine::Engine()/*:myScene(CScene::GetInstance())*/
 {
 	myFramework = nullptr;
@@ -26,6 +27,11 @@ bool Engine::Init(CWindowHandler::SWindowData aWindowData)
 	{
 		return false;
 	}
+
+	myForwardrenderer.Init(myFramework);
+	
+	CModelFactory::GetInstance().Init(myFramework->GetDevice());
+	
 	return true;
 }
 

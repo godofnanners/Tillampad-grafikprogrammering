@@ -5,10 +5,12 @@
 #include "CModelInstance.h"
 CForwardRenderer::CForwardRenderer()
 {
+	myContext = nullptr;
 }
 
 CForwardRenderer::~CForwardRenderer()
 {
+	myContext = nullptr;
 }
 
 bool CForwardRenderer::Init(CDirectX11Framework* aFramework)
@@ -36,7 +38,7 @@ void CForwardRenderer::Render(std::vector<CModelInstance*>& aModelList)
 		CModel::SModelData modelData = model->GetModelData();
 
 		myContext->IASetPrimitiveTopology(modelData.myPrimitiveTopology);
-		myContext->IAGetInputLayout(&modelData.myInputLayout);
+		myContext->IASetInputLayout(modelData.myInputLayout);
 
 		myContext->IASetVertexBuffers(0, 1, &modelData.myVertexBuffer, &modelData.myStride, &modelData.myOffset);
 

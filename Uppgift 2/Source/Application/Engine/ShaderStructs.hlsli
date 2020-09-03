@@ -7,7 +7,7 @@ struct VertexInput
 struct VertexToPixel
 {
 	float4 myPosition:SV_POSITION;
-		float4 myColor : COLOR;
+	float4 myColor : COLOR;
 };
 
 struct PixelOutput

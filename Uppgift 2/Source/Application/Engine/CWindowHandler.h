@@ -17,6 +17,9 @@ public:
 	~CWindowHandler();
 	bool Init(SWindowData aWindowData);
 	HWND GetWindowHandle();
+	const int GetWidth();
+	const int GetHeight();
 private:
 	HWND myWindowHandle;
+	SWindowData myWindowData;
 };

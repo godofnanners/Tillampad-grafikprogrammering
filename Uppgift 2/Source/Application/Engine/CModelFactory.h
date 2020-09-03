@@ -1,6 +1,6 @@
 #pragma once
 #include <string>
-class ID3D11Device;
+struct ID3D11Device;
 class CModel;
 
 
@@ -11,6 +11,7 @@ public:
 	static CModelFactory& GetInstance();
 	CModel* GetModel(std::string aFilePath);
 	CModel* LoadModel(std::string aFilePath);
+	void Init(ID3D11Device* aDevice);
 private:
 	ID3D11Device* myDevice;
 	CModelFactory();

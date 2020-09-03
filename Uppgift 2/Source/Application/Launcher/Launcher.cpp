@@ -26,7 +26,6 @@ int WINAPI wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 	{
 		return 0;
 	}
-
 	CModelFactory& modelfactory = CModelFactory::GetInstance();
 	CModel* model = CModelFactory::GetInstance().GetModel("");
 	if (!model)
@@ -58,6 +57,7 @@ int WINAPI wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 			}
 		}
 		graphicsEngine.BeginFrame();
+		graphicsEngine.RenderFrame();
 		graphicsEngine.EndFrame();
 	}
 	return 0;

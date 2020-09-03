@@ -2,7 +2,7 @@
 #include <vector>
 class CDirectX11Framework;
 class CModelInstance;
-class ID3D11DeviceContext;
+struct ID3D11DeviceContext;
 class CForwardRenderer
 {
 public:

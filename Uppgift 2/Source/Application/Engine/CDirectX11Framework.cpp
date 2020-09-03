@@ -1,6 +1,7 @@
 #include "CDirectX11Framework.h"
 #include "CWindowHandler.h"
 #include <iostream>
+#include<d3d11.h>
 #pragma comment (lib,"d3d11.lib")
 CDirectX11Framework::CDirectX11Framework() :myBackBuffer(nullptr), myContext(nullptr), myDevice(nullptr), mySwapChain(nullptr)
 {
@@ -38,12 +39,30 @@ bool CDirectX11Framework::Init(CWindowHandler* aWindowHandler)
     {
         std::cout << "DirectX backbufferTexture Failed/n";
     }
+
+    //Temporary
+    myContext->OMSetRenderTargets(1, &myBackBuffer, nullptr);
+    D3D11_VIEWPORT viewport = { 0 };
+    viewport.TopLeftX = 0.0f;
+    viewport.TopLeftY = 0.f;
+    viewport.Width = static_cast<float>(aWindowHandler->GetWidth());
+    viewport.Height= static_cast<float>(aWindowHandler->GetHeight());
+    viewport.MinDepth = 0.f;
+    viewport.MaxDepth = 1.0f;
+    myContext->RSSetViewports(1, &viewport);
+    //Temporary
+
     return true;
 }
 
 ID3D11DeviceContext* CDirectX11Framework::GetContext()
 {
     return myContext;
+}
+
+ID3D11Device* CDirectX11Framework::GetDevice()
+{
+    return myDevice;
 }
 
 void CDirectX11Framework::BeginFrame(std::array<float, 4> aClearColor)
