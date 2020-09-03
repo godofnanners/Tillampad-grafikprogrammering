@@ -1,6 +1,5 @@
 #pragma once
 #include "CWindowHandler.h"
-#include "CScene.h"
 #include "CForwardRenderer.h"
 class CDirectX11Framework;
 class Engine
@@ -15,7 +14,7 @@ public:
 private:
 	CWindowHandler myWindowHandler;
 	CDirectX11Framework* myFramework;
-	CScene myScene;
+	//CScene& myScene;
 	CForwardRenderer myForwardrenderer;
 };
 

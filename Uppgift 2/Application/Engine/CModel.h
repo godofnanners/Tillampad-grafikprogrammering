@@ -1,24 +1,23 @@
 #pragma once
+#include<d3d11.h>
 
-class ID3D11Buffer;
-class ID3D11VertexShader;
-class ID3D11PixelShader;
-class ID3D11InputLayout;
 class CModel
 {
 public:
 	struct SModelData
 	{
-		int myNumberOfVerticies;
-		int myStride;
-		int myOffset;
+		UINT myNumberOfVerticies;
+		UINT myStride;
+		UINT myOffset;
 		ID3D11Buffer* myVertexBuffer;
 		ID3D11VertexShader* myVertexShader;
 		ID3D11PixelShader* myPixelShader;
-		int myPrimitiveTopology;
+		D3D11_PRIMITIVE_TOPOLOGY myPrimitiveTopology;
 		ID3D11InputLayout* myInputLayout;
 	};
 	void Init(SModelData aModelData);
+	const SModelData& GetModelData();
 private:
+	SModelData myModelData;
 };
 

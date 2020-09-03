@@ -41,6 +41,11 @@ bool CDirectX11Framework::Init(CWindowHandler* aWindowHandler)
     return true;
 }
 
+ID3D11DeviceContext* CDirectX11Framework::GetContext()
+{
+    return myContext;
+}
+
 void CDirectX11Framework::BeginFrame(std::array<float, 4> aClearColor)
 {
     myContext->ClearRenderTargetView(myBackBuffer, &aClearColor[0]);

@@ -7,10 +7,6 @@ class CModel;
 class CModelFactory
 {
 public:
-	struct ModelData
-	{
-		std::string myFilePath;
-	};
 	CModelFactory(const CModelFactory&) = delete;
 	static CModelFactory& GetInstance();
 	CModel* GetModel(std::string aFilePath);

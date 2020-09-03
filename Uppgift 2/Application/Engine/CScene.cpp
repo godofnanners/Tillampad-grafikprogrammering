@@ -19,3 +19,7 @@ std::vector<CModelInstance*> CScene::CullModels()
 {
     return myModels;
 }
+
+CScene::CScene()
+{
+}

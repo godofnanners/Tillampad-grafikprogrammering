@@ -3,7 +3,8 @@
 #include "CDirectX11Framework.h"
 #include <vector>
 #include "CModelInstance.h"
-Engine::Engine()
+#include "CScene.h"
+Engine::Engine()/*:myScene(CScene::GetInstance())*/
 {
 	myFramework = nullptr;
 	myWindowHandler = CWindowHandler();
@@ -36,7 +37,7 @@ void Engine::BeginFrame()
 
 void Engine::RenderFrame()
 {
-	std::vector<CModelInstance*>modelsToRender = myScene.CullModels();
+	std::vector<CModelInstance*>modelsToRender = CScene::GetInstance().CullModels();
 	myForwardrenderer.Render(modelsToRender);
 }
 

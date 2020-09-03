@@ -2,6 +2,7 @@
 #include <vector>
 class CDirectX11Framework;
 class CModelInstance;
+class ID3D11DeviceContext;
 class CForwardRenderer
 {
 public:
@@ -10,5 +11,7 @@ public:
 
 	bool Init(CDirectX11Framework* aFramework);
 	void Render(std::vector<CModelInstance*>& aModelList);
+private:
+	ID3D11DeviceContext* myContext;
 };
 

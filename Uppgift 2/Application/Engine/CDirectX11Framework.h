@@ -8,6 +8,7 @@ public:
 	CDirectX11Framework();
 	~CDirectX11Framework();
 	bool Init(CWindowHandler* aWindowHandler);
+	ID3D11DeviceContext* GetContext();
 	void BeginFrame(std::array<float, 4>aClearColor);
 	void EndFrame();
 private:

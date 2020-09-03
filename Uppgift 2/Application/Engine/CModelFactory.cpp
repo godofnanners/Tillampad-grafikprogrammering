@@ -58,7 +58,7 @@ CModel* CModelFactory::GetModel(std::string aFilePath)
 	vsFile.close();
 
 	std::ifstream psFile;
-	psFile.open("PixeöShader.cso", std::ios::binary);
+	psFile.open("PixelShader.cso", std::ios::binary);
 	std::string psData = { std::istreambuf_iterator<char>(psFile),std::istreambuf_iterator<char>() };
 	ID3D11PixelShader* pixelShader;
 	result = myDevice->CreatePixelShader(psData.data(), psData.size(), nullptr, &pixelShader);
@@ -101,6 +101,8 @@ CModel* CModelFactory::GetModel(std::string aFilePath)
 	modelData.myPrimitiveTopology = D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST;
 	modelData.myInputLayout = inputLayout;
 	model->Init(modelData);
+	
+	return model;
 }
 
 CModel* CModelFactory::LoadModel(std::string aFilePath)
@@ -110,4 +112,5 @@ CModel* CModelFactory::LoadModel(std::string aFilePath)
 
 CModelFactory::CModelFactory()
 {
+	myDevice = nullptr;
 }
