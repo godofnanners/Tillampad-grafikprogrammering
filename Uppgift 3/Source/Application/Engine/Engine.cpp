@@ -5,6 +5,7 @@
 #include "CModelInstance.h"
 #include "CScene.h"
 #include "CModelFactory.h"
+#include "CCameraFactory.h"
 #include "CCamera.h"
 Engine::Engine():myScene(CScene::GetInstance())
 {
@@ -31,6 +32,7 @@ bool Engine::Init(CWindowHandler::SWindowData aWindowData)
 
 	myForwardrenderer.Init(myFramework);
 	
+	CCameraFactory::GetInstance().Init(&myWindowHandler);
 	CModelFactory::GetInstance().Init(myFramework->GetDevice());
 	
 	return true;

@@ -203,6 +203,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="..\Engine\ShaderStructs.hlsli" />
+    <None Include="CubeShaderStructs.hlsli" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -8,6 +8,10 @@
 #include "CModel.h"
 #include "CModelInstance.h"
 #include "CScene.h"
+#include "CCameraFactory.h"
+#include "CCamera.h"
+#include "Vector3.hpp"
+#include "CScene.h"
 int WINAPI wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _In_ LPWSTR lpCmdLine, _In_ int nSHowCmd)
 {
 	hInstance; hPrevInstance; lpCmdLine; nSHowCmd;
@@ -26,8 +30,17 @@ int WINAPI wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 	{
 		return 0;
 	}
+
+	CScene& scene = CScene::GetInstance();
+
+	CCameraFactory& cameraFactory = CCameraFactory::GetInstance();
+	CCamera* camera = cameraFactory.CreateCamera(90.0f);
+	camera->SetTransform(CommonUtilities::Vector3<float>(0.0f,0.0f,-5.0f),CommonUtilities::Vector3<float>(0.0f,0.0f,0.0f));
+	scene.AddInstance(camera);
+	scene.SetMainCamera(camera);
+
 	CModelFactory& modelfactory = CModelFactory::GetInstance();
-	CModel* model = CModelFactory::GetInstance().GetModel("");
+	CModel* model = modelfactory.GetCube();
 	if (!model)
 	{
 		model = modelfactory.LoadModel("");
@@ -38,7 +51,6 @@ int WINAPI wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 	}
 	CModelInstance* modelInstance = new CModelInstance();
 	modelInstance->Init(model);
-	CScene& scene = CScene::GetInstance();
 	scene.AddInstance(modelInstance);
 
 	MSG windowmessage = { 0 };

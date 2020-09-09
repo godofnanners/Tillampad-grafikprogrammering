@@ -1,4 +1,7 @@
-float4 main() : SV_TARGET
+#include "CubeShaderStructs.hlsli"
+PixelOutput main(VertexToPixel input)
 {
-	return float4(1.0f, 1.0f, 1.0f, 1.0f);
+	PixelOutput returnValue;
+	returnValue.myColor = input.myColor;
+	return returnValue;
 }

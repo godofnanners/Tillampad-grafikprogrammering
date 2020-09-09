@@ -3,6 +3,7 @@
 
 CCamera::CCamera()
 {
+	
 }
 
 CCamera::~CCamera()
@@ -11,6 +12,7 @@ CCamera::~CCamera()
 
 void CCamera::Init(float aFov, CommonUtilities::Vector2<float> aDimensions)
 {
+
 	float nearPlane = 1.f;
 	float farPlane = 50.f;
 	myProjection(1, 1) = (1 / std::tanf(aFov / 2));
@@ -62,10 +64,10 @@ void CCamera::Rotate(CommonUtilities::Vector3<float> aRotation)
 
 const CommonUtilities::Matrix4x4<float>& CCamera::GetTransform() const
 {
-    return CommonUtilities::Matrix4x4<float>();
+    return myTransform;
 }
 
 const CommonUtilities::Matrix4x4<float>& CCamera::GetProjection() const
 {
-    return CommonUtilities::Matrix4x4<float>();
+    return myProjection;
 }

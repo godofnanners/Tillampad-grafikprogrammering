@@ -5,7 +5,6 @@ CScene CScene::myInstance;
 
 CScene& CScene::GetInstance()
 {
-    // TODO: insert return statement here
     return myInstance;
 }
 
@@ -39,4 +38,5 @@ void CScene::SetMainCamera(CCamera* aCamera)
 
 CScene::CScene()
 {
+    myMainCamera = nullptr;
 }

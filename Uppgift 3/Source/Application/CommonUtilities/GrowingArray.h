@@ -28,7 +28,7 @@ namespace CommonUtilities
 
 		inline ObjectType& GetLast();
 		inline const ObjectType& GetLast()const;
-		static const SizeType FoundNone = -1;
+		static const SizeType FoundNone = (SizeType)-1;
 
 		inline void RemoveAll();
 

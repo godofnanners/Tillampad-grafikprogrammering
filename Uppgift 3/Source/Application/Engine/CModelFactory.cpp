@@ -70,8 +70,8 @@ CModel* CModelFactory::GetCube()
 	D3D11_SUBRESOURCE_DATA indexSubresourceData = { 0 };
 	indexSubresourceData.pSysMem = indices;
 
-	ID3D11Buffer* indicesBuffer;
-	result = myDevice->CreateBuffer(&indexbufferDescription, &indexSubresourceData, &indicesBuffer);
+	ID3D11Buffer* indexBuffer;
+	result = myDevice->CreateBuffer(&indexbufferDescription, &indexSubresourceData, &indexBuffer);
 
 	if (FAILED(result))
 	{
@@ -128,9 +128,11 @@ CModel* CModelFactory::GetCube()
 	}
 	CModel::SModelData modelData;
 	modelData.myNumberOfVerticies = sizeof(vertices) / sizeof(Vertex);
+	modelData.myNumberOfIndices = sizeof(indices) / sizeof(unsigned int);
 	modelData.myStride = sizeof(Vertex);
 	modelData.myOffset = 0;
 	modelData.myVertexBuffer = vertexBuffer;
+	modelData.myIndexBuffer = indexBuffer;
 	modelData.myVertexShader = vertexShader;
 	modelData.myPixelShader = pixelShader;
 	modelData.myPrimitiveTopology = D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST;

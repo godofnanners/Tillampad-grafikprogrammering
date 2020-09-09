@@ -418,18 +418,15 @@ namespace CommonUtilities
 	inline void Matrix4x4<T>::ResetRotation()
 	{
 		myMatrix.oneDim[5] = 1;
-		myMatrix.oneDim[6] = 1;
-		myMatrix.oneDim[9] = 1;
+		myMatrix.oneDim[6] = 0;
+		myMatrix.oneDim[9] = 0;
 		myMatrix.oneDim[10] = 1;
 
 		myMatrix.oneDim[0] = 1;
-		myMatrix.oneDim[2] = 1;
-		myMatrix.oneDim[8] = 1;
-		myMatrix.oneDim[10] = 1;
+		myMatrix.oneDim[2] = 0;
+		myMatrix.oneDim[8] = 0;
 
-		myMatrix.oneDim[0] = 1;
-		myMatrix.oneDim[1] = 1;
-		myMatrix.oneDim[4] = 1;
-		myMatrix.oneDim[5] = 1;
+		myMatrix.oneDim[1] = 0;
+		myMatrix.oneDim[4] = 0;
 	}
 }
