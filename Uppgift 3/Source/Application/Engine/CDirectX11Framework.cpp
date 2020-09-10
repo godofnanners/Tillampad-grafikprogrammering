@@ -41,7 +41,29 @@ bool CDirectX11Framework::Init(CWindowHandler* aWindowHandler)
     }
 
     //Temporary
-    myContext->OMSetRenderTargets(1, &myBackBuffer, nullptr);
+    ID3D11Texture2D* depthbufferTexture;
+    D3D11_TEXTURE2D_DESC depthbufferDescription = { 0 };
+    depthbufferDescription.Width = static_cast<unsigned int>(aWindowHandler->GetWidth());
+    depthbufferDescription.Height = static_cast<unsigned int>(aWindowHandler->GetHeight());
+    depthbufferDescription.ArraySize = 1;
+    depthbufferDescription.Format = DXGI_FORMAT_D32_FLOAT;
+    depthbufferDescription.SampleDesc.Count = 1;
+    depthbufferDescription.BindFlags = D3D11_BIND_DEPTH_STENCIL;
+    
+    result = myDevice->CreateTexture2D(&depthbufferDescription, nullptr, &depthbufferTexture);
+    if (FAILED(result))
+    {
+        return false;
+    }
+    
+    result = myDevice->CreateDepthStencilView(depthbufferTexture, nullptr, &myDepthBuffer);
+    if (FAILED(result))
+    {
+        return false;
+    }
+
+    myContext->OMSetRenderTargets(1, &myBackBuffer, myDepthBuffer);
+    
     D3D11_VIEWPORT viewport = { 0 };
     viewport.TopLeftX = 0.0f;
     viewport.TopLeftY = 0.f;
@@ -68,6 +90,7 @@ ID3D11Device* CDirectX11Framework::GetDevice()
 void CDirectX11Framework::BeginFrame(std::array<float, 4> aClearColor)
 {
     myContext->ClearRenderTargetView(myBackBuffer, &aClearColor[0]);
+    myContext->ClearDepthStencilView(myDepthBuffer, D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0);
 }
 
 void CDirectX11Framework::EndFrame()

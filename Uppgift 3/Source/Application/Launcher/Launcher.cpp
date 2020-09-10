@@ -35,7 +35,7 @@ int WINAPI wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 
 	CCameraFactory& cameraFactory = CCameraFactory::GetInstance();
 	CCamera* camera = cameraFactory.CreateCamera(90.0f);
-	camera->SetTransform(CommonUtilities::Vector3<float>(0.0f,0.0f,-5.0f),CommonUtilities::Vector3<float>(0.0f,0.0f,0.0f));
+	camera->SetTransform(CommonUtilities::Vector3<float>(0.0f,0.0f,0.0f), CommonUtilities::Vector3<float>(0.0f, 0.0f, -5.0f));
 	scene.AddInstance(camera);
 	scene.SetMainCamera(camera);
 
@@ -50,8 +50,14 @@ int WINAPI wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 		}
 	}
 	CModelInstance* modelInstance = new CModelInstance();
+	CModelInstance* modelInstance2 = new CModelInstance();
+
 	modelInstance->Init(model);
+	modelInstance2->Init(model);
 	scene.AddInstance(modelInstance);
+	scene.AddInstance(modelInstance2);
+
+	modelInstance2->SetPosition(CommonUtilities::Vector3<float>(0, 3, 5));
 
 	MSG windowmessage = { 0 };
 
@@ -68,6 +74,9 @@ int WINAPI wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 				shouldRun = false;
 			}
 		}
+		modelInstance->Rotate(CommonUtilities::Vector3<float>(0, 5.f, 0));
+		modelInstance2->Rotate(CommonUtilities::Vector3<float>(0, -5.f, 0));
+
 		graphicsEngine.BeginFrame();
 		graphicsEngine.RenderFrame();
 		graphicsEngine.EndFrame();
