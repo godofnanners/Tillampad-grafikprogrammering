@@ -9,11 +9,11 @@ public:
 	~CModelInstance();
 	
 	void Init(CModel * aModel);
-	void SetTransform(CommonUtilities::Vector3<float> aRotation, CommonUtilities::Vector3<float>aPosition);
-	void SetRotation(CommonUtilities::Vector3<float> aRotation);
-	void SetPosition(CommonUtilities::Vector3<float> aPosition);
-	void Move(CommonUtilities::Vector3<float> aMovement);
-	void Rotate(CommonUtilities::Vector3<float> aRotation);
+	void SetTransform(const CommonUtilities::Vector3<float>& aRotation, const CommonUtilities::Vector3<float>&aPosition);
+	void SetRotation(const CommonUtilities::Vector3<float>& aRotation);
+	void SetPosition(const CommonUtilities::Vector3<float>& aPosition);
+	void Move(const CommonUtilities::Vector3<float>& aMovement);
+	void Rotate(const CommonUtilities::Vector3<float>& aRotation);
 
 	CModel* GetModel();
 	const CommonUtilities::Matrix4x4<float>& GetTransform() const;

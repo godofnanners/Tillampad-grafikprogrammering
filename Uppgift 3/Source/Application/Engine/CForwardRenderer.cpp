@@ -65,8 +65,7 @@ void CForwardRenderer::Render(std::vector<CModelInstance*>& aModelList,CCamera* 
 	HRESULT result;
 	D3D11_MAPPED_SUBRESOURCE bufferdata;
 
-	myFrameBufferData.myToCamera = aCamera->GetTransform();
-	CommonUtilities::Matrix4x4<float>::GetFastInverse(myFrameBufferData.myToCamera);
+	myFrameBufferData.myToCamera = CommonUtilities::Matrix4x4<float>::GetFastInverse(aCamera->GetTransform());
 	myFrameBufferData.myToProjection = aCamera->GetProjection();
 	ZeroMemory(&bufferdata, sizeof(D3D11_MAPPED_SUBRESOURCE));
 	result = myContext->Map(myFrameBuffer, 0, D3D11_MAP_WRITE_DISCARD, 0, &bufferdata);
@@ -99,7 +98,9 @@ void CForwardRenderer::Render(std::vector<CModelInstance*>& aModelList,CCamera* 
 		myContext->IASetVertexBuffers(0, 1, &modelData.myVertexBuffer, &modelData.myStride, &modelData.myOffset);
 		myContext->IASetIndexBuffer(modelData.myIndexBuffer, DXGI_FORMAT_R32_UINT, 0);
 
+		myContext->VSSetConstantBuffers(1, 1, &myObjectBuffer);
 		myContext->VSSetShader(modelData.myVertexShader, nullptr, 0);
+		
 		myContext->PSSetShader(modelData.myPixelShader, nullptr, 0);
 
 		//myContext->Draw(modelData.myNumberOfVerticies, 0);

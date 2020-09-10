@@ -43,7 +43,7 @@ int WINAPI wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 	CModel* model = modelfactory.GetCube();
 	if (!model)
 	{
-		model = modelfactory.LoadModel("");
+		model = modelfactory.GetCube();
 		if (!model)
 		{
 			return EXIT_FAILURE;

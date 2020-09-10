@@ -12,35 +12,35 @@ void CModelInstance::Init(CModel * aModel)
 	myModel = aModel;
 }
 
-CModel* CModelInstance::GetModel()
-{
-	return myModel;
-}
-
-void CModelInstance::SetTransform(CommonUtilities::Vector3<float> aRotation, CommonUtilities::Vector3<float> aPosition)
+void CModelInstance::SetTransform(const CommonUtilities::Vector3<float>& aRotation, const CommonUtilities::Vector3<float>& aPosition)
 {
 	myTransform.SetTranslation(aPosition);
 	myTransform.SetRotation(aRotation, false);
 }
 
-void CModelInstance::SetRotation(CommonUtilities::Vector3<float> aRotation)
+void CModelInstance::SetRotation(const CommonUtilities::Vector3<float>& aRotation)
 {
 	myTransform.SetRotation(aRotation, false);
 }
 
-void CModelInstance::SetPosition(CommonUtilities::Vector3<float> aPosition)
+void CModelInstance::SetPosition(const CommonUtilities::Vector3<float>& aPosition)
 {
 	myTransform.SetTranslation(aPosition);
 }
 
-void CModelInstance::Move(CommonUtilities::Vector3<float> aMovement)
+void CModelInstance::Move(const CommonUtilities::Vector3<float>& aMovement)
 {
 	myTransform.AddToTranslation(aMovement);
 }
 
-void CModelInstance::Rotate(CommonUtilities::Vector3<float> aRotation)
+void CModelInstance::Rotate(const CommonUtilities::Vector3<float>& aRotation)
 {
 	myTransform.AddToRotation(aRotation, false);
+}
+
+CModel* CModelInstance::GetModel()
+{
+	return myModel;
 }
 
 const CommonUtilities::Matrix4x4<float>& CModelInstance::GetTransform() const

@@ -9,7 +9,7 @@ VertexToPixel main(VertexInput input)
 	float4 vertexViewPos = mul(toCamera, vertexWorldPos);
 	float4 vertexProjectionPos = mul(toProjection, vertexViewPos);
 
-	returnValue.myPosition = input.myPosition;
+	returnValue.myPosition = vertexProjectionPos;
 	returnValue.myColor = input.myColor;
 	return returnValue;
 }
