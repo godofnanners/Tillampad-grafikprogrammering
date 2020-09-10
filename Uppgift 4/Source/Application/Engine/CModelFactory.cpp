@@ -3,6 +3,7 @@
 #include <Windows.h>
 #include <d3d11.h>
 #include <fstream>
+#include "DDSTextureLoader.h"
 CModelFactory CModelFactory::myInstance;
 
 CModelFactory& CModelFactory::GetInstance()
@@ -120,6 +121,12 @@ CModel* CModelFactory::GetCube()
 		return nullptr;
 	}
 	//End Layout
+
+	//Start Textures
+	std::wstring filename = L"Texture.dds";
+	ID3D11ShaderResourceView* shaderResourceView;
+	
+	//End Textures
 
 	CModel* model = new CModel();
 	if (!model)
