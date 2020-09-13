@@ -20,16 +20,17 @@ CModel* CModelFactory::GetCube()
 	{
 		float x, y, z, w;
 		float r, g, b, a;
+		float u, v;
 	}vertices[8] =
 	{
-		{1,1,1,1,1,1,1,1},
-		{1,1,-1,1,1,1,0,1},
-		{1,-1,1,1,1,0,1,1},
-		{-1,1,1,1,0,1,1,1},
-		{1,-1,-1,1,1,0,0,1},
-		{-1,1,-1,1,0,1,0,1},
-		{-1,-1,1,1,0,0,1,1},
-		{-1,-1,-1,1,0,0,0,1},
+		{1,1,1,1,1,1,1,1,1,0},
+		{1,1,-1,1,1,1,0,1,1,0},
+		{1,-1,1,1,1,0,1,1,1,1},
+		{-1,1,1,1,0,1,1,1,0,0},
+		{1,-1,-1,1,1,0,0,1,1,1},
+		{-1,1,-1,1,0,1,0,1,0,0},
+		{-1,-1,1,1,0,0,1,1,0,1},
+		{-1,-1,-1,1,0,0,0,1,0,1},
 	};
 	unsigned int indices[36] =
 	{
@@ -112,10 +113,11 @@ CModel* CModelFactory::GetCube()
 	{
 		{"POSITION",0,DXGI_FORMAT_R32G32B32A32_FLOAT,0,D3D11_APPEND_ALIGNED_ELEMENT,D3D11_INPUT_PER_VERTEX_DATA,0},
 		{"COLOR",0,DXGI_FORMAT_R32G32B32A32_FLOAT,0,D3D11_APPEND_ALIGNED_ELEMENT,D3D11_INPUT_PER_VERTEX_DATA,0},
+		{"UV",0,DXGI_FORMAT_R32G32_FLOAT,0,D3D11_APPEND_ALIGNED_ELEMENT,D3D11_INPUT_PER_VERTEX_DATA,0},
 	};
 
 	ID3D11InputLayout* inputLayout;
-	result = myDevice->CreateInputLayout(layout, 2, vsData.data(), vsData.size(), &inputLayout);
+	result = myDevice->CreateInputLayout(layout, sizeof(layout)/sizeof(D3D11_INPUT_ELEMENT_DESC), vsData.data(), vsData.size(), &inputLayout);
 	if (FAILED(result))
 	{
 		return nullptr;
@@ -123,9 +125,13 @@ CModel* CModelFactory::GetCube()
 	//End Layout
 
 	//Start Textures
-	std::wstring filename = L"Texture.dds";
+	std::wstring filename = L"Textures/Texture.dds";
 	ID3D11ShaderResourceView* shaderResourceView;
-	
+	result = DirectX::CreateDDSTextureFromFile(myDevice, filename.c_str(), nullptr, &shaderResourceView);
+	if (FAILED(result))
+	{
+		return nullptr;
+	}
 	//End Textures
 
 	CModel* model = new CModel();
@@ -144,6 +150,7 @@ CModel* CModelFactory::GetCube()
 	modelData.myPixelShader = pixelShader;
 	modelData.myPrimitiveTopology = D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST;
 	modelData.myInputLayout = inputLayout;
+	modelData.myTexture = shaderResourceView;
 	model->Init(modelData);
 
 	return model;

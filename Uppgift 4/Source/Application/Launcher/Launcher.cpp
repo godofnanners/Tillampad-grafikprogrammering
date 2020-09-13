@@ -74,8 +74,8 @@ int WINAPI wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 				shouldRun = false;
 			}
 		}
-		modelInstance->Rotate(CommonUtilities::Vector3<float>(0, 5.f, 0));
-		modelInstance2->Rotate(CommonUtilities::Vector3<float>(0, -5.f, 0));
+		/*modelInstance->Rotate(CommonUtilities::Vector3<float>(0, 5.f, 0));
+		modelInstance2->Rotate(CommonUtilities::Vector3<float>(0, -5.f, 0));*/
 
 		graphicsEngine.BeginFrame();
 		graphicsEngine.RenderFrame();

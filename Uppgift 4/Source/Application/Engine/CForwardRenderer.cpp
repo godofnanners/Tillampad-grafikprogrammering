@@ -101,6 +101,7 @@ void CForwardRenderer::Render(std::vector<CModelInstance*>& aModelList,CCamera* 
 		myContext->VSSetConstantBuffers(1, 1, &myObjectBuffer);
 		myContext->VSSetShader(modelData.myVertexShader, nullptr, 0);
 		
+		myContext->PSSetShaderResources(0, 1, &modelData.myTexture);
 		myContext->PSSetShader(modelData.myPixelShader, nullptr, 0);
 
 		//myContext->Draw(modelData.myNumberOfVerticies, 0);
