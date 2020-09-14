@@ -11,5 +11,6 @@ VertexToPixel main(VertexInput input)
 
 	returnValue.myPosition = vertexProjectionPos;
 	returnValue.myColor = input.myColor;
+	returnValue.myUV = input.myUV;
 	return returnValue;
 }
