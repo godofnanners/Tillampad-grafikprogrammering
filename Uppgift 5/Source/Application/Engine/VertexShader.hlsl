@@ -3,7 +3,16 @@
 VertexToPixel main(VertexInput input)
 {
 	VertexToPixel returnValue;
-	returnValue.myPosition = input.myPosition;
-	returnValue.myColor = input.myColor;
+
+	float4 vertexObjectPos = input.myPosition.xyzw;
+	float4 vertexWorldPos = mul(toWorld, vertexObjectPos);
+	float4 vertexViewPos = mul(toCamera, vertexWorldPos);
+	float4 vertexProjectionPos = mul(toProjection, vertexViewPos);
+
+	returnValue.myPosition = vertexProjectionPos;
+	returnValue.myNormal = input.myNormal;
+	returnValue.myTangent = input.myTangent;
+	returnValue.myBinormal = input.myBinormal;
+	returnValue.myUV = input.myUV;
 	return returnValue;
 }

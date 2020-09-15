@@ -40,7 +40,7 @@ int WINAPI wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 	scene.SetMainCamera(camera);
 
 	CModelFactory& modelfactory = CModelFactory::GetInstance();
-	CModel* model = modelfactory.GetCube();
+	CModel* model = modelfactory.LoadModel("Models/Chest_PBR_Test/Particle_Chest.fbx");
 	if (!model)
 	{
 		model = modelfactory.GetCube();
@@ -50,14 +50,10 @@ int WINAPI wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 		}
 	}
 	CModelInstance* modelInstance = new CModelInstance();
-	CModelInstance* modelInstance2 = new CModelInstance();
-
 	modelInstance->Init(model);
-	modelInstance2->Init(model);
 	scene.AddInstance(modelInstance);
-	scene.AddInstance(modelInstance2);
 
-	modelInstance2->SetPosition(CommonUtilities::Vector3<float>(0, 3, 5));
+	modelInstance->SetPosition(CommonUtilities::Vector3<float>(0.0f, 0.0f, 500.0f));
 
 	MSG windowmessage = { 0 };
 
@@ -74,8 +70,7 @@ int WINAPI wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 				shouldRun = false;
 			}
 		}
-		/*modelInstance->Rotate(CommonUtilities::Vector3<float>(0, 5.f, 0));
-		modelInstance2->Rotate(CommonUtilities::Vector3<float>(0, -5.f, 0));*/
+		modelInstance->Rotate(CommonUtilities::Vector3<float>(0, 1.f, 0));
 
 		graphicsEngine.BeginFrame();
 		graphicsEngine.RenderFrame();

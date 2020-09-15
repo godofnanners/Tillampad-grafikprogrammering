@@ -254,7 +254,128 @@ CModel* CModelFactory::GetModel(std::string aFilePath)
 
 CModel* CModelFactory::LoadModel(std::string aFilePath)
 {
-	return nullptr;
+	HRESULT result;
+
+
+	CLoaderModel* loadmodel = myModelLoader->LoadModel(aFilePath.c_str());
+	CLoaderMesh* loadmesh = loadmodel->myMeshes[0];
+	//Start Vertex
+
+	D3D11_BUFFER_DESC vertexBufferDescription = { 0 };
+	vertexBufferDescription.ByteWidth = loadmesh->myVertexSize*loadmesh->myVertexCount;
+	vertexBufferDescription.Usage = D3D11_USAGE_IMMUTABLE;
+	vertexBufferDescription.BindFlags = D3D11_BIND_VERTEX_BUFFER;
+
+	D3D11_SUBRESOURCE_DATA subresourceData = { 0 };
+	subresourceData.pSysMem = loadmesh->myVertices;
+
+	ID3D11Buffer* vertexBuffer;
+	result = myDevice->CreateBuffer(&vertexBufferDescription, &subresourceData, &vertexBuffer);
+	if (FAILED(result))
+	{
+		return nullptr;
+	}
+	
+	D3D11_BUFFER_DESC indexbufferDescription = { 0 };
+	indexbufferDescription.ByteWidth = sizeof(unsigned int)* static_cast<unsigned int>(loadmesh->myIndices.size());
+	indexbufferDescription.Usage = D3D11_USAGE_IMMUTABLE;
+	indexbufferDescription.BindFlags = D3D11_BIND_INDEX_BUFFER;
+
+	D3D11_SUBRESOURCE_DATA indexSubresourceData = { 0 };
+	indexSubresourceData.pSysMem = &loadmesh->myIndices[0];
+
+	ID3D11Buffer* indexBuffer;
+	result = myDevice->CreateBuffer(&indexbufferDescription, &indexSubresourceData, &indexBuffer);
+
+	if (FAILED(result))
+	{
+		return nullptr;
+	}
+	//End Vertex
+
+	//Start Shader
+	std::ifstream vsFile;
+	vsFile.open("VertexShader.cso", std::ios::binary);
+	std::string vsData = { std::istreambuf_iterator<char>(vsFile),std::istreambuf_iterator<char>() };
+	ID3D11VertexShader* vertexShader;
+	result = myDevice->CreateVertexShader(vsData.data(), vsData.size(), nullptr, &vertexShader);
+	if (FAILED(result))
+	{
+		vsFile.close();
+
+		return nullptr;
+	}
+	vsFile.close();
+
+	std::ifstream psFile;
+	psFile.open("PixelShader.cso", std::ios::binary);
+	std::string psData = { std::istreambuf_iterator<char>(psFile),std::istreambuf_iterator<char>() };
+	ID3D11PixelShader* pixelShader;
+	result = myDevice->CreatePixelShader(psData.data(), psData.size(), nullptr, &pixelShader);
+	if (FAILED(result))
+	{
+		psFile.close();
+		return nullptr;
+	}
+	psFile.close();
+	//End Shader
+
+	//Start Layout
+	D3D11_INPUT_ELEMENT_DESC layout[] =
+	{
+		{"POSITION",0,DXGI_FORMAT_R32G32B32A32_FLOAT,0,D3D11_APPEND_ALIGNED_ELEMENT,D3D11_INPUT_PER_VERTEX_DATA,0},
+		{"NORMAL",0,DXGI_FORMAT_R32G32B32A32_FLOAT,0,D3D11_APPEND_ALIGNED_ELEMENT,D3D11_INPUT_PER_VERTEX_DATA,0},
+		{"TANGENT",0,DXGI_FORMAT_R32G32B32A32_FLOAT,0,D3D11_APPEND_ALIGNED_ELEMENT,D3D11_INPUT_PER_VERTEX_DATA,0},
+		{"BINORMAL",0,DXGI_FORMAT_R32G32B32A32_FLOAT,0,D3D11_APPEND_ALIGNED_ELEMENT,D3D11_INPUT_PER_VERTEX_DATA,0},
+		{"UV",0,DXGI_FORMAT_R32G32_FLOAT,0,D3D11_APPEND_ALIGNED_ELEMENT,D3D11_INPUT_PER_VERTEX_DATA,0 },
+	};
+
+	ID3D11InputLayout* inputLayout;
+	result = myDevice->CreateInputLayout(layout, sizeof(layout)/sizeof(D3D11_INPUT_ELEMENT_DESC), vsData.data(), vsData.size(), &inputLayout);
+	if (FAILED(result))
+	{
+		return nullptr;
+	}
+	//End Layout
+
+	//Start Textures
+	std::wstring modelpath = std::wstring(loadmodel->myModelPath.begin(),loadmodel->myModelPath.end());
+	size_t lastslashpos = modelpath.find_last_of('/');
+	modelpath.erase(modelpath.begin() + lastslashpos, modelpath.end());
+	std::wstring filename = modelpath;
+	filename.append(L"/");
+	//this should be linked in the fbx file wich will allow you to write
+	//filename.append(std::wstring(loadmodel->myTextures[0].begin(),loadmodel->myTextures[0].end()));
+	filename.append(std::wstring(L"Particle_Chest_D.dds"));
+	ID3D11ShaderResourceView* shaderResourceView;
+	result = DirectX::CreateDDSTextureFromFile(myDevice, filename.c_str(), nullptr, &shaderResourceView);
+	if (FAILED(result))
+	{
+		return nullptr;
+	}
+	//End Textures
+
+	CModel* model = new CModel();
+	if (!model)
+	{
+		return nullptr;
+	}
+
+	CModel::SModelData modelData;
+	modelData.myNumberOfVerticies = loadmesh->myVertexCount;
+	modelData.myNumberOfIndices = static_cast<unsigned int>(loadmesh->myIndices.size());
+	modelData.myStride = loadmesh->myVertexSize;
+	modelData.myOffset = 0;
+	modelData.myVertexBuffer = vertexBuffer;
+	modelData.myIndexBuffer = indexBuffer;
+	modelData.myVertexShader = vertexShader;
+	modelData.myPixelShader = pixelShader;
+	modelData.myPrimitiveTopology = D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST;
+	modelData.myInputLayout = inputLayout;
+	modelData.myTexture = shaderResourceView;
+	model->Init(modelData);
+
+	return model;
 }
 
 void CModelFactory::Init(ID3D11Device* aDevice)

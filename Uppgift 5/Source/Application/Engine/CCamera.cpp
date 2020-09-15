@@ -14,7 +14,7 @@ void CCamera::Init(float aFov, CommonUtilities::Vector2<float> aDimensions)
 {
 
 	float nearPlane = 1.f;
-	float farPlane = 50.f;
+	float farPlane = 10000.f;
 	myProjection(1, 1) = (1 / std::tanf(aFov / 2));
 	myProjection(1, 2) = 0;
 	myProjection(1, 3) = 0;
