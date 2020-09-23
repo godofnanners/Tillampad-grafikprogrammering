@@ -7,6 +7,7 @@
 #include "CModelFactory.h"
 #include "CCameraFactory.h"
 #include "CCamera.h"
+#include "CLightFactory.h"
 Engine::Engine():myScene(CScene::GetInstance())
 {
 	myFramework = nullptr;
@@ -34,7 +35,7 @@ bool Engine::Init(CWindowHandler::SWindowData aWindowData)
 	
 	CCameraFactory::GetInstance().Init(&myWindowHandler);
 	CModelFactory::GetInstance().Init(myFramework->GetDevice());
-	
+	CLightFactory::GetInstance().Init(myFramework->GetDevice());
 	return true;
 }
 
@@ -46,9 +47,10 @@ void Engine::BeginFrame()
 
 void Engine::RenderFrame()
 {
+	CEnvironmentLight* environmentlight = myScene.GetEnvironmentLight();
 	CCamera* mainCamera = myScene.GetMainCamera();
 	std::vector<CModelInstance*>modelsToRender = myScene.CullModels(mainCamera);
-	myForwardrenderer.Render(modelsToRender,mainCamera);
+	myForwardrenderer.Render(modelsToRender,mainCamera,environmentlight);
 }
 
 void Engine::EndFrame()

@@ -12,6 +12,8 @@
 #include "CCamera.h"
 #include "Vector3.hpp"
 #include "CScene.h"
+#include "CLightFactory.h"
+#include "CEnvironmentLight.h"
 int WINAPI wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _In_ LPWSTR lpCmdLine, _In_ int nSHowCmd)
 {
 	hInstance; hPrevInstance; lpCmdLine; nSHowCmd;
@@ -34,11 +36,15 @@ int WINAPI wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 	CScene& scene = CScene::GetInstance();
 
 	CCameraFactory& cameraFactory = CCameraFactory::GetInstance();
+	CLightFactory& lightFactory = CLightFactory::GetInstance();
+	CEnvironmentLight* environmentLight = lightFactory.CreateEnvironmentalLight(L"cube_1024_preblurred_angle3_Skansen3.dds");
+	environmentLight->SetDirection({ 0.0f,1.0f,-1.0f });
+	environmentLight->SetColor({ 0.8f,0.8f ,0.8f });
+	scene.AddInstance(environmentLight);
 	CCamera* camera = cameraFactory.CreateCamera(90.0f);
 	camera->SetTransform(CommonUtilities::Vector3<float>(0.0f,0.0f,0.0f), CommonUtilities::Vector3<float>(0.0f, 0.0f, -5.0f));
 	scene.AddInstance(camera);
 	scene.SetMainCamera(camera);
-
 	CModelFactory& modelfactory = CModelFactory::GetInstance();
 	CModel* model = modelfactory.LoadModel("Models/Chest_PBR_Test/Particle_Chest.fbx");
 	if (!model)

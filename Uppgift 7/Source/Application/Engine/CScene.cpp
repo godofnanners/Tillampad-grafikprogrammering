@@ -20,6 +20,17 @@ bool CScene::AddInstance(CCamera* aCameraInstance)
     return true;
 }
 
+bool CScene::AddInstance(CEnvironmentLight* anEnvironmentLight)
+{
+    myEnvironmentLight = anEnvironmentLight;
+    return true;
+}
+
+CEnvironmentLight* CScene::GetEnvironmentLight()
+{
+    return myEnvironmentLight;
+}
+
 std::vector<CModelInstance*> CScene::CullModels(CCamera* aCamera)
 {
     //TODO Cull With main camera

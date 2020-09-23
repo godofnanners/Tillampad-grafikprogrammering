@@ -4,6 +4,7 @@
 #include "CModel.h"
 #include "CModelInstance.h"
 #include "CCamera.h"
+#include "CEnvironmentLight.h"
 CForwardRenderer::CForwardRenderer()
 {
 	myContext = nullptr;
@@ -26,7 +27,7 @@ bool CForwardRenderer::Init(CDirectX11Framework* aFramework)
 	}
 
 	myContext = aFramework->GetContext();
-	
+
 	if (!myContext)
 	{
 		return false;
@@ -60,25 +61,31 @@ bool CForwardRenderer::Init(CDirectX11Framework* aFramework)
 	return true;
 }
 
-void CForwardRenderer::Render(std::vector<CModelInstance*>& aModelList,CCamera* aCamera)
+void CForwardRenderer::Render(std::vector<CModelInstance*>& aModelList, CCamera* aCamera, CEnvironmentLight* anEnvironmentLight)
 {
 	HRESULT result;
 	D3D11_MAPPED_SUBRESOURCE bufferdata;
 
 	myFrameBufferData.myToCamera = CommonUtilities::Matrix4x4<float>::GetFastInverse(aCamera->GetTransform());
 	myFrameBufferData.myToProjection = aCamera->GetProjection();
+	myFrameBufferData.myDirectionalLightDirection = { anEnvironmentLight->GetDirection() ,0.f };
+	myFrameBufferData.myDirectionalLightColor = { anEnvironmentLight->GetColor() ,1 };
 	ZeroMemory(&bufferdata, sizeof(D3D11_MAPPED_SUBRESOURCE));
 	result = myContext->Map(myFrameBuffer, 0, D3D11_MAP_WRITE_DISCARD, 0, &bufferdata);
 	if (FAILED(result))
 	{
 		assert(L"Mapping of FrameBuffer failed");
 	}
+	ID3D11ShaderResourceView* shaderResourceviews[1]{ anEnvironmentLight->GetCubemap() };
+
 	memcpy(bufferdata.pData, &myFrameBufferData, sizeof(FrameBufferData));
 	myContext->Unmap(myFrameBuffer, 0);
 	myContext->VSSetConstantBuffers(0, 1, &myFrameBuffer);
+	myContext->PSSetConstantBuffers(0, 1, &myFrameBuffer);
+	myContext->PSSetShaderResources(0, 1, shaderResourceviews);
 
 	//TODO inmplement the mainCamera
-	for (CModelInstance*instance:aModelList)
+	for (CModelInstance* instance : aModelList)
 	{
 		CModel* model = instance->GetModel();
 		CModel::SModelData modelData = model->GetModelData();
@@ -91,7 +98,7 @@ void CForwardRenderer::Render(std::vector<CModelInstance*>& aModelList,CCamera* 
 			assert(L"Mapping of ObjectBuffer failed");
 		}
 		memcpy(bufferdata.pData, &myObjectBufferData, sizeof(ObjectBufferData));
-		myContext->Unmap(myObjectBuffer,0);
+		myContext->Unmap(myObjectBuffer, 0);
 
 		myContext->IASetPrimitiveTopology(modelData.myPrimitiveTopology);
 		myContext->IASetInputLayout(modelData.myInputLayout);
@@ -100,7 +107,7 @@ void CForwardRenderer::Render(std::vector<CModelInstance*>& aModelList,CCamera* 
 
 		myContext->VSSetConstantBuffers(1, 1, &myObjectBuffer);
 		myContext->VSSetShader(modelData.myVertexShader, nullptr, 0);
-		
+
 		myContext->PSSetShaderResources(0, 2, &modelData.myTexture[0]);
 		myContext->PSSetShader(modelData.myPixelShader, nullptr, 0);
 

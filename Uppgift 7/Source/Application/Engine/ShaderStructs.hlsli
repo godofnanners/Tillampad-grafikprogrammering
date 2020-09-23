@@ -1,5 +1,6 @@
-texture2D albedoTexture : register(t0);
-texture2D normalTexture : register(t1);
+TextureCube EnvironmentCubemapTexture : register(t0);
+texture2D albedoTexture : register(t1);
+texture2D normalTexture : register(t2);
 SamplerState defaultSampler : register(s0);
 
 struct VertexInput
@@ -29,6 +30,8 @@ cbuffer FrameBuffer : register(b0)
 {
 	float4x4 toCamera;
 	float4x4 toProjection;
+    float4 toDirectionalLight;
+    float4 directionalLightColor;
 }
 
 cbuffer ObjectBuffer : register(b1)

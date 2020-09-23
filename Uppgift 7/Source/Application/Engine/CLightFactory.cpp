@@ -2,10 +2,16 @@
 #include "CEnvironmentLight.h"
 #include "DDSTextureLoader.h"
 #include <d3d11.h>
+CLightFactory CLightFactory::myInstance;
 
 CLightFactory& CLightFactory::GetInstance()
 {
 	return myInstance;
+}
+
+void CLightFactory::Init(ID3D11Device* aDevice)
+{
+	myDevice = aDevice;
 }
 
 CEnvironmentLight* CLightFactory::CreateEnvironmentalLight(std::wstring aFilePath)

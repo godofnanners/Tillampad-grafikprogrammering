@@ -1,6 +1,7 @@
 #pragma once
 #include <math.h>
 #include <assert.h>
+#include <Vector3.hpp>
 namespace CommonUtilities
 {
 	template <class T>
@@ -19,8 +20,12 @@ namespace CommonUtilities
 		Vector4<T>(const T& aX, const T& aY, const T& aZ, const T& aW);
 		//Copy constructor (compiler generated)
 		Vector4<T>(const Vector4<T>& aVector) = default;
+
+		Vector4<T>(const Vector3<T>& aVector, const T& aW);
 		//Assignment operator (compiler generated)
 		Vector4<T>& operator=(const Vector4<T>& aVector4) = default;
+		
+
 		T& operator[](const int& aIndex);
 		const T& operator[](const int& aIndex) const;
 
@@ -58,7 +63,14 @@ namespace CommonUtilities
 		w = aW;
 	}
 
-
+	template<class T>
+	inline Vector4<T>::Vector4(const Vector3<T>& aVector, const T& aW)
+	{
+		x = aVector.x;
+		y = aVector.y;
+		z = aVector.z;
+		w = aW;
+	}
 
 	template<class T>
 	inline T& Vector4<T>::operator[](const int& aIndex)
