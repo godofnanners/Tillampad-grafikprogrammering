@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project>
+  <ProjectOutputs>C:\Users\caspe\Documents\GitHub\Tillampad-grafikprogrammering\Uppgift 3\Source\Application\Bin\Application_Release.exe</ProjectOutputs>
+  <ContentFiles>C:\Users\caspe\Documents\GitHub\Tillampad-grafikprogrammering\Uppgift 3\Source\Application\Bin\PixelShader.cso;C:\Users\caspe\Documents\GitHub\Tillampad-grafikprogrammering\Uppgift 3\Source\Application\Bin\VertexShader.cso;C:\Users\caspe\Documents\GitHub\Tillampad-grafikprogrammering\Uppgift 3\Source\Application\Bin\CubePixelShader.cso;C:\Users\caspe\Documents\GitHub\Tillampad-grafikprogrammering\Uppgift 3\Source\Application\Bin\CubeVertexShader.cso</ContentFiles>
+  <SatelliteDlls></SatelliteDlls>
+  <NonRecipeFileRefs></NonRecipeFileRefs>
+</Project>

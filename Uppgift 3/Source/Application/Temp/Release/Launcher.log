@@ -1,0 +1,11 @@
+﻿  compilation object save succeeded; see C:\Users\caspe\Documents\GitHub\Tillampad-grafikprogrammering\Uppgift 3\Source\Application\Bin\PixelShader.cso
+  compilation object save succeeded; see C:\Users\caspe\Documents\GitHub\Tillampad-grafikprogrammering\Uppgift 3\Source\Application\Bin\VertexShader.cso
+  compilation object save succeeded; see C:\Users\caspe\Documents\GitHub\Tillampad-grafikprogrammering\Uppgift 3\Source\Application\Bin\CubePixelShader.cso
+  compilation object save succeeded; see C:\Users\caspe\Documents\GitHub\Tillampad-grafikprogrammering\Uppgift 3\Source\Application\Bin\CubeVertexShader.cso
+  pch.cpp
+  Launcher.cpp
+  Generating code
+  Previous IPDB not found, fall back to full compilation.
+  All 295 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  Finished generating code
+  Launcher.vcxproj -> C:\Users\caspe\Documents\GitHub\Tillampad-grafikprogrammering\Uppgift 3\Source\Application\Bin\Application_Release.exe
