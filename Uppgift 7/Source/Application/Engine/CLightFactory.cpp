@@ -22,3 +22,8 @@ CEnvironmentLight* CLightFactory::CreateEnvironmentalLight(std::wstring aFilePat
 	CEnvironmentLight* envLight = new CEnvironmentLight(CubeMapShaderResourceView);
 	return envLight;
 }
+
+CLightFactory::CLightFactory()
+{
+	myDevice = nullptr;
+}
