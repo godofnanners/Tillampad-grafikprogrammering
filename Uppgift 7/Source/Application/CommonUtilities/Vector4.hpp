@@ -12,7 +12,7 @@ namespace CommonUtilities
 		T y;
 		T z;
 		T w;
-		int arrayFormatSize = 4;
+		
 
 		//Creates a null-vector
 		Vector4<T>();
@@ -75,7 +75,7 @@ namespace CommonUtilities
 	template<class T>
 	inline T& Vector4<T>::operator[](const int& aIndex)
 	{
-		assert(aIndex < arrayFormatSize && L"Number is bigger than array");
+		assert(aIndex < 4 && L"Number is bigger than array");
 		assert(aIndex >= 0  && L"Number is below zero (minimum of array)");
 		if (aIndex == 0)
 		{
@@ -99,7 +99,7 @@ namespace CommonUtilities
 	template<class T>
 	inline const T& Vector4<T>::operator[](const int& aIndex) const
 	{
-		assert(aIndex < arrayFormatSize && L"Number is bigger than array");
+		assert(aIndex < 4 && L"Number is bigger than array");
 		assert(aIndex >= 0 && L"Number is below zero (minimum of array)");
 		if (aIndex == 0)
 		{
@@ -122,7 +122,7 @@ namespace CommonUtilities
 	template<class T>
 	inline T Vector4<T>::GetFromArrayFormat(const int& aNumber)
 	{
-		assert(aNumber < arrayFormatSize && L"Number is bigger than array");
+		assert(aNumber < 4 && L"Number is bigger than array");
 		assert( aNumber >= 0 && L"Number is below zero (minimum of array)");
 		if (0)
 		{

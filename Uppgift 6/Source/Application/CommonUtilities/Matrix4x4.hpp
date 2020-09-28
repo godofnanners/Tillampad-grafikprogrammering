@@ -45,6 +45,7 @@ namespace CommonUtilities
 		void AddToTranslation(const Vector3<T>& aVector3);
 		void SetTranslation(const Vector3<T>& aVector3);
 		void SetRotation(const Vector3<T>& aVector3, bool ValuesAreRadians = true);
+		void Scale(const Vector3<T>& aVector3);
 		void AddToRotation(const Vector3<T>& aVector3, bool ValuesAreRadians = true);
 	private:
 		void ResetRotation();
@@ -393,12 +394,21 @@ namespace CommonUtilities
 	inline void Matrix4x4<T>::SetRotation(const Vector3<T>& aVector3, bool ValuesAreRadians)
 	{
 		ResetRotation();
-		AddToRotation(aVector3,ValuesAreRadians);
+		AddToRotation(aVector3, ValuesAreRadians);
+	}
+	template<class T>
+	inline void Matrix4x4<T>::Scale(const Vector3<T>& aVector3)
+	{
+		Matrix4x4<float>scale;
+		scale(1, 1) = aVector3.x;
+		scale(2, 2) = aVector3.y;
+		scale(3, 3) = aVector3.z;
+		*this = scale* *this;
 	}
 	template<class T>
 	inline void Matrix4x4<T>::AddToRotation(const Vector3<T>& aVector3, bool ValuesAreRadians)
 	{
-		Matrix4x4<T> matrix =*this;
+		Matrix4x4<T> matrix = *this;
 		if (ValuesAreRadians == true)
 		{
 			matrix = CreateRotationAroundX(aVector3.x) * matrix;

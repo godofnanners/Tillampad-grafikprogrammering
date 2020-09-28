@@ -1,0 +1,221 @@
+﻿  CCamera.cpp
+C:\Users\casper.martensson\Documents\GitHub\Tillampad-grafikprogrammering\Uppgift 6\Source\Application\CommonUtilities\Matrix4x4.hpp(272,32): warning C4244: '=': conversion from 'double' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\casper.martensson\Documents\GitHub\Tillampad-grafikprogrammering\Uppgift 6\Source\Application\CommonUtilities\Matrix4x4.hpp(269): message : while compiling class template member function 'CommonUtilities::Matrix4x4<float> CommonUtilities::Matrix4x4<float>::CreateRotationAroundX(T)'
+          with
+          [
+              T=float
+          ]
+C:\Users\casper.martensson\Documents\GitHub\Tillampad-grafikprogrammering\Uppgift 6\Source\Application\CommonUtilities\Matrix4x4.hpp(414): message : see reference to function template instantiation 'CommonUtilities::Matrix4x4<float> CommonUtilities::Matrix4x4<float>::CreateRotationAroundX(T)' being compiled
+          with
+          [
+              T=float
+          ]
+C:\Users\casper.martensson\Documents\GitHub\Tillampad-grafikprogrammering\Uppgift 6\Source\Application\CommonUtilities\Matrix4x4.hpp(60): message : while compiling class template member function 'CommonUtilities::Matrix4x4<float>::Matrix4x4(void)'
+C:\Users\casper.martensson\Documents\GitHub\Tillampad-grafikprogrammering\Uppgift 6\Source\Application\Engine\CCamera.cpp(5): message : see reference to function template instantiation 'CommonUtilities::Matrix4x4<float>::Matrix4x4(void)' being compiled
+C:\Users\casper.martensson\Documents\GitHub\Tillampad-grafikprogrammering\Uppgift 6\Source\Application\CommonUtilities\Matrix4x4.hpp(402): message : see reference to class template instantiation 'CommonUtilities::Matrix4x4<float>' being compiled
+C:\Users\casper.martensson\Documents\GitHub\Tillampad-grafikprogrammering\Uppgift 6\Source\Application\CommonUtilities\Matrix4x4.hpp(273,32): warning C4244: '=': conversion from 'double' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\casper.martensson\Documents\GitHub\Tillampad-grafikprogrammering\Uppgift 6\Source\Application\CommonUtilities\Matrix4x4.hpp(274,29): warning C4244: '=': conversion from 'double' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\casper.martensson\Documents\GitHub\Tillampad-grafikprogrammering\Uppgift 6\Source\Application\CommonUtilities\Matrix4x4.hpp(275,33): warning C4244: '=': conversion from 'double' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\casper.martensson\Documents\GitHub\Tillampad-grafikprogrammering\Uppgift 6\Source\Application\CommonUtilities\Matrix4x4.hpp(285,32): warning C4244: '=': conversion from 'double' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\casper.martensson\Documents\GitHub\Tillampad-grafikprogrammering\Uppgift 6\Source\Application\CommonUtilities\Matrix4x4.hpp(282): message : while compiling class template member function 'CommonUtilities::Matrix4x4<float> CommonUtilities::Matrix4x4<float>::CreateRotationAroundY(T)'
+          with
+          [
+              T=float
+          ]
+C:\Users\casper.martensson\Documents\GitHub\Tillampad-grafikprogrammering\Uppgift 6\Source\Application\CommonUtilities\Matrix4x4.hpp(415): message : see reference to function template instantiation 'CommonUtilities::Matrix4x4<float> CommonUtilities::Matrix4x4<float>::CreateRotationAroundY(T)' being compiled
+          with
+          [
+              T=float
+          ]
+C:\Users\casper.martensson\Documents\GitHub\Tillampad-grafikprogrammering\Uppgift 6\Source\Application\CommonUtilities\Matrix4x4.hpp(286,29): warning C4244: '=': conversion from 'double' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\casper.martensson\Documents\GitHub\Tillampad-grafikprogrammering\Uppgift 6\Source\Application\CommonUtilities\Matrix4x4.hpp(287,32): warning C4244: '=': conversion from 'double' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\casper.martensson\Documents\GitHub\Tillampad-grafikprogrammering\Uppgift 6\Source\Application\CommonUtilities\Matrix4x4.hpp(288,33): warning C4244: '=': conversion from 'double' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\casper.martensson\Documents\GitHub\Tillampad-grafikprogrammering\Uppgift 6\Source\Application\CommonUtilities\Matrix4x4.hpp(298,32): warning C4244: '=': conversion from 'double' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\casper.martensson\Documents\GitHub\Tillampad-grafikprogrammering\Uppgift 6\Source\Application\CommonUtilities\Matrix4x4.hpp(295): message : while compiling class template member function 'CommonUtilities::Matrix4x4<float> CommonUtilities::Matrix4x4<float>::CreateRotationAroundZ(T)'
+          with
+          [
+              T=float
+          ]
+C:\Users\casper.martensson\Documents\GitHub\Tillampad-grafikprogrammering\Uppgift 6\Source\Application\CommonUtilities\Matrix4x4.hpp(416): message : see reference to function template instantiation 'CommonUtilities::Matrix4x4<float> CommonUtilities::Matrix4x4<float>::CreateRotationAroundZ(T)' being compiled
+          with
+          [
+              T=float
+          ]
+C:\Users\casper.martensson\Documents\GitHub\Tillampad-grafikprogrammering\Uppgift 6\Source\Application\CommonUtilities\Matrix4x4.hpp(299,32): warning C4244: '=': conversion from 'double' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\casper.martensson\Documents\GitHub\Tillampad-grafikprogrammering\Uppgift 6\Source\Application\CommonUtilities\Matrix4x4.hpp(300,29): warning C4244: '=': conversion from 'double' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\casper.martensson\Documents\GitHub\Tillampad-grafikprogrammering\Uppgift 6\Source\Application\CommonUtilities\Matrix4x4.hpp(301,32): warning C4244: '=': conversion from 'double' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+  CCameraFactory.cpp
+C:\Users\casper.martensson\Documents\GitHub\Tillampad-grafikprogrammering\Uppgift 6\Source\Application\Engine\CCameraFactory.cpp(18,60): warning C4244: 'argument': conversion from 'int' to 'const T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\casper.martensson\Documents\GitHub\Tillampad-grafikprogrammering\Uppgift 6\Source\Application\Engine\CCameraFactory.cpp(18,53): warning C4244: 'argument': conversion from 'int' to 'const T', possible loss of data
+          with
+          [
+              T=float
+          ]
+  CForwardRenderer.cpp
+  CModelInstance.cpp
+C:\Users\casper.martensson\Documents\GitHub\Tillampad-grafikprogrammering\Uppgift 6\Source\Application\CommonUtilities\Matrix4x4.hpp(272,32): warning C4244: '=': conversion from 'double' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\casper.martensson\Documents\GitHub\Tillampad-grafikprogrammering\Uppgift 6\Source\Application\CommonUtilities\Matrix4x4.hpp(269): message : while compiling class template member function 'CommonUtilities::Matrix4x4<float> CommonUtilities::Matrix4x4<float>::CreateRotationAroundX(T)'
+          with
+          [
+              T=float
+          ]
+C:\Users\casper.martensson\Documents\GitHub\Tillampad-grafikprogrammering\Uppgift 6\Source\Application\CommonUtilities\Matrix4x4.hpp(414): message : see reference to function template instantiation 'CommonUtilities::Matrix4x4<float> CommonUtilities::Matrix4x4<float>::CreateRotationAroundX(T)' being compiled
+          with
+          [
+              T=float
+          ]
+C:\Users\casper.martensson\Documents\GitHub\Tillampad-grafikprogrammering\Uppgift 6\Source\Application\CommonUtilities\Matrix4x4.hpp(60): message : while compiling class template member function 'CommonUtilities::Matrix4x4<float>::Matrix4x4(void)'
+C:\Users\casper.martensson\Documents\GitHub\Tillampad-grafikprogrammering\Uppgift 6\Source\Application\Engine\CModelInstance.cpp(4): message : see reference to function template instantiation 'CommonUtilities::Matrix4x4<float>::Matrix4x4(void)' being compiled
+C:\Users\casper.martensson\Documents\GitHub\Tillampad-grafikprogrammering\Uppgift 6\Source\Application\CommonUtilities\Matrix4x4.hpp(402): message : see reference to class template instantiation 'CommonUtilities::Matrix4x4<float>' being compiled
+C:\Users\casper.martensson\Documents\GitHub\Tillampad-grafikprogrammering\Uppgift 6\Source\Application\CommonUtilities\Matrix4x4.hpp(273,32): warning C4244: '=': conversion from 'double' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\casper.martensson\Documents\GitHub\Tillampad-grafikprogrammering\Uppgift 6\Source\Application\CommonUtilities\Matrix4x4.hpp(274,29): warning C4244: '=': conversion from 'double' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\casper.martensson\Documents\GitHub\Tillampad-grafikprogrammering\Uppgift 6\Source\Application\CommonUtilities\Matrix4x4.hpp(275,33): warning C4244: '=': conversion from 'double' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\casper.martensson\Documents\GitHub\Tillampad-grafikprogrammering\Uppgift 6\Source\Application\CommonUtilities\Matrix4x4.hpp(285,32): warning C4244: '=': conversion from 'double' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\casper.martensson\Documents\GitHub\Tillampad-grafikprogrammering\Uppgift 6\Source\Application\CommonUtilities\Matrix4x4.hpp(282): message : while compiling class template member function 'CommonUtilities::Matrix4x4<float> CommonUtilities::Matrix4x4<float>::CreateRotationAroundY(T)'
+          with
+          [
+              T=float
+          ]
+C:\Users\casper.martensson\Documents\GitHub\Tillampad-grafikprogrammering\Uppgift 6\Source\Application\CommonUtilities\Matrix4x4.hpp(415): message : see reference to function template instantiation 'CommonUtilities::Matrix4x4<float> CommonUtilities::Matrix4x4<float>::CreateRotationAroundY(T)' being compiled
+          with
+          [
+              T=float
+          ]
+C:\Users\casper.martensson\Documents\GitHub\Tillampad-grafikprogrammering\Uppgift 6\Source\Application\CommonUtilities\Matrix4x4.hpp(286,29): warning C4244: '=': conversion from 'double' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\casper.martensson\Documents\GitHub\Tillampad-grafikprogrammering\Uppgift 6\Source\Application\CommonUtilities\Matrix4x4.hpp(287,32): warning C4244: '=': conversion from 'double' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\casper.martensson\Documents\GitHub\Tillampad-grafikprogrammering\Uppgift 6\Source\Application\CommonUtilities\Matrix4x4.hpp(288,33): warning C4244: '=': conversion from 'double' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\casper.martensson\Documents\GitHub\Tillampad-grafikprogrammering\Uppgift 6\Source\Application\CommonUtilities\Matrix4x4.hpp(298,32): warning C4244: '=': conversion from 'double' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\casper.martensson\Documents\GitHub\Tillampad-grafikprogrammering\Uppgift 6\Source\Application\CommonUtilities\Matrix4x4.hpp(295): message : while compiling class template member function 'CommonUtilities::Matrix4x4<float> CommonUtilities::Matrix4x4<float>::CreateRotationAroundZ(T)'
+          with
+          [
+              T=float
+          ]
+C:\Users\casper.martensson\Documents\GitHub\Tillampad-grafikprogrammering\Uppgift 6\Source\Application\CommonUtilities\Matrix4x4.hpp(416): message : see reference to function template instantiation 'CommonUtilities::Matrix4x4<float> CommonUtilities::Matrix4x4<float>::CreateRotationAroundZ(T)' being compiled
+          with
+          [
+              T=float
+          ]
+C:\Users\casper.martensson\Documents\GitHub\Tillampad-grafikprogrammering\Uppgift 6\Source\Application\CommonUtilities\Matrix4x4.hpp(299,32): warning C4244: '=': conversion from 'double' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\casper.martensson\Documents\GitHub\Tillampad-grafikprogrammering\Uppgift 6\Source\Application\CommonUtilities\Matrix4x4.hpp(300,29): warning C4244: '=': conversion from 'double' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\casper.martensson\Documents\GitHub\Tillampad-grafikprogrammering\Uppgift 6\Source\Application\CommonUtilities\Matrix4x4.hpp(301,32): warning C4244: '=': conversion from 'double' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+  CScene.cpp
+C:\Users\casper.martensson\Documents\GitHub\Tillampad-grafikprogrammering\Uppgift 6\Source\Application\Engine\CScene.cpp(23,58): warning C4100: 'aCamera': unreferenced formal parameter
+  Engine.cpp
+  FBXLoader.cpp
+C:\Users\casper.martensson\Documents\GitHub\Tillampad-grafikprogrammering\Uppgift 6\Source\Application\Engine\ModelLoader\Vector.h(55,2): warning C4002: too many arguments for function-like macro invocation 'assert'
+C:\Users\casper.martensson\Documents\GitHub\Tillampad-grafikprogrammering\Uppgift 6\Source\Application\Engine\ModelLoader\Vector.h(105,2): warning C4002: too many arguments for function-like macro invocation 'assert'
+C:\Users\casper.martensson\Documents\GitHub\Tillampad-grafikprogrammering\Uppgift 6\Source\Application\Engine\ModelLoader\Vector.h(110,2): warning C4002: too many arguments for function-like macro invocation 'assert'
+C:\Users\casper.martensson\Documents\GitHub\Tillampad-grafikprogrammering\Uppgift 6\Source\Application\Engine\ModelLoader\Vector.h(115,2): warning C4002: too many arguments for function-like macro invocation 'assert'
+C:\Users\casper.martensson\Documents\GitHub\Tillampad-grafikprogrammering\Uppgift 6\Source\Application\Engine\ModelLoader\Vector.h(120,2): warning C4002: too many arguments for function-like macro invocation 'assert'
+C:\Users\casper.martensson\Documents\GitHub\Tillampad-grafikprogrammering\Uppgift 6\Source\Application\Engine\ModelLoader\Vector.h(125,2): warning C4002: too many arguments for function-like macro invocation 'assert'
+C:\Users\casper.martensson\Documents\GitHub\Tillampad-grafikprogrammering\Uppgift 6\Source\Application\Engine\ModelLoader\Vector.h(130,2): warning C4002: too many arguments for function-like macro invocation 'assert'
+C:\Users\casper.martensson\Documents\GitHub\Tillampad-grafikprogrammering\Uppgift 6\Source\Application\Engine\ModelLoader\Vector.h(135,2): warning C4002: too many arguments for function-like macro invocation 'assert'
+C:\Users\casper.martensson\Documents\GitHub\Tillampad-grafikprogrammering\Uppgift 6\Source\Application\Engine\ModelLoader\Vector.h(140,2): warning C4002: too many arguments for function-like macro invocation 'assert'
+C:\Users\casper.martensson\Documents\GitHub\Tillampad-grafikprogrammering\Uppgift 6\Source\Application\Engine\ModelLoader\Vector.h(187,2): warning C4002: too many arguments for function-like macro invocation 'assert'
+C:\Users\casper.martensson\Documents\GitHub\Tillampad-grafikprogrammering\Uppgift 6\Source\Application\Engine\ModelLoader\Vector.h(192,2): warning C4002: too many arguments for function-like macro invocation 'assert'
+C:\Users\casper.martensson\Documents\GitHub\Tillampad-grafikprogrammering\Uppgift 6\Source\Application\Engine\ModelLoader\Vector.h(197,2): warning C4002: too many arguments for function-like macro invocation 'assert'
+C:\Users\casper.martensson\Documents\GitHub\Tillampad-grafikprogrammering\Uppgift 6\Source\Application\Engine\ModelLoader\Vector.h(205,2): warning C4002: too many arguments for function-like macro invocation 'assert'
+C:\Users\casper.martensson\Documents\GitHub\Tillampad-grafikprogrammering\Uppgift 6\Source\Application\Engine\ModelLoader\Vector.h(218,2): warning C4002: too many arguments for function-like macro invocation 'assert'
+  Generating Code...
+FBXLoader.obj : warning LNK4006: "public: enum aiReturn __cdecl aiMaterial::GetTexture(enum aiTextureType,unsigned int,struct aiString *,enum aiTextureMapping *,unsigned int *,float *,enum aiTextureOp *,enum aiTextureMapMode *)const " (?GetTexture@aiMaterial@@QEBA?AW4aiReturn@@W4aiTextureType@@IPEAUaiString@@PEAW4aiTextureMapping@@PEAIPEAMPEAW4aiTextureOp@@PEAW4aiTextureMapMode@@@Z) already defined in assimp-vc140-mt.lib(assimp-vc140-mt.dll); second definition ignored
+  Engine.vcxproj -> C:\Users\casper.martensson\Documents\GitHub\Tillampad-grafikprogrammering\Uppgift 6\Source\Application\Lib\Engine_Debug.lib

@@ -38,6 +38,11 @@ void CModelInstance::Rotate(const CommonUtilities::Vector3<float>& aRotation)
 	myTransform.AddToRotation(aRotation, false);
 }
 
+void CModelInstance::Scale(const CommonUtilities::Vector3<float>& aScale)
+{
+	myTransform.Scale(aScale);
+}
+
 CModel* CModelInstance::GetModel()
 {
 	return myModel;

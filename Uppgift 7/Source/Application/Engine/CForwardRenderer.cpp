@@ -68,8 +68,8 @@ void CForwardRenderer::Render(std::vector<CModelInstance*>& aModelList, CCamera*
 
 	myFrameBufferData.myToCamera = CommonUtilities::Matrix4x4<float>::GetFastInverse(aCamera->GetTransform());
 	myFrameBufferData.myToProjection = aCamera->GetProjection();
-	myFrameBufferData.myDirectionalLightDirection = { anEnvironmentLight->GetDirection() ,0.f };
-	myFrameBufferData.myDirectionalLightColor = { anEnvironmentLight->GetColor() ,1 };
+	myFrameBufferData.myDirectionalLightDirection = { anEnvironmentLight->GetDirection() ,1.f };
+	myFrameBufferData.myDirectionalLightColor = { anEnvironmentLight->GetColor() ,1.f };
 	ZeroMemory(&bufferdata, sizeof(D3D11_MAPPED_SUBRESOURCE));
 	result = myContext->Map(myFrameBuffer, 0, D3D11_MAP_WRITE_DISCARD, 0, &bufferdata);
 	if (FAILED(result))
@@ -108,7 +108,7 @@ void CForwardRenderer::Render(std::vector<CModelInstance*>& aModelList, CCamera*
 		myContext->VSSetConstantBuffers(1, 1, &myObjectBuffer);
 		myContext->VSSetShader(modelData.myVertexShader, nullptr, 0);
 
-		myContext->PSSetShaderResources(0, 2, &modelData.myTexture[0]);
+		myContext->PSSetShaderResources(1, 2, &modelData.myTexture[0]);
 		myContext->PSSetShader(modelData.myPixelShader, nullptr, 0);
 
 		//myContext->Draw(modelData.myNumberOfVerticies, 0);

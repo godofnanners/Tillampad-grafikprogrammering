@@ -1,4 +1,0 @@
-C:\Users\caspe\Documents\GitHub\Tillampad-grafikprogrammering\Uppgift 7\Source\Application\Bin\PixelShader.cso
-C:\Users\caspe\Documents\GitHub\Tillampad-grafikprogrammering\Uppgift 7\Source\Application\Bin\VertexShader.cso
-C:\Users\caspe\Documents\GitHub\Tillampad-grafikprogrammering\Uppgift 7\Source\Application\Bin\CubePixelShader.cso
-C:\Users\caspe\Documents\GitHub\Tillampad-grafikprogrammering\Uppgift 7\Source\Application\Bin\CubeVertexShader.cso

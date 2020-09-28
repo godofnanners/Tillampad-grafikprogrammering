@@ -2,7 +2,7 @@
 class Game
 {
 public:
-	void Init();
+	int Init();
 	void Update();
 private:
 };

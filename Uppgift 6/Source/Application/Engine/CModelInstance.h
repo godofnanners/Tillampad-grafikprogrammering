@@ -14,6 +14,7 @@ public:
 	void SetPosition(const CommonUtilities::Vector3<float>& aPosition);
 	void Move(const CommonUtilities::Vector3<float>& aMovement);
 	void Rotate(const CommonUtilities::Vector3<float>& aRotation);
+	void Scale(const CommonUtilities::Vector3<float>& aScale);
 
 	CModel* GetModel();
 	const CommonUtilities::Matrix4x4<float>& GetTransform() const;

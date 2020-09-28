@@ -38,7 +38,7 @@ int WINAPI wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 	CCameraFactory& cameraFactory = CCameraFactory::GetInstance();
 	CLightFactory& lightFactory = CLightFactory::GetInstance();
 	CEnvironmentLight* environmentLight = lightFactory.CreateEnvironmentalLight(L"Textures/cube_1024_preblurred_angle3_Skansen3.dds");
-	environmentLight->SetDirection({ 0.0f,1.0f,-1.0f });
+	environmentLight->SetDirection({ -1.0f,1.0f,-1.0f });
 	environmentLight->SetColor({ 0.8f,0.8f ,0.8f });
 	scene.AddInstance(environmentLight);
 	CCamera* camera = cameraFactory.CreateCamera(90.0f);
@@ -76,7 +76,7 @@ int WINAPI wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 				shouldRun = false;
 			}
 		}
-		modelInstance->Rotate(CommonUtilities::Vector3<float>(0, 1.f, 0));
+		modelInstance->Rotate(CommonUtilities::Vector3<float>(0.3f, 0.0f, 0.0f));
 
 		graphicsEngine.BeginFrame();
 		graphicsEngine.RenderFrame();

@@ -1,6 +1,7 @@
 #pragma once
 #include <vector>
 #include "Matrix4x4.hpp"
+#include "Vector4.hpp"
 class CDirectX11Framework;
 class CModelInstance;
 class CCamera;
