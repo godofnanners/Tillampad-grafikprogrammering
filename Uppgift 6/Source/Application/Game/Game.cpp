@@ -5,6 +5,8 @@
 #include "Vector3.hpp"
 #include "CCamera.h"
 #include "CModelInstance.h"
+#include "InputHandler.h"
+#include "winuser.h"
 
 int Game::Init()
 {
@@ -34,12 +36,12 @@ int Game::Init()
 	modelInstance2->Init(model);
 	scene.AddInstance(modelInstance2);
 
-	
+
 	CModelInstance* modelInstance3 = new CModelInstance();
 	modelInstance3->Init(model);
 	scene.AddInstance(modelInstance3);
 
-	
+
 	modelInstance->Scale(CommonUtilities::Vector3<float>(.05f, .05f, .05f));
 	modelInstance2->Scale(CommonUtilities::Vector3<float>(.05f, .05f, .05f));
 	modelInstance3->Scale(CommonUtilities::Vector3<float>(.05f, .05f, .05f));
@@ -53,4 +55,48 @@ int Game::Init()
 
 void Game::Update()
 {
+	CCamera* mainCamera = CScene::GetInstance().GetMainCamera();
+	CommonUtilities::Vector3<float> movementVector = { 0,0,0 };
+	if (CommonUtilities::InputHandler::GetInstance().CheckKeyDown('W'))
+	{
+		
+		movementVector += mainCamera->GetTransform().GetForward();
+	}
+	if (CommonUtilities::InputHandler::GetInstance().CheckKeyDown('A'))
+	{
+		movementVector -= mainCamera->GetTransform().GetRight();
+	}
+	if (CommonUtilities::InputHandler::GetInstance().CheckKeyDown('S'))
+	{
+		movementVector -= mainCamera->GetTransform().GetForward();
+	}
+	if (CommonUtilities::InputHandler::GetInstance().CheckKeyDown('D'))
+	{
+		movementVector += mainCamera->GetTransform().GetRight();
+	}
+
+	CommonUtilities::Vector3<float> rotationVector = { 0,0,0 };
+
+	if (CommonUtilities::InputHandler::GetInstance().CheckKeyDown(VK_UP))
+	{
+		rotationVector.x -= 1;
+	}
+	if (CommonUtilities::InputHandler::GetInstance().CheckKeyDown(VK_LEFT))
+	{
+		rotationVector.y -= 1;
+	}
+	if (CommonUtilities::InputHandler::GetInstance().CheckKeyDown(VK_DOWN))
+	{
+		rotationVector.x += 1;
+	}
+	if (CommonUtilities::InputHandler::GetInstance().CheckKeyDown(VK_RIGHT))
+	{
+		rotationVector.y += 1;
+	}
+
+	mainCamera->Move(movementVector);
+	mainCamera->Rotate(rotationVector);
 }
+
+
+

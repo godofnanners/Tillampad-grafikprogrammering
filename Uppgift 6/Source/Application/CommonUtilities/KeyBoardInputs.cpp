@@ -25,6 +25,11 @@ void KeyBoardInputs::SetPressedAndHeldKeys(int aKeyCode, LPARAM lParam)
 	myHeldDownKeys[aKeyCode] = true;
 }
 
+bool KeyBoardInputs::CheckIfKeyIsDown(int aKeyCode) const
+{
+	return (myHeldDownKeys[aKeyCode] || myPressedKeys[aKeyCode]);
+}
+
 bool KeyBoardInputs::CheckIfKeyIsPressed(int aKeyCode) const
 {
 	return (myPressedKeys[aKeyCode] == true);

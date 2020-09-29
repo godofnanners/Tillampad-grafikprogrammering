@@ -52,7 +52,7 @@ private:
 template<typename T>
 inline Vector<T>::Vector(int aCapacity) 
 	: myData(nullptr), mySize(0), myCapacity(0) {
-	assert(aCapacity > 0, "Can't have a vector with no capacity!");
+	assert(aCapacity > 0 && "Can't have a vector with no capacity!");
 	Resize(aCapacity);
 }
 
@@ -102,42 +102,42 @@ inline Vector<T>::~Vector() {
 
 template<typename T>
 inline T& Vector<T>::At(int aIndex) {
-	assert(0 <= aIndex && aIndex < mySize, "Accessing element %d when vector has %d elements!", aIndex, mySize);
+	assert(0 <= aIndex && aIndex < mySize && "Accessing element %d when vector has %d elements!");
 	return myData[aIndex];
 }
 template<typename T>
 inline T& Vector<T>::operator[](int aIndex) {
-	assert(0 <= aIndex && aIndex < mySize, "Accessing element %d when vector has %d elements!", aIndex, mySize);
+	assert(0 <= aIndex && aIndex < mySize && "Accessing element %d when vector has %d elements!");
 	return myData[aIndex];
 }
 template<typename T>
 inline const T& Vector<T>::At(int aIndex) const {
-	assert(0 <= aIndex && aIndex < mySize, "Accessing element %d when vector has %d elements!", aIndex, mySize);
+	assert(0 <= aIndex && aIndex < mySize && "Accessing element %d when vector has %d elements!");
 	return myData[aIndex];
 }
 template<typename T>
 inline const T& Vector<T>::operator[](int aIndex) const {
-	assert(0 <= aIndex && aIndex < mySize, "Accessing element %d when vector has %d elements!", aIndex, mySize);
+	assert(0 <= aIndex && aIndex < mySize && "Accessing element %d when vector has %d elements!");
 	return myData[aIndex];
 }
 template<typename T>
 inline T& Vector<T>::Back() {
-	assert(mySize > 0, "Accessing element of empty vector!");
+	assert(mySize > 0 && "Accessing element of empty vector!");
 	return myData[mySize - 1];
 }
 template<typename T>
 inline T& Vector<T>::Front() {
-	assert(mySize > 0, "Accessing element of empty vector!");
+	assert(mySize > 0 && "Accessing element of empty vector!");
 	return myData[0];
 }
 template<typename T>
 inline const T& Vector<T>::Back() const {
-	assert(mySize > 0, "Accessing element of empty vector!");
+	assert(mySize > 0 && "Accessing element of empty vector!");
 	return myData[mySize - 1];
 }
 template<typename T>
 inline const T& Vector<T>::Front() const {
-	assert(mySize > 0, "Accessing element of empty vector!");
+	assert(mySize > 0 && "Accessing element of empty vector!");
 	return myData[0];
 }
 template<typename T>

@@ -2,6 +2,9 @@
 #include <WinUser.h>
 namespace CommonUtilities
 {
+	InputHandler InputHandler::myInstance;
+
+
 	bool InputHandler::UpdateEvents(UINT message, WPARAM wParam, LPARAM lParam)
 	{
 		switch (message)
@@ -67,6 +70,10 @@ namespace CommonUtilities
 		myMouseInput.ResetReleaseMouseInput();
 	}
 
+	bool InputHandler::CheckKeyDown(int aKeyCode) const
+	{
+		return myKeyboardInputs.CheckIfKeyIsDown(aKeyCode);
+	}
 
 	bool InputHandler::CheckIfKeyIsPressed(int aKeyCode) const
 	{
@@ -117,4 +124,9 @@ namespace CommonUtilities
 	{
 		myMouseInput.HandleSetMousePosition(aX, anY);
 	}
+	InputHandler& InputHandler::GetInstance()
+	{
+		return myInstance;
+	}
+	
 }

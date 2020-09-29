@@ -12,6 +12,7 @@
 #include "CCamera.h"
 #include "Vector3.hpp"
 #include "CScene.h"
+#include "InputHandler.h"
 int WINAPI wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _In_ LPWSTR lpCmdLine, _In_ int nSHowCmd)
 {
 	hInstance; hPrevInstance; lpCmdLine; nSHowCmd;
@@ -41,15 +42,18 @@ int WINAPI wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 	{
 		while (PeekMessage(&windowmessage, 0, 0, 0, PM_REMOVE))
 		{
-			game.Update();
 			TranslateMessage(&windowmessage);
 			DispatchMessage(&windowmessage);
+
+			CommonUtilities::InputHandler::GetInstance().UpdateEvents(windowmessage.message, windowmessage.wParam, windowmessage.lParam);
 
 			if (windowmessage.message == WM_QUIT)
 			{
 				shouldRun = false;
 			}
+
 		}
+		game.Update();
 		//modelInstance->Rotate(CommonUtilities::Vector3<float>(0, 1.f, 0));
 
 		graphicsEngine.BeginFrame();

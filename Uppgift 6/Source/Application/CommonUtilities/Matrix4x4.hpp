@@ -344,7 +344,7 @@ namespace CommonUtilities
 	inline Vector3<T> Matrix4x4<T>::GetForward() const
 	{
 		Vector3<T> forwardVector = { myMatrix.oneDim[8],myMatrix.oneDim[9],myMatrix.oneDim[10] };
-		return forwardVector;
+		return forwardVector.GetNormalized();
 	}
 
 	template<class T>
@@ -352,14 +352,14 @@ namespace CommonUtilities
 	{
 		Vector3<T> rightVector = { myMatrix.oneDim[0],myMatrix.oneDim[1],myMatrix.oneDim[2] };
 
-		return rightVector;
+		return rightVector.GetNormalized();
 	}
 
 	template<class T>
 	inline Vector3<T> Matrix4x4<T>::GetUp() const
 	{
 		Vector3<T> upVector = { myMatrix.oneDim[4],myMatrix.oneDim[5],myMatrix.oneDim[6] };
-		return upVector;
+		return upVector.GetNormalized();
 	}
 
 	template<class T>

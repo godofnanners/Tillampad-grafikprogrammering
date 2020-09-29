@@ -8,6 +8,7 @@ public:
 	void HandlePressedKeyBoardInput(WPARAM wParam, LPARAM lParam);
 	void HandleReleasedKeyBoardInput(WPARAM wParam, LPARAM lParam);
 	void SetPressedAndHeldKeys(int aKeyCode, LPARAM lParam);
+	bool CheckIfKeyIsDown(int aKeyCode)const;
 	bool CheckIfKeyIsPressed(int aKeyCode)const;
 	bool CheckIfKeyIsHeld(int aKeyCode)const;
 	bool CheckIfKeyJustWasReleased(int aKeyCode)const;
