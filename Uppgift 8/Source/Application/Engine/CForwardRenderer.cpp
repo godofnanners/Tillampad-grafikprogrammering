@@ -68,6 +68,7 @@ void CForwardRenderer::Render(std::vector<CModelInstance*>& aModelList, CCamera*
 
 	myFrameBufferData.myToCamera = CommonUtilities::Matrix4x4<float>::GetFastInverse(aCamera->GetTransform());
 	myFrameBufferData.myToProjection = aCamera->GetProjection();
+	myFrameBufferData.myCameraPosition = { aCamera->GetTransform().GetPosition(),1.0f };
 	myFrameBufferData.myDirectionalLightDirection = { anEnvironmentLight->GetDirection() ,1.f };
 	myFrameBufferData.myDirectionalLightColor = { anEnvironmentLight->GetColor() ,1.f };
 	ZeroMemory(&bufferdata, sizeof(D3D11_MAPPED_SUBRESOURCE));
@@ -77,6 +78,7 @@ void CForwardRenderer::Render(std::vector<CModelInstance*>& aModelList, CCamera*
 		assert(L"Mapping of FrameBuffer failed");
 	}
 	ID3D11ShaderResourceView* shaderResourceviews[1]{ anEnvironmentLight->GetCubemap() };
+
 
 	memcpy(bufferdata.pData, &myFrameBufferData, sizeof(FrameBufferData));
 	myContext->Unmap(myFrameBuffer, 0);

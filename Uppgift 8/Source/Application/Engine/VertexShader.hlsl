@@ -15,6 +15,7 @@ VertexToPixel main(VertexInput input)
     float3 vertexWorldBinormal = mul(toWorldRotation, input.myBinormal.xyz);
 	
 	returnValue.myPosition = vertexProjectionPos;
+    returnValue.myWorldPosition = vertexWorldPos;
     returnValue.myNormal = float4(vertexWorldNormal,0);
     returnValue.myTangent = float4(vertexWorldTangent,0);
     returnValue.myBinormal = float4(vertexWorldBinormal,0);

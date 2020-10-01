@@ -21,8 +21,11 @@ private:
 	{
 		CommonUtilities::Matrix4x4<float>myToCamera;
 		CommonUtilities::Matrix4x4<float>myToProjection;
+		CommonUtilities::Vector4<float>myCameraPosition;
 		CommonUtilities::Vector4<float>myDirectionalLightDirection;
 		CommonUtilities::Vector4<float>myDirectionalLightColor;
+		unsigned int myEnvironmentLightMipCount;
+		unsigned int trash[3];
 	} myFrameBufferData;
 
 	struct ObjectBufferData

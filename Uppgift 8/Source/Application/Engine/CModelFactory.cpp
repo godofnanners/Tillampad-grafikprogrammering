@@ -363,6 +363,45 @@ CModel* CModelFactory::LoadModel(std::string aFilePath)
 	{
 		return nullptr;
 	}
+
+	std::wstring normalpath = modelpath;
+	//normalpath.append(std::wstring(loadmodel->myTextures[5].begin(), loadmodel->myTextures[5].end()));
+	normalpath.append(L"_N.dds");
+	ID3D11ShaderResourceView* metalnessShaderResourceView;
+	result = DirectX::CreateDDSTextureFromFile(myDevice, normalpath.c_str(), nullptr, &metalnessShaderResourceView);
+	if (FAILED(result))
+	{
+		return nullptr;
+	}
+
+	std::wstring normalpath = modelpath;
+	//normalpath.append(std::wstring(loadmodel->myTextures[5].begin(), loadmodel->myTextures[5].end()));
+	normalpath.append(L"_N.dds");
+	ID3D11ShaderResourceView* roughnessShaderResourceView;
+	result = DirectX::CreateDDSTextureFromFile(myDevice, normalpath.c_str(), nullptr, &roughnessShaderResourceView);
+	if (FAILED(result))
+	{
+		return nullptr;
+	}
+	std::wstring normalpath = modelpath;
+	//normalpath.append(std::wstring(loadmodel->myTextures[5].begin(), loadmodel->myTextures[5].end()));
+	normalpath.append(L"_N.dds");
+	ID3D11ShaderResourceView* ambientShaderResourceView;
+	result = DirectX::CreateDDSTextureFromFile(myDevice, normalpath.c_str(), nullptr, &ambientShaderResourceView);
+	if (FAILED(result))
+	{
+		return nullptr;
+	}
+
+	std::wstring normalpath = modelpath;
+	//normalpath.append(std::wstring(loadmodel->myTextures[5].begin(), loadmodel->myTextures[5].end()));
+	normalpath.append(L"_N.dds");
+	ID3D11ShaderResourceView* emissiveShaderResourceView;
+	result = DirectX::CreateDDSTextureFromFile(myDevice, normalpath.c_str(), nullptr, &emissiveShaderResourceView);
+	if (FAILED(result))
+	{
+		return nullptr;
+	}
 	//End Textures
 
 	CModel* model = new CModel();
@@ -384,6 +423,10 @@ CModel* CModelFactory::LoadModel(std::string aFilePath)
 	modelData.myInputLayout = inputLayout;
 	modelData.myTexture[0] = albedoShaderResourceView;
 	modelData.myTexture[1] = normalShaderResourceView;
+	modelData.myTexture[2] = metalnessShaderResourceView;
+	modelData.myTexture[3] = roughnessShaderResourceView;
+	modelData.myTexture[4] = ambientShaderResourceView;
+	modelData.myTexture[5] = normalShaderResourceView;
 	model->Init(modelData);
 
 	return model;
