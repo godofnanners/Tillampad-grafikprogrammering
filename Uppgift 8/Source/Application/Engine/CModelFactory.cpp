@@ -364,40 +364,40 @@ CModel* CModelFactory::LoadModel(std::string aFilePath)
 		return nullptr;
 	}
 
-	std::wstring normalpath = modelpath;
+	std::wstring metalnesspath = modelpath;
 	//normalpath.append(std::wstring(loadmodel->myTextures[5].begin(), loadmodel->myTextures[5].end()));
-	normalpath.append(L"_N.dds");
+	metalnesspath.append(L"_N.dds");
 	ID3D11ShaderResourceView* metalnessShaderResourceView;
-	result = DirectX::CreateDDSTextureFromFile(myDevice, normalpath.c_str(), nullptr, &metalnessShaderResourceView);
+	result = DirectX::CreateDDSTextureFromFile(myDevice, metalnesspath.c_str(), nullptr, &metalnessShaderResourceView);
 	if (FAILED(result))
 	{
 		return nullptr;
 	}
 
-	std::wstring normalpath = modelpath;
+	std::wstring roughnesspath = modelpath;
 	//normalpath.append(std::wstring(loadmodel->myTextures[5].begin(), loadmodel->myTextures[5].end()));
-	normalpath.append(L"_N.dds");
+	roughnesspath.append(L"_N.dds");
 	ID3D11ShaderResourceView* roughnessShaderResourceView;
-	result = DirectX::CreateDDSTextureFromFile(myDevice, normalpath.c_str(), nullptr, &roughnessShaderResourceView);
+	result = DirectX::CreateDDSTextureFromFile(myDevice, roughnesspath.c_str(), nullptr, &roughnessShaderResourceView);
 	if (FAILED(result))
 	{
 		return nullptr;
 	}
-	std::wstring normalpath = modelpath;
+	std::wstring ambientpath = modelpath;
 	//normalpath.append(std::wstring(loadmodel->myTextures[5].begin(), loadmodel->myTextures[5].end()));
-	normalpath.append(L"_N.dds");
+	ambientpath.append(L"_N.dds");
 	ID3D11ShaderResourceView* ambientShaderResourceView;
-	result = DirectX::CreateDDSTextureFromFile(myDevice, normalpath.c_str(), nullptr, &ambientShaderResourceView);
+	result = DirectX::CreateDDSTextureFromFile(myDevice, ambientpath.c_str(), nullptr, &ambientShaderResourceView);
 	if (FAILED(result))
 	{
 		return nullptr;
 	}
 
-	std::wstring normalpath = modelpath;
+	std::wstring emissivepath = modelpath;
 	//normalpath.append(std::wstring(loadmodel->myTextures[5].begin(), loadmodel->myTextures[5].end()));
-	normalpath.append(L"_N.dds");
+	emissivepath.append(L"_N.dds");
 	ID3D11ShaderResourceView* emissiveShaderResourceView;
-	result = DirectX::CreateDDSTextureFromFile(myDevice, normalpath.c_str(), nullptr, &emissiveShaderResourceView);
+	result = DirectX::CreateDDSTextureFromFile(myDevice, emissivepath.c_str(), nullptr, &emissiveShaderResourceView);
 	if (FAILED(result))
 	{
 		return nullptr;

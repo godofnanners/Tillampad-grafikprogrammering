@@ -16,7 +16,7 @@ public:
 		ID3D11PixelShader* myPixelShader = nullptr;
 		D3D11_PRIMITIVE_TOPOLOGY myPrimitiveTopology;
 		ID3D11InputLayout* myInputLayout = nullptr;
-		CommonUtilities::StaticArray<ID3D11ShaderResourceView*, 2> myTexture = { nullptr,nullptr };
+		CommonUtilities::StaticArray<ID3D11ShaderResourceView*, 6> myTexture = { nullptr };
 	};
 	void Init(SModelData aModelData);
 	const SModelData& GetModelData();
