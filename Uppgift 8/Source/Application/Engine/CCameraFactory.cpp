@@ -15,7 +15,7 @@ CCamera* CCameraFactory::CreateCamera(float aFoV)
 	CCamera* camera = new CCamera();
 	int width = myWindowHandler->GetWidth();
 	int height = myWindowHandler->GetHeight();
-	camera->Init(aFoV, CommonUtilities::Vector2<float>(width, height));
+	camera->Init(aFoV, CommonUtilities::Vector2<float>((float)width, (float)height));
 	myCameras.Add(camera);
 	return camera;
 }
@@ -32,4 +32,5 @@ bool CCameraFactory::Init(CWindowHandler* aWindowHandler)
 
 CCameraFactory::CCameraFactory()
 {
+	myWindowHandler = nullptr;
 }

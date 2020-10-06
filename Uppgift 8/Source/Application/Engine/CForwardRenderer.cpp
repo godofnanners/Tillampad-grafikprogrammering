@@ -77,15 +77,14 @@ void CForwardRenderer::Render(std::vector<CModelInstance*>& aModelList, CCamera*
 	{
 		assert(L"Mapping of FrameBuffer failed");
 	}
-	ID3D11ShaderResourceView* shaderResourceviews[1]{ anEnvironmentLight->GetCubemap() };
+	ID3D11ShaderResourceView* shaderResourceviews = { anEnvironmentLight->GetCubemap() };
 
 
 	memcpy(bufferdata.pData, &myFrameBufferData, sizeof(FrameBufferData));
 	myContext->Unmap(myFrameBuffer, 0);
 	myContext->VSSetConstantBuffers(0, 1, &myFrameBuffer);
 	myContext->PSSetConstantBuffers(0, 1, &myFrameBuffer);
-	myContext->PSSetShaderResources(0, 1, shaderResourceviews);
-
+	myContext->PSSetShaderResources(0, 1, &shaderResourceviews);
 	//TODO inmplement the mainCamera
 	for (CModelInstance* instance : aModelList)
 	{
@@ -110,7 +109,7 @@ void CForwardRenderer::Render(std::vector<CModelInstance*>& aModelList, CCamera*
 		myContext->VSSetConstantBuffers(1, 1, &myObjectBuffer);
 		myContext->VSSetShader(modelData.myVertexShader, nullptr, 0);
 
-		myContext->PSSetShaderResources(1, 2, &modelData.myTexture[0]);
+		myContext->PSSetShaderResources(1, 3, &modelData.myTexture[0]);
 		myContext->PSSetShader(modelData.myPixelShader, nullptr, 0);
 
 		//myContext->Draw(modelData.myNumberOfVerticies, 0);

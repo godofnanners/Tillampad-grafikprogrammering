@@ -7,8 +7,8 @@
 class MouseInput
 {
 public:
-	void HandleMouseButtonInput(WPARAM wParam, LPARAM lParam);
-	void HandleReleasedMouseButtonInput(WPARAM wParam, LPARAM lParam);
+	void HandleMouseButtonInput(WPARAM wParam);
+	void HandleReleasedMouseButtonInput(WPARAM wParam);
 	void HandleMouseScroll(WPARAM wParam);
 	void HandleMouseMovement(LPARAM lParam);
 	void HandleSetMousePosition(int aX, int anY);

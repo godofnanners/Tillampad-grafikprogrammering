@@ -1,5 +1,6 @@
 #include "CScene.h"
 #include "CModelInstance.h"
+#include "CCamera.h"
 
 CScene CScene::myInstance;
 
@@ -34,6 +35,7 @@ CEnvironmentLight* CScene::GetEnvironmentLight()
 std::vector<CModelInstance*> CScene::CullModels(CCamera* aCamera)
 {
     //TODO Cull With main camera
+    aCamera->GetTransform();
     return myModels;
 }
 
@@ -50,4 +52,5 @@ void CScene::SetMainCamera(CCamera* aCamera)
 CScene::CScene()
 {
     myMainCamera = nullptr;
+    myEnvironmentLight = nullptr;
 }

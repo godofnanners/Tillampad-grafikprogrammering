@@ -52,14 +52,14 @@ private:
 template<typename T>
 inline Vector<T>::Vector(int aCapacity) 
 	: myData(nullptr), mySize(0), myCapacity(0) {
-	assert(aCapacity > 0, "Can't have a vector with no capacity!");
+	assert(aCapacity > 0 && "Can't have a vector with no capacity!");
 	Resize(aCapacity);
 }
 
 template<typename T>
 inline Vector<T>::Vector(const std::initializer_list<T>& aInitList)
 	: myData(nullptr), mySize(0), myCapacity(0) {
-	static_assert(aInitList.size() > 0, "Can't have a vector with no capacity!");
+	static_assert(aInitList.size() > 0 && "Can't have a vector with no capacity!");
 	Resize(aInitList.size());
 	for (auto& o : aInitList)
 	{
@@ -102,42 +102,42 @@ inline Vector<T>::~Vector() {
 
 template<typename T>
 inline T& Vector<T>::At(int aIndex) {
-	assert(0 <= aIndex && aIndex < mySize, "Accessing element %d when vector has %d elements!", aIndex, mySize);
+	assert(0 <= aIndex && aIndex < mySize && "Accessing element %d when vector has %d elements!");
 	return myData[aIndex];
 }
 template<typename T>
 inline T& Vector<T>::operator[](int aIndex) {
-	assert(0 <= aIndex && aIndex < mySize, "Accessing element %d when vector has %d elements!", aIndex, mySize);
+	assert(0 <= aIndex && aIndex < mySize && "Accessing element %d when vector has %d elements!");
 	return myData[aIndex];
 }
 template<typename T>
 inline const T& Vector<T>::At(int aIndex) const {
-	assert(0 <= aIndex && aIndex < mySize, "Accessing element %d when vector has %d elements!", aIndex, mySize);
+	assert(0 <= aIndex && aIndex < mySize && "Accessing element %d when vector has %d elements!");
 	return myData[aIndex];
 }
 template<typename T>
 inline const T& Vector<T>::operator[](int aIndex) const {
-	assert(0 <= aIndex && aIndex < mySize, "Accessing element %d when vector has %d elements!", aIndex, mySize);
+	assert(0 <= aIndex && aIndex < mySize && "Accessing element %d when vector has %d elements!");
 	return myData[aIndex];
 }
 template<typename T>
 inline T& Vector<T>::Back() {
-	assert(mySize > 0, "Accessing element of empty vector!");
+	assert(mySize > 0 && "Accessing element of empty vector!");
 	return myData[mySize - 1];
 }
 template<typename T>
 inline T& Vector<T>::Front() {
-	assert(mySize > 0, "Accessing element of empty vector!");
+	assert(mySize > 0 && "Accessing element of empty vector!");
 	return myData[0];
 }
 template<typename T>
 inline const T& Vector<T>::Back() const {
-	assert(mySize > 0, "Accessing element of empty vector!");
+	assert(mySize > 0 && "Accessing element of empty vector!");
 	return myData[mySize - 1];
 }
 template<typename T>
 inline const T& Vector<T>::Front() const {
-	assert(mySize > 0, "Accessing element of empty vector!");
+	assert(mySize > 0 && "Accessing element of empty vector!");
 	return myData[0];
 }
 template<typename T>
@@ -184,17 +184,17 @@ inline void Vector<T>::Push(const T& aValue) {
 }
 template<typename T>
 inline void Vector<T>::Pop() {
-	assert(mySize > 0, "Can't pop an empty vector!");
+	assert(mySize > 0 && "Can't pop an empty vector!");
 	mySize--;
 }
 template<typename T>
 inline void Vector<T>::RemoveCyclic(int aIndex) {
-	assert(0 <= aIndex && aIndex < mySize, "Removing element %d when vector has %d elements!", aIndex, mySize);
+	assert(0 <= aIndex && aIndex < mySize && "Removing element %d when vector has %d elements!");
 	myData[aIndex] = myData[--mySize];
 }
 template<typename T>
 inline void Vector<T>::Remove(int aIndex) {
-	assert(0 <= aIndex && aIndex < mySize, "Removing element %d when vector has %d elements!", aIndex, mySize);
+	assert(0 <= aIndex && aIndex < mySize && "Removing element %d when vector has %d elements!");
 	for (int i = 0; i < mySize - aIndex - 1; ++i) {
 		myData[aIndex + i] = myData[aIndex + i + 1];
 	}
@@ -202,7 +202,7 @@ inline void Vector<T>::Remove(int aIndex) {
 }
 template<typename T>
 inline void Vector<T>::Reserve(int aCapacity) {
-	assert(aCapacity > myCapacity, "Can't reserve less memory! Use Resize instead!");
+	assert(aCapacity > myCapacity && "Can't reserve less memory! Use Resize instead!");
 
 	T* data = new T[aCapacity];
 	for (int i = 0; i < mySize; ++i) {
@@ -215,7 +215,7 @@ inline void Vector<T>::Reserve(int aCapacity) {
 }
 template<typename T>
 inline void Vector<T>::Resize(int aCapacity) {
-	assert(aCapacity > 0, "Can't have a vector with no capacity!");
+	assert(aCapacity > 0 && "Can't have a vector with no capacity!");
 	T* data = new T[aCapacity];
 	int size = std::min<int>(aCapacity, mySize);
 	for (int i = 0; i < size; ++i) {

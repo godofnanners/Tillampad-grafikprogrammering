@@ -17,8 +17,8 @@ int Game::Init()
 	CCameraFactory& cameraFactory = CCameraFactory::GetInstance();
 	CLightFactory& lightFactory = CLightFactory::GetInstance();
 	CEnvironmentLight* environmentLight = lightFactory.CreateEnvironmentalLight(L"Textures/cube_1024_preblurred_angle3_Skansen3.dds");
-	environmentLight->SetDirection({ -1.0f,1.0f,-1.0f });
-	environmentLight->SetColor({ 0.8f,0.8f ,0.8f });
+	environmentLight->SetDirection({ -0.0f,0.0f,-1.0f });
+	environmentLight->SetColor({ .3f,.0f ,0.0f });
 	scene.AddInstance(environmentLight);
 	CCamera* camera = cameraFactory.CreateCamera(90.0f);
 	camera->SetTransform(CommonUtilities::Vector3<float>(0.0f, 0.0f, 0.0f), CommonUtilities::Vector3<float>(0.0f, 0.0f, -5.0f));

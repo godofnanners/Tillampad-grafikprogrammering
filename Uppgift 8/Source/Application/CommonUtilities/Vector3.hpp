@@ -108,9 +108,9 @@ namespace CommonUtilities
 	template<class T>
 	inline Vector3<T> Vector3<T>::GetNormalized() const
 	{
-		T length = sqrt((x * x) + (y * y) + (z * z));
+		T length = (T)sqrt((x * x) + (y * y) + (z * z));
 
-		if (length==0)
+		if (length == 0)
 		{
 			return Vector3<T>(x, y, z);
 		}
@@ -132,7 +132,7 @@ namespace CommonUtilities
 	inline void Vector3<T>::Normalize()
 	{
 		T length = sqrt((x * x) + (y * y) + (z * z));
-		if (length==0)
+		if (length == 0)
 		{
 			return;
 		}
@@ -148,18 +148,18 @@ namespace CommonUtilities
 	template<class T>
 	inline T Vector3<T>::Dot(const Vector3<T>& aVector) const
 	{
-		T dot = (this->x * aVector.x) + (this->y * aVector.y) + (this->z*aVector.z);
-			
+		T dot = (this->x * aVector.x) + (this->y * aVector.y) + (this->z * aVector.z);
+
 		return dot;
 	}
 
 	template<class T>
 	inline Vector3<T> Vector3<T>::Cross(const Vector3<T>& aVector) const
 	{
-		T crossX= (this->y*aVector.z)-(this->z*aVector.y);
-		T crossY= (this->z * aVector.x) - (this->x * aVector.z);
-		T crossZ=(this->x * aVector.y) - (this->y * aVector.x);
-		Vector3<T> CrossVector = Vector3<T>(crossX,crossY,crossZ);
+		T crossX = (this->y * aVector.z) - (this->z * aVector.y);
+		T crossY = (this->z * aVector.x) - (this->x * aVector.z);
+		T crossZ = (this->x * aVector.y) - (this->y * aVector.x);
+		Vector3<T> CrossVector = Vector3<T>(crossX, crossY, crossZ);
 		return CrossVector;
 	}
 

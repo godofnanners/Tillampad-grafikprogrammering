@@ -12,12 +12,12 @@ namespace CommonUtilities
 			//Keyboard Input
 		case(WM_KEYDOWN):
 		{
-			myKeyboardInputs.HandlePressedKeyBoardInput(wParam, lParam);
+			myKeyboardInputs.HandlePressedKeyBoardInput(wParam);
 			break;
 		}
 		case (WM_KEYUP):
 		{
-			myKeyboardInputs.HandleReleasedKeyBoardInput(wParam, lParam);
+			myKeyboardInputs.HandleReleasedKeyBoardInput(wParam);
 			break;
 		}
 		//Mouse Input
@@ -37,7 +37,7 @@ namespace CommonUtilities
 		case (WM_MBUTTONDOWN):
 		case(WM_XBUTTONDOWN):
 		{
-			myMouseInput.HandleMouseButtonInput(wParam, lParam);
+			myMouseInput.HandleMouseButtonInput(wParam);
 			break;
 		}
 
@@ -46,7 +46,7 @@ namespace CommonUtilities
 		case (WM_MBUTTONUP):
 		case(WM_XBUTTONUP):
 		{
-			myMouseInput.HandleReleasedMouseButtonInput(wParam, lParam);
+			myMouseInput.HandleReleasedMouseButtonInput(wParam);
 			break;
 		}
 

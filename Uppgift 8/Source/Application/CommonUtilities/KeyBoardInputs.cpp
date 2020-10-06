@@ -1,18 +1,18 @@
 #include "KeyBoardInputs.h"
 
-void KeyBoardInputs::HandlePressedKeyBoardInput(WPARAM wParam, LPARAM lParam)
+void KeyBoardInputs::HandlePressedKeyBoardInput(WPARAM wParam)
 {
-	SetPressedAndHeldKeys(wParam, lParam);
+	SetPressedAndHeldKeys((int)wParam);
 }
 
-void KeyBoardInputs::HandleReleasedKeyBoardInput(WPARAM wParam, LPARAM lParam)
+void KeyBoardInputs::HandleReleasedKeyBoardInput(WPARAM wParam)
 {
 	myPressedKeys[wParam] = false;
 	myHeldDownKeys[wParam] = false;
 	myJustReleasedKeys[wParam] = true;
 }
 
-void KeyBoardInputs::SetPressedAndHeldKeys(int aKeyCode, LPARAM lParam)
+void KeyBoardInputs::SetPressedAndHeldKeys(int aKeyCode)
 {
 	if (myHeldDownKeys[aKeyCode] == false)
 	{

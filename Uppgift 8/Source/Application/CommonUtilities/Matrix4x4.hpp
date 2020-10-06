@@ -269,10 +269,10 @@ namespace CommonUtilities
 	{
 		Matrix4x4<T> xRot;
 
-		xRot.myMatrix.oneDim[5] = cos(aAngleInRadians);
-		xRot.myMatrix.oneDim[6] = sin(aAngleInRadians);
-		xRot.myMatrix.oneDim[9] = -sin(aAngleInRadians);
-		xRot.myMatrix.oneDim[10] = cos(aAngleInRadians);
+		xRot.myMatrix.oneDim[5] = (T)cos(aAngleInRadians);
+		xRot.myMatrix.oneDim[6] = (T)sin(aAngleInRadians);
+		xRot.myMatrix.oneDim[9] = (T)-sin(aAngleInRadians);
+		xRot.myMatrix.oneDim[10] = (T)cos(aAngleInRadians);
 
 		return xRot;
 	}
@@ -282,10 +282,10 @@ namespace CommonUtilities
 	{
 		Matrix4x4<T> yRot;
 
-		yRot.myMatrix.oneDim[0] = cos(aAngleInRadians);
-		yRot.myMatrix.oneDim[2] = -sin(aAngleInRadians);
-		yRot.myMatrix.oneDim[8] = sin(aAngleInRadians);
-		yRot.myMatrix.oneDim[10] = cos(aAngleInRadians);
+		yRot.myMatrix.oneDim[0] = (T)cos(aAngleInRadians);
+		yRot.myMatrix.oneDim[2] = (T)-sin(aAngleInRadians);
+		yRot.myMatrix.oneDim[8] = (T)sin(aAngleInRadians);
+		yRot.myMatrix.oneDim[10] =(T) cos(aAngleInRadians);
 
 		return yRot;
 	}
@@ -295,10 +295,10 @@ namespace CommonUtilities
 	{
 		Matrix4x4<T> zRot;
 
-		zRot.myMatrix.oneDim[0] = cos(aAngleInRadians);
-		zRot.myMatrix.oneDim[1] = sin(aAngleInRadians);
-		zRot.myMatrix.oneDim[4] = -sin(aAngleInRadians);
-		zRot.myMatrix.oneDim[5] = cos(aAngleInRadians);
+		zRot.myMatrix.oneDim[0] = (T)cos(aAngleInRadians);
+		zRot.myMatrix.oneDim[1] = (T)sin(aAngleInRadians);
+		zRot.myMatrix.oneDim[4] = (T)-sin(aAngleInRadians);
+		zRot.myMatrix.oneDim[5] = (T)cos(aAngleInRadians);
 
 		return zRot;
 	}
@@ -403,7 +403,7 @@ namespace CommonUtilities
 		scale(1, 1) = aVector3.x;
 		scale(2, 2) = aVector3.y;
 		scale(3, 3) = aVector3.z;
-		*this = scale* *this;
+		*this = scale * *this;
 	}
 	template<class T>
 	inline void Matrix4x4<T>::AddToRotation(const Vector3<T>& aVector3, bool ValuesAreRadians)

@@ -364,44 +364,17 @@ CModel* CModelFactory::LoadModel(std::string aFilePath)
 		return nullptr;
 	}
 
-	std::wstring metalnesspath = modelpath;
+	std::wstring materialpath = modelpath;
 	//normalpath.append(std::wstring(loadmodel->myTextures[5].begin(), loadmodel->myTextures[5].end()));
-	metalnesspath.append(L"_N.dds");
-	ID3D11ShaderResourceView* metalnessShaderResourceView;
-	result = DirectX::CreateDDSTextureFromFile(myDevice, metalnesspath.c_str(), nullptr, &metalnessShaderResourceView);
+	materialpath.append(L"_M.dds");
+	ID3D11ShaderResourceView* MaterialShaderResourceView;
+	result = DirectX::CreateDDSTextureFromFile(myDevice, materialpath.c_str(), nullptr, &MaterialShaderResourceView);
 	if (FAILED(result))
 	{
 		return nullptr;
 	}
 
-	std::wstring roughnesspath = modelpath;
-	//normalpath.append(std::wstring(loadmodel->myTextures[5].begin(), loadmodel->myTextures[5].end()));
-	roughnesspath.append(L"_N.dds");
-	ID3D11ShaderResourceView* roughnessShaderResourceView;
-	result = DirectX::CreateDDSTextureFromFile(myDevice, roughnesspath.c_str(), nullptr, &roughnessShaderResourceView);
-	if (FAILED(result))
-	{
-		return nullptr;
-	}
-	std::wstring ambientpath = modelpath;
-	//normalpath.append(std::wstring(loadmodel->myTextures[5].begin(), loadmodel->myTextures[5].end()));
-	ambientpath.append(L"_N.dds");
-	ID3D11ShaderResourceView* ambientShaderResourceView;
-	result = DirectX::CreateDDSTextureFromFile(myDevice, ambientpath.c_str(), nullptr, &ambientShaderResourceView);
-	if (FAILED(result))
-	{
-		return nullptr;
-	}
-
-	std::wstring emissivepath = modelpath;
-	//normalpath.append(std::wstring(loadmodel->myTextures[5].begin(), loadmodel->myTextures[5].end()));
-	emissivepath.append(L"_N.dds");
-	ID3D11ShaderResourceView* emissiveShaderResourceView;
-	result = DirectX::CreateDDSTextureFromFile(myDevice, emissivepath.c_str(), nullptr, &emissiveShaderResourceView);
-	if (FAILED(result))
-	{
-		return nullptr;
-	}
+	
 	//End Textures
 
 	CModel* model = new CModel();
@@ -423,10 +396,8 @@ CModel* CModelFactory::LoadModel(std::string aFilePath)
 	modelData.myInputLayout = inputLayout;
 	modelData.myTexture[0] = albedoShaderResourceView;
 	modelData.myTexture[1] = normalShaderResourceView;
-	modelData.myTexture[2] = metalnessShaderResourceView;
-	modelData.myTexture[3] = roughnessShaderResourceView;
-	modelData.myTexture[4] = ambientShaderResourceView;
-	modelData.myTexture[5] = normalShaderResourceView;
+	modelData.myTexture[2] = MaterialShaderResourceView;
+	
 	model->Init(modelData);
 
 	return model;

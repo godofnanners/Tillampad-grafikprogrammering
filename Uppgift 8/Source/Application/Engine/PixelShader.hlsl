@@ -2,7 +2,7 @@
 
 #define FLT_EPSILON 1.192092895e-07f
 #define nMipOffset 3
-static float PI = 3.14;
+#define PI 3.14f
 float3 LinearToGamma(float3 aColor);
 float3 GammaToLinear(float3 aColor);
 float bias(float value, float b);
@@ -23,7 +23,7 @@ float ApproximateSpecularSelfOcclusion(float3 vR, float3 vertNormalNormalized);
 float3 Diffuse(float3 pAlbedo);
 float NormalDistribution_GGX(float a, float NdH);
 float Geometric_Smith_Schlick_GGX(float a, float NdV, float NdL);
-float3 Fresnel_Schlick(float3 specularColor, float3 h, float v);
+float3 Fresnel_Schlick(float3 specularColor, float3 h, float3 v);
 
 float Specular_D(float a, float NdH);
 float Specular_G(float a, float NdV, float NdL, float NdH, float VdH, float LdV);
@@ -43,7 +43,7 @@ int GetNumMips(TextureCube cubeTex);
 PixelOutput main(VertexToPixel input)
 {
     PixelOutput returnValue;
-    float3 toEye = normalize(cameraPosition.xyz - input.myPosition.xyz);
+    float3 toEye = normalize(cameraPosition.xyz - input.myWorldPosition.xyz);
     float3 albedo = PixelShader_Albedo(input).myColor.rgb;
     float3 normal = PixelShader_Normal(input).myColor.xyz;
     float ambientocclusion = PixelShader_AmbientOcclusion(input).myColor.r;
@@ -57,10 +57,10 @@ PixelOutput main(VertexToPixel input)
     
     float3 ambience = EvaluateAmbiance(EnvironmentCubemapTexture, normal, input.myNormal.xyz, toEye, perceptualroughness, metalness, albedo, ambientocclusion, diffusecolor, speccularcolor);
     float3 directionallight = EvaluateDirectionalLight(diffusecolor, speccularcolor, normal, perceptualroughness, directionalLightColor.xyz, toDirectionalLight.xyz, toEye.xyz);
-    float3 emissive = albedo + emissivedata;
+    float3 emissive = albedo * emissivedata;
     float3 radiance = ambience + directionallight + emissive;
     
-    returnValue.myColor.rbg = LinearToGamma(radiance);
+    returnValue.myColor.rgb = LinearToGamma(radiance);
     
     returnValue.myColor.a = 1.0f;
     return returnValue;
@@ -118,7 +118,7 @@ int GetNumMips(TextureCube cubeTex)
 PixelOutput PixelShader_Albedo(VertexToPixel input)
 {
     PixelOutput output;
-    float3 albedo = normalTexture.Sample(defaultSampler, input.myUV.xy).rgb;
+    float3 albedo = albedoTexture.Sample(defaultSampler, input.myUV.xy).rgb;
     albedo = GammaToLinear(albedo);
     output.myColor.rgb = albedo;
     output.myColor.a = 1.0f;
@@ -131,6 +131,10 @@ PixelOutput PixelShader_Normal(VertexToPixel input)
     normal = (normal * 2) - 1;
     normal = normalize(normal);
 
+    float3x3 tangentspacematrix = float3x3(normalize(input.myTangent.xyz), normalize(input.myBinormal.xyz), normalize(input.myNormal.xyz));
+    normal = mul(normal.xyz, tangentspacematrix);
+    normal = normalize(normal);
+    
     PixelOutput output;
     output.myColor.xyz = normal.xyz;
     output.myColor.a = 1.0f;
@@ -140,7 +144,7 @@ PixelOutput PixelShader_Normal(VertexToPixel input)
 PixelOutput PixelShader_AmbientOcclusion(VertexToPixel input)
 {
     PixelOutput output;
-    float ao = normalTexture.Sample(defaultSampler, input.myUV.xy).rgb;
+    float ao = normalTexture.Sample(defaultSampler, input.myUV.xy).a;
     output.myColor.rgb = ao.xxx;
     output.myColor.a = 1.0f;
     return output;
@@ -198,15 +202,16 @@ float3 EvaluateAmbiance(TextureCube lysBurleyCube, float3 vN, float3 org_normal,
     float3 diffRad = lysBurleyCube.SampleLevel(defaultSampler, vN, (float) (nrBrdfMips - 1)).xyz;
     
     float fT = 1.0 - RdotNsat;
-    float fT5 = fT * fT;
-    fT5 = fT5 * fT5 * fT;
+    float fT5 = fT * fT; fT5 = fT5 * fT5 * fT;
     spccol = lerp(spccol, (float3) 1.0, fT5);
+    
     float fFade = GetReductionInMicrofacets(perceptualRoughness);
     fFade *= EmpiricalSpecularAO(ao, perceptualRoughness);
     fFade *= ApproximateSpecularSelfOcclusion(vR, org_normal);
 
     float3 ambientdiffuse = ao * dfcol * diffRad;
     float3 ambientspecular = fFade * spccol * specRad;
+    
     return ambientdiffuse + ambientspecular;
 }
 
@@ -266,7 +271,7 @@ float Specular_G(float a, float NdV, float NdL, float NdH, float VdH, float LdV)
     return Geometric_Smith_Schlick_GGX(a, NdV, NdL);
 }
 
-float3 Fresnel_Schlick(float3 specularColor, float3 h, float v)
+float3 Fresnel_Schlick(float3 specularColor, float3 h, float3 v)
 {
     return (specularColor + (1.0f - specularColor) * pow((1.0f - saturate(dot(v, h))), 5));
 }

@@ -1,7 +1,7 @@
 #include"MouseInput.h"
 
 
-void MouseInput::HandleMouseButtonInput(WPARAM wParam, LPARAM lParam)
+void MouseInput::HandleMouseButtonInput(WPARAM wParam)
 {
 	for (int i = 0; i < static_cast<int>(InputKeys::eMouseButtons::Count); i++)
 	{
@@ -16,7 +16,7 @@ void MouseInput::HandleMouseButtonInput(WPARAM wParam, LPARAM lParam)
 	}
 }
 
-void MouseInput::HandleReleasedMouseButtonInput(WPARAM wParam, LPARAM lParam)
+void MouseInput::HandleReleasedMouseButtonInput(WPARAM wParam)
 {
 	for (int i = 0; i < static_cast<int>(InputKeys::eMouseButtons::Count); i++)
 	{
@@ -44,7 +44,7 @@ void MouseInput::HandleSetMousePosition(int aX, int anY)
 	SetCursorPos(aX, anY);
 }
 
-const std::array<float, 2> & MouseInput::GetMouseMovement()const
+const std::array<float, 2>& MouseInput::GetMouseMovement()const
 {
 	return myMousePositionDeltaXY;
 }
@@ -59,8 +59,8 @@ const std::array<float, 2> MouseInput::GetMousePos()const
 	POINT cursor;
 	GetCursorPos(&cursor);
 	std::array<float, 2> cursorPosXY;
-	cursorPosXY[0] = cursor.x;
-	cursorPosXY[1] = cursor.y;
+	cursorPosXY[0] = (float)cursor.x;
+	cursorPosXY[1] = (float)cursor.y;
 
 	return cursorPosXY;
 }
