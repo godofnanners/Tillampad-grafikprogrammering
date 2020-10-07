@@ -19,17 +19,18 @@ CEnvironmentLight* CLightFactory::CreateEnvironmentalLight(std::wstring aFilePat
 {
 	HRESULT result;
 	ID3D11ShaderResourceView* CubeMapShaderResourceView;
-	result=DirectX::CreateDDSTextureFromFile(myDevice, aFilePath.c_str(), nullptr, &CubeMapShaderResourceView);
+	result = DirectX::CreateDDSTextureFromFile(myDevice, aFilePath.c_str(), nullptr, &CubeMapShaderResourceView);
 	CEnvironmentLight* envLight = new CEnvironmentLight(CubeMapShaderResourceView);
 	return envLight;
 }
 
-CPointLight* CLightFactory::CreatePointLight(const CommonUtilities::Vector3<float>&aPos, const CommonUtilities::Vector3<float>&aRange,const CommonUtilities::Vector3<float>&aColor)
+CPointLight* CLightFactory::CreatePointLight(const CommonUtilities::Vector3<float>& aPos,const float& aRange, const float& aIntensity,const CommonUtilities::Vector3<float>& aColor)
 {
 	CPointLight* pointLight = new CPointLight();
 	pointLight->SetPosition(aPos);
 	pointLight->SetRange(aRange);
 	pointLight->SetColor(aColor);
+	pointLight->SetIntensity(aIntensity);
 	return pointLight;
 }
 

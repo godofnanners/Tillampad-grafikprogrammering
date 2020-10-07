@@ -13,7 +13,7 @@ float SpecularPowerFromPerceptualRoughness(float fPerceptualRoughness);
 float PerceptualRoughnessFromSpecularPower(float fSpecPower);
 float3 EvaluateAmbiance(TextureCube lysBurleyCube, float3 vN, float3 org_normal, float3 to_cam, float perceptualRoughness, float metalness, float3 albedo, float a0, float3 dfcol, float3 spccol);
 float3 EvaluateDirectionalLight(float3 albedoColor, float3 specularColor, float3 normal, float roughness, float3 lightColor, float3 lightDir, float3 viewDir);
-
+float3 EvaluatePointLight(float3 albedoColor, float3 specularColor, float3 normal, float roughness, float3 lightColor, float lightIntensity, float lightRange, float3 lightPos, float3 toEye, float3 pixelPos);
 float BurleyToMip(float fPerceptualRoughness, int nMips, float NdotR);
 float3 GetSpecularDominantDir(float3 vN, float3 vR, float fRealRoughness);
 float GetReductionInMicrofacets(float perceptualRoughness);
@@ -57,6 +57,13 @@ PixelOutput main(VertexToPixel input)
     
     float3 ambience = EvaluateAmbiance(EnvironmentCubemapTexture, normal, input.myNormal.xyz, toEye, perceptualroughness, metalness, albedo, ambientocclusion, diffusecolor, speccularcolor);
     float3 directionallight = EvaluateDirectionalLight(diffusecolor, speccularcolor, normal, perceptualroughness, directionalLightColor.xyz, toDirectionalLight.xyz, toEye.xyz);
+    float3 pointLights = 0;
+    for (unsigned int index = 0; index < myNumberOfUsedPointLights; index++)
+    {
+        PointLight currentLight = myPointLights[index];
+        pointLights += EvaluatePointLight(diffusecolor, speccularcolor, normal, perceptualroughness, currentLight.myColor.rgb, currentLight.myIntensity, currentLight.myRange, currentLight.myPosition.xyz, toEye, input.myWorldPosition.xyz);
+    }
+    
     float3 emissive = albedo * emissivedata;
     float3 radiance = ambience + directionallight + emissive;
     
@@ -231,6 +238,32 @@ float3 EvaluateDirectionalLight(float3 albedoColor, float3 specularColor, float3
     float3 cSpec = Specular(specularColor, h, viewDir, lightDir, a, NdL, NdV, NdH, VdH, LdV);
     
     return saturate(lightColor * lambert * (cDiff * (1.0f - cSpec) + cSpec) * PI);
+}
+
+float3 EvaluatePointLight(float3 albedoColor, float3 specularColor, float3 normal, float roughness, float3 lightColor, float lightIntensity, float lightRange, float3 lightPos, float3 toEye, float3 pixelPos)
+{
+    float3 toLight = lightPos.xyz - pixelPos.xyz;
+    float lightdistance = length(toLight);
+    toLight = normalize(toLight);
+    float NdL = saturate(dot(normal, toLight));
+    float lambert = NdL; //angle attenuation
+    float NdV = saturate(dot(normal, toEye));
+    float3 h = normalize(toLight + toEye);
+    float NdH = saturate(dot(normal, h));
+    float VdH = saturate(dot(toEye, h));
+    float LdV = saturate(dot(toLight, toEye));
+    float a = max(0.001f, roughness * roughness);
+
+    float3 cDiff = Diffuse(albedoColor);
+    float3 cSpec = Specular(specularColor, h, toEye, toLight, a, NdL, NdV, NdH, VdH, LdV);
+
+    float linearattenuation = lightdistance / lightRange;
+    linearattenuation = 1.0f - linearattenuation;
+    linearattenuation = saturate(linearattenuation);
+    float physicalattenuation = saturate(1.0f / (lightdistance * lightdistance));
+    float attenuation = lambert * linearattenuation * physicalattenuation;
+    
+    return saturate(lightColor * lightIntensity * lambert * linearattenuation * physicalattenuation * ((cDiff * (1.0f - cSpec) + cSpec) * PI));
 }
 
 float3 Diffuse(float3 pAlbedo)

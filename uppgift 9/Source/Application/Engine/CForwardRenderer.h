@@ -2,6 +2,8 @@
 #include <vector>
 #include "Matrix4x4.hpp"
 #include "Vector4.hpp"
+#include "VectorOnStack.h"
+#include "GrowingArray.h"
 class CDirectX11Framework;
 class CModelInstance;
 class CCamera;
@@ -15,7 +17,7 @@ public:
 	~CForwardRenderer();
 
 	bool Init(CDirectX11Framework* aFramework);
-	void Render(std::vector<CModelInstance*>& aModelList, CCamera* aCamera, const CommonUtilities::GrowingArray<std::pair<unsigned int, std::array<CPointLight*, 8>>>& aPointLightList, CEnvironmentLight* anEnvironmentLight);
+	void Render(std::vector<CModelInstance*>& aModelList, CCamera* aCamera, const CommonUtilities::GrowingArray<CommonUtilities::VectorOnStack<CPointLight*, 8>>& aPointLightList, CEnvironmentLight* anEnvironmentLight);
 private:
 	struct FrameBufferData
 	{
@@ -36,6 +38,8 @@ private:
 			CommonUtilities::Vector4<float>myPosition;
 			CommonUtilities::Vector3<float> myColor;
 			float myRange;
+			float myIntensity;
+			CommonUtilities::Vector3<float>myTrash;
 		}myPointLights[8];
 		unsigned int myNumberOfUsedPointLights;
 		unsigned int myTrash[3];

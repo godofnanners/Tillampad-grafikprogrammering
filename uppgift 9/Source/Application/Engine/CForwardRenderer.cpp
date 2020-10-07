@@ -6,7 +6,6 @@
 #include "CCamera.h"
 #include "CEnvironmentLight.h"
 #include "CPointLight.h"
-#include "GrowingArray.h"
 CForwardRenderer::CForwardRenderer()
 {
 	myContext = nullptr;
@@ -63,7 +62,7 @@ bool CForwardRenderer::Init(CDirectX11Framework* aFramework)
 	return true;
 }
 
-void CForwardRenderer::Render(std::vector<CModelInstance*>& aModelList, CCamera* aCamera,const CommonUtilities::GrowingArray<std::pair<unsigned int, std::array<CPointLight*, 8>>>&aPointLightList, CEnvironmentLight* anEnvironmentLight)
+void CForwardRenderer::Render(std::vector<CModelInstance*>& aModelList, CCamera* aCamera,const CommonUtilities::GrowingArray<CommonUtilities::VectorOnStack<CPointLight*, 8>>&aPointLightList, CEnvironmentLight* anEnvironmentLight)
 {
 	HRESULT result;
 	D3D11_MAPPED_SUBRESOURCE bufferdata;

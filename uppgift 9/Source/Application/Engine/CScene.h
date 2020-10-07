@@ -1,6 +1,7 @@
 #pragma once
 #include <vector>
 #include "GrowingArray.h"
+#include "VectorOnStack.h"
 class CModelInstance;
 class CCamera;
 class CEnvironmentLight;
@@ -16,7 +17,7 @@ public:
 	bool AddInstance(CPointLight* anEnvironmentLight);
 	CEnvironmentLight* GetEnvironmentLight();
 	std::vector<CModelInstance*> CullModels(CCamera* aCamera);
-	CommonUtilities::GrowingArray<std::pair<unsigned int, std::array<CPointLight*, 8>>> CullLights(CModelInstance* aModelInstance);
+	CommonUtilities::VectorOnStack<CPointLight*,8> CullLights(CModelInstance* aModelInstance);
 	CCamera *GetMainCamera();
 	void SetMainCamera(CCamera* aCamera);
 private:

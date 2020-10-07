@@ -9,7 +9,7 @@
 #include "winuser.h"
 #include "CLightFactory.h"
 #include "CEnvironmentLight.h"
-
+#include "CPointLight.h"
 int Game::Init()
 {
 	CScene& scene = CScene::GetInstance();
@@ -19,6 +19,7 @@ int Game::Init()
 	CEnvironmentLight* environmentLight = lightFactory.CreateEnvironmentalLight(L"Textures/cube_1024_preblurred_angle3_Skansen3.dds");
 	environmentLight->SetDirection({ -0.0f,0.0f,-1.0f });
 	environmentLight->SetColor({ .3f,.0f ,0.0f });
+	CPointLight* pointLight = lightFactory.CreatePointLight({ 1,1,1 }, 10.f, 1.f,);
 	scene.AddInstance(environmentLight);
 	CCamera* camera = cameraFactory.CreateCamera(90.0f);
 	camera->SetTransform(CommonUtilities::Vector3<float>(0.0f, 0.0f, 0.0f), CommonUtilities::Vector3<float>(0.0f, 0.0f, -5.0f));

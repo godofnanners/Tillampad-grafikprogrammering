@@ -43,4 +43,14 @@ cbuffer FrameBuffer : register(b0)
 cbuffer ObjectBuffer : register(b1)
 {
 	float4x4 toWorld;
+    struct PointLight
+    {
+        float4 myPosition;
+        float3 myColor;
+        float myRange;
+        float myIntensity;
+        float3 myTrash;
+    }myPointLights[8];
+    unsigned int myNumberOfUsedPointLights;
+    unsigned int trashobject[3];
 }

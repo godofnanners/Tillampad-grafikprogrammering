@@ -8,6 +8,7 @@
 #include "CCameraFactory.h"
 #include "CCamera.h"
 #include "CLightFactory.h"
+#include "VectorOnStack.h"
 Engine::Engine():myScene(CScene::GetInstance())
 {
 	myFramework = nullptr;
@@ -50,7 +51,7 @@ void Engine::RenderFrame()
 	CEnvironmentLight* environmentlight = myScene.GetEnvironmentLight();
 	CCamera* mainCamera = myScene.GetMainCamera();
 	std::vector<CModelInstance*>modelsToRender = myScene.CullModels(mainCamera);
-	CommonUtilities::GrowingArray<std::pair<unsigned int, std::array<CPointLight*, 8>>>pointlights;
+	CommonUtilities::GrowingArray<CommonUtilities::VectorOnStack<CPointLight*, 8>>pointlights;
 	for (CModelInstance*instance:modelsToRender)
 	{
 		pointlights.Add(myScene.CullLights(instance))
