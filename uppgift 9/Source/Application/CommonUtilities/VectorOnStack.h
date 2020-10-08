@@ -30,6 +30,10 @@ namespace CommonUtilities
 	template<typename T, int capacity, typename CountType, bool UseSafeModeFlag>
 	inline VectorOnStack<T, capacity, CountType, UseSafeModeFlag>::VectorOnStack()
 	{
+		for (int i = 0; i < capacity-1; i++)
+		{
+			myObjects[i] = T();
+		}
 		mySize = 0;
 	}
 	template<typename T, int capacity, typename CountType, bool UseSafeModeFlag>
@@ -38,14 +42,14 @@ namespace CommonUtilities
 		mySize = aVectorOnStack.Size();
 		if (UseSafeModeFlag)
 		{
-			for (int i = 0; i < mySize; i++)
+			for (CountType i = 0; i < mySize; i++)
 			{
 				myObjects[i] = aVectorOnStack[i];
 			}
 		}
 		else
 		{
-			for (int i = 0; i < mySize; i++)
+			for (CountType i = 0; i < mySize; i++)
 			{
 				memcpy(&myObjects[i], &aVectorOnStack[i], sizeof(T));
 			}
@@ -60,14 +64,14 @@ namespace CommonUtilities
 
 		if (UseSafeModeFlag)
 		{
-			for (int i = 0; i < mySize; i++)
+			for (CountType i = 0; i < mySize; i++)
 			{
 				myObjects[i] = *(aInitList.begin() + i);
 			}
 		}
 		else
 		{
-			for (int i = 0; i < mySize; i++)
+			for (CountType i = 0; i < mySize; i++)
 			{
 				memcpy(&myObjects[i], (aInitList.begin() + i), sizeof(T));
 			}
@@ -86,14 +90,14 @@ namespace CommonUtilities
 		mySize = aVectorOnStack.mySize;
 		if (UseSafeModeFlag)
 		{
-			for (int i = 0; i < mySize; i++)
+			for (CountType i = 0; i < mySize; i++)
 			{
 				myObjects[i] = aVectorOnStack[i];
 			}
 		}
 		else
 		{
-			for (int i = 0; i < mySize; i++)
+			for (CountType i = 0; i < mySize; i++)
 			{
 				memcpy(&myObjects[i], &aVectorOnStack[i], sizeof(T));
 			}

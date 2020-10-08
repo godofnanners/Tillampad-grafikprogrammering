@@ -53,15 +53,15 @@ CommonUtilities::VectorOnStack<CPointLight*, 8> CScene::CullLights(CModelInstanc
 	CommonUtilities::VectorOnStack<CPointLight*, 8> lightsAffectingModelInstance;
 	for (unsigned int lightIndex = 0; lightIndex < myPointLights.Size(); lightIndex++)
 	{
-		if ( (pos-myPointLights[lightIndex]->GetPosition()).Length()< myPointLights[lightIndex]->GetRange())
-		{
+		//if ( (pos-myPointLights[lightIndex]->GetPosition()).Length()< myPointLights[lightIndex]->GetRange())
+		//{
 			lightsAffectingModelInstance.Add(myPointLights[lightIndex]);
 			
 			if (lightsAffectingModelInstance.Size()> 7)
 			{
 				break;
 			}
-		}
+		//}
 	}
 
 	return lightsAffectingModelInstance;

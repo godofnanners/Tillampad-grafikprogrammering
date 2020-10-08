@@ -10,7 +10,7 @@ namespace CommonUtilities
 		T x;
 		T y;
 		T z;
-		int arrayFormatSize = 3;
+		
 		//Creates a null-vector
 		Vector3<T>();
 		//Creates a vector (aX, aY, aZ)
@@ -56,7 +56,7 @@ namespace CommonUtilities
 	template<class T>
 	inline T& Vector3<T>::operator[](const int& aIndex)
 	{
-		assert(aIndex < arrayFormatSize && L"Number is bigger than array");
+		assert(aIndex < 3 && L"Number is bigger than array");
 		assert(aIndex >= 0 && L"Number is below zero (minimum of array)");
 		if (aIndex == 0)
 		{
@@ -75,7 +75,7 @@ namespace CommonUtilities
 	template<class T>
 	inline const T& Vector3<T>::operator[](const int& aIndex) const
 	{
-		assert(aIndex < arrayFormatSize && L"Number is bigger than array");
+		assert(aIndex < 3 && L"Number is bigger than array");
 		assert(aIndex >= 0 && L"Number is below zero (minimum of array)");
 		if (aIndex == 0)
 		{
@@ -108,7 +108,7 @@ namespace CommonUtilities
 	template<class T>
 	inline Vector3<T> Vector3<T>::GetNormalized() const
 	{
-		T length = (T)sqrt((x * x) + (y * y) + (z * z));
+		T length = (T)sqrt(((T)x * (T)x) + ((T)y * (T)y) + ((T)z * (T)z));
 
 		if (length == 0)
 		{

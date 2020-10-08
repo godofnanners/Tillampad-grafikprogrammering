@@ -19,8 +19,8 @@ struct BoneInfo
 class CLoaderMesh
 {
 public:
-	CLoaderMesh() {myShaderType = 0; myVertices = nullptr; myVertexSize = 0; myVertexCount = 0; myModel = nullptr; }
-	~CLoaderMesh(){}
+	CLoaderMesh() { myShaderType = 0; myVertices = nullptr; myVertexSize = 0; myVertexCount = 0; myModel = nullptr; }
+	~CLoaderMesh() {}
 	std::vector<unsigned int> myIndices;
 	std::vector<CLoaderMesh*> myChildren;
 	unsigned int myShaderType;
@@ -33,10 +33,10 @@ public:
 class CLoaderModel
 {
 public:
-	CLoaderModel(){ myIsLoaded = false; myAnimationDuration = 0.0f; }
-	~CLoaderModel(){}
-	void SetData(const char* aModelPath){ myModelPath = aModelPath; }
-	CLoaderMesh* CreateMesh(){ CLoaderMesh *model = new CLoaderMesh(); myMeshes.push_back(model); model->myModel = this; return model; }
+	CLoaderModel() { myIsLoaded = false; myAnimationDuration = 0.0f; }
+	~CLoaderModel() {}
+	void SetData(const char* aModelPath) { myModelPath = aModelPath; }
+	CLoaderMesh* CreateMesh() { CLoaderMesh* model = new CLoaderMesh(); myMeshes.push_back(model); model->myModel = this; return model; }
 
 	std::vector<CLoaderMesh*> myMeshes;
 	std::string myModelPath;
@@ -48,7 +48,7 @@ public:
 	// Animation data
 	std::vector<BoneInfo> myBoneInfo;
 	std::map<std::string, unsigned int> myBoneNameToIndex;
-	unsigned int myNumBones;
+	unsigned int myNumBones = 0;
 
 
 };
@@ -59,12 +59,12 @@ class CFBXLoader
 public:
 	CFBXLoader();
 	~CFBXLoader();
-	CLoaderModel *LoadModel(const char* aModel);
+	CLoaderModel* LoadModel(const char* aModel);
 
 private:
 	void* LoadModelInternal(CLoaderModel* someInput);
 	int DetermineAndLoadVerticies(struct aiMesh* aMesh, CLoaderMesh* aLoaderMesh);
-	void LoadMaterials(const struct aiScene *sc, CLoaderModel* aModel);
+	void LoadMaterials(const struct aiScene* sc, CLoaderModel* aModel);
 	void LoadTexture(int aType, std::vector<std::string>& someTextures, struct aiMaterial* aMaterial);
 
 };

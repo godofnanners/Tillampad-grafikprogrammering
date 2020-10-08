@@ -14,7 +14,7 @@ public:
 		ID3D11Buffer* myIndexBuffer = nullptr;
 		ID3D11VertexShader* myVertexShader = nullptr;
 		ID3D11PixelShader* myPixelShader = nullptr;
-		D3D11_PRIMITIVE_TOPOLOGY myPrimitiveTopology;
+		D3D11_PRIMITIVE_TOPOLOGY myPrimitiveTopology = D3D11_PRIMITIVE_TOPOLOGY::D3D10_PRIMITIVE_TOPOLOGY_POINTLIST;
 		ID3D11InputLayout* myInputLayout = nullptr;
 		CommonUtilities::StaticArray<ID3D11ShaderResourceView*, 6> myTexture = { nullptr };
 	};

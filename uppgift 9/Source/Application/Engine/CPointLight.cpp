@@ -2,6 +2,10 @@
 
 CPointLight::CPointLight()
 {
+	myColor = { 0,0,0 };
+	myIntensity = 0;
+	myRange = 0;
+	myPos = { 0,0,0 };
 }
 
 const CommonUtilities::Vector3<float>& CPointLight::GetPosition()const

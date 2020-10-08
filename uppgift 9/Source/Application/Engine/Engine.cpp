@@ -54,7 +54,11 @@ void Engine::RenderFrame()
 	CommonUtilities::GrowingArray<CommonUtilities::VectorOnStack<CPointLight*, 8>>pointlights;
 	for (CModelInstance*instance:modelsToRender)
 	{
-		pointlights.Add(myScene.CullLights(instance));
+		CommonUtilities::VectorOnStack<CPointLight*, 8> lightsOninstance=myScene.CullLights(instance);
+		if (lightsOninstance.Size()>0)
+		{
+			pointlights.Add(lightsOninstance);
+		}
 	}
 	myForwardrenderer.Render(modelsToRender,mainCamera,pointlights,environmentlight);
 }

@@ -181,7 +181,10 @@
     <ClCompile Include="DirectXTK\Src\DDSTextureLoader.cpp" />
     <ClCompile Include="Engine.cpp" />
     <ClCompile Include="CModel.cpp" />
-    <ClCompile Include="ModelLoader\FBXLoader.cpp" />
+    <ClCompile Include="ModelLoader\FBXLoader.cpp">
+      <WarningLevel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">TurnOffAllWarnings</WarningLevel>
+      <WarningLevel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">TurnOffAllWarnings</WarningLevel>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CCamera.h" />

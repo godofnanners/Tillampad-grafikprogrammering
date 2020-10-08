@@ -412,4 +412,5 @@ void CModelFactory::Init(ID3D11Device* aDevice)
 CModelFactory::CModelFactory()
 {
 	myDevice = nullptr;
+	myModelLoader = nullptr;
 }

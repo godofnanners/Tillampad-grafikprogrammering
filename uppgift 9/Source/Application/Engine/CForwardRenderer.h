@@ -28,7 +28,7 @@ private:
 		CommonUtilities::Vector4<float>myDirectionalLightDirection;
 		CommonUtilities::Vector4<float>myDirectionalLightColor;
 		unsigned int myEnvironmentLightMipCount;
-		unsigned int trash[3];
+		unsigned int trash[3] = { 0,0,0 };
 	} myFrameBufferData;
 
 	struct ObjectBufferData
@@ -36,13 +36,13 @@ private:
 		CommonUtilities::Matrix4x4<float>myToWorld;
 		struct SPointLight
 		{
-			CommonUtilities::Vector4<float>myPosition;
-			CommonUtilities::Vector3<float> myColor;
-			float myRange;
-			float myIntensity;
-			CommonUtilities::Vector3<float>myTrash;
+			CommonUtilities::Vector4<float>myPosition = { 0,0,0,0 };
+			CommonUtilities::Vector3<float> myColor = { 0,0,0 };
+			float myRange = 0;
+			float myIntensity = 0;
+			CommonUtilities::Vector3<float>myTrash = { 0,0,0 };
 		}myPointLights[8];
-		unsigned int myNumberOfUsedPointLights;
+		unsigned int myNumberOfUsedPointLights = 0;
 		unsigned int myTrash[3];
 	} myObjectBufferData;
 
