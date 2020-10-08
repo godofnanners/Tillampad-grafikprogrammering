@@ -10,6 +10,7 @@ class CCamera;
 class CEnvironmentLight;
 struct ID3D11DeviceContext;
 struct ID3D11Buffer;
+class CPointLight;
 class CForwardRenderer
 {
 public:
@@ -33,7 +34,7 @@ private:
 	struct ObjectBufferData
 	{
 		CommonUtilities::Matrix4x4<float>myToWorld;
-		struct SpointLightBufferData
+		struct SPointLight
 		{
 			CommonUtilities::Vector4<float>myPosition;
 			CommonUtilities::Vector3<float> myColor;

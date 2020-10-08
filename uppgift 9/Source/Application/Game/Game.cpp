@@ -18,8 +18,9 @@ int Game::Init()
 	CLightFactory& lightFactory = CLightFactory::GetInstance();
 	CEnvironmentLight* environmentLight = lightFactory.CreateEnvironmentalLight(L"Textures/cube_1024_preblurred_angle3_Skansen3.dds");
 	environmentLight->SetDirection({ -0.0f,0.0f,-1.0f });
-	environmentLight->SetColor({ .3f,.0f ,0.0f });
-	CPointLight* pointLight = lightFactory.CreatePointLight({ 1,1,1 }, 10.f, 1.f,);
+	environmentLight->SetColor({ .3f,.3f ,0.3f });
+	CPointLight* pointLight = lightFactory.CreatePointLight({ 0,0,5.0f }, 50.f, 30.f, { 1,0,0 });
+	scene.AddInstance(pointLight);
 	scene.AddInstance(environmentLight);
 	CCamera* camera = cameraFactory.CreateCamera(90.0f);
 	camera->SetTransform(CommonUtilities::Vector3<float>(0.0f, 0.0f, 0.0f), CommonUtilities::Vector3<float>(0.0f, 0.0f, -5.0f));
@@ -39,7 +40,8 @@ int Game::Init()
 	modelInstance->Init(model);
 	scene.AddInstance(modelInstance);
 
-	modelInstance->SetPosition(CommonUtilities::Vector3<float>(0.0f, 0.0f, 500.0f));
+	modelInstance->SetPosition(CommonUtilities::Vector3<float>(0.0f, 0.0f, 50.0f));
+	modelInstance->Scale({ 0.1f, 0.1f, 0.1f });
 	return 0;
 }
 
@@ -49,7 +51,7 @@ void Game::Update()
 	CommonUtilities::Vector3<float> movementVector = { 0,0,0 };
 	if (CommonUtilities::InputHandler::GetInstance().CheckKeyDown('W'))
 	{
-		
+
 		movementVector += mainCamera->GetTransform().GetForward();
 	}
 	if (CommonUtilities::InputHandler::GetInstance().CheckKeyDown('A'))

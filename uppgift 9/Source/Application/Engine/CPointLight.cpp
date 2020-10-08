@@ -14,6 +14,11 @@ const float CPointLight::GetRange() const
 	return myRange;
 }
 
+const float CPointLight::GetIntensity() const
+{
+	return myIntensity;
+}
+
 const CommonUtilities::Vector3<float>& CPointLight::GetColor() const
 {
 	return myColor;

@@ -62,7 +62,7 @@ bool CForwardRenderer::Init(CDirectX11Framework* aFramework)
 	return true;
 }
 
-void CForwardRenderer::Render(std::vector<CModelInstance*>& aModelList, CCamera* aCamera,const CommonUtilities::GrowingArray<CommonUtilities::VectorOnStack<CPointLight*, 8>>&aPointLightList, CEnvironmentLight* anEnvironmentLight)
+void CForwardRenderer::Render(std::vector<CModelInstance*>& aModelList, CCamera* aCamera, const CommonUtilities::GrowingArray<CommonUtilities::VectorOnStack<CPointLight*, 8>>& aPointLightList, CEnvironmentLight* anEnvironmentLight)
 {
 	HRESULT result;
 	D3D11_MAPPED_SUBRESOURCE bufferdata;
@@ -72,6 +72,7 @@ void CForwardRenderer::Render(std::vector<CModelInstance*>& aModelList, CCamera*
 	myFrameBufferData.myCameraPosition = { aCamera->GetTransform().GetPosition(),1.0f };
 	myFrameBufferData.myDirectionalLightDirection = { anEnvironmentLight->GetDirection() ,1.f };
 	myFrameBufferData.myDirectionalLightColor = { anEnvironmentLight->GetColor() ,1.f };
+
 	ZeroMemory(&bufferdata, sizeof(D3D11_MAPPED_SUBRESOURCE));
 	result = myContext->Map(myFrameBuffer, 0, D3D11_MAP_WRITE_DISCARD, 0, &bufferdata);
 	if (FAILED(result))
@@ -87,12 +88,22 @@ void CForwardRenderer::Render(std::vector<CModelInstance*>& aModelList, CCamera*
 	myContext->PSSetConstantBuffers(0, 1, &myFrameBuffer);
 	myContext->PSSetShaderResources(0, 1, &shaderResourceviews);
 	//TODO inmplement the mainCamera
+	unsigned int modelLightIndex = 0;
 	for (CModelInstance* instance : aModelList)
 	{
 		CModel* model = instance->GetModel();
 		CModel::SModelData modelData = model->GetModelData();
 
 		myObjectBufferData.myToWorld = instance->GetTransform();
+		myObjectBufferData.myNumberOfUsedPointLights = aPointLightList.Size();
+		for (unsigned int lightIndex = 0; lightIndex < aPointLightList.Size(); lightIndex++)
+		{
+			myObjectBufferData.myPointLights[lightIndex].myPosition = { aPointLightList[modelLightIndex][lightIndex]->GetPosition(), 1};
+			myObjectBufferData.myPointLights[lightIndex].myColor = aPointLightList[modelLightIndex][lightIndex]->GetColor();
+			myObjectBufferData.myPointLights[lightIndex].myRange = aPointLightList[modelLightIndex][lightIndex]->GetRange();
+			myObjectBufferData.myPointLights[lightIndex].myIntensity = aPointLightList[modelLightIndex][lightIndex]->GetIntensity();
+		}
+		modelLightIndex++;
 		ZeroMemory(&bufferdata, sizeof(D3D11_MAPPED_SUBRESOURCE));
 		result = myContext->Map(myObjectBuffer, 0, D3D11_MAP_WRITE_DISCARD, 0, &bufferdata);
 		if (FAILED(result))

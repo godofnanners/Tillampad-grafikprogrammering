@@ -7,6 +7,7 @@ public:
 	
 	const CommonUtilities::Vector3<float>&GetPosition() const;
 	const float GetRange()const;
+	const float GetIntensity() const;
 	const CommonUtilities::Vector3<float>& GetColor()const;
 
 	void SetPosition(const CommonUtilities::Vector3<float>& aPos);
