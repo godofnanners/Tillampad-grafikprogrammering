@@ -27,7 +27,7 @@ private:
 		CommonUtilities::Vector4<float>myCameraPosition;
 		CommonUtilities::Vector4<float>myDirectionalLightDirection;
 		CommonUtilities::Vector4<float>myDirectionalLightColor;
-		unsigned int myEnvironmentLightMipCount;
+		unsigned int myEnvironmentLightMipCount = 0;
 		unsigned int trash[3] = { 0,0,0 };
 	} myFrameBufferData;
 
@@ -43,7 +43,7 @@ private:
 			CommonUtilities::Vector3<float>myTrash = { 0,0,0 };
 		}myPointLights[8];
 		unsigned int myNumberOfUsedPointLights = 0;
-		unsigned int myTrash[3];
+		unsigned int myTrash[3] = { 0,0,0 };
 	} myObjectBufferData;
 
 	ID3D11Buffer* myFrameBuffer;

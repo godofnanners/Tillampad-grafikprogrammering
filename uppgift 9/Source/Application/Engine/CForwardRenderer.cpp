@@ -88,7 +88,7 @@ void CForwardRenderer::Render(std::vector<CModelInstance*>& aModelList, CCamera*
 	myContext->PSSetConstantBuffers(0, 1, &myFrameBuffer);
 	myContext->PSSetShaderResources(0, 1, &shaderResourceviews);
 	//TODO inmplement the mainCamera
-	unsigned int modelLightIndex = 0;
+	unsigned short modelLightIndex = 0;
 	for (CModelInstance* instance : aModelList)
 	{
 		CModel* model = instance->GetModel();
@@ -96,7 +96,7 @@ void CForwardRenderer::Render(std::vector<CModelInstance*>& aModelList, CCamera*
 
 		myObjectBufferData.myToWorld = instance->GetTransform();
 		myObjectBufferData.myNumberOfUsedPointLights = aPointLightList[modelLightIndex].Size();
-		for (int lightIndex = 0; lightIndex < myObjectBufferData.myNumberOfUsedPointLights; lightIndex++)
+		for (unsigned short lightIndex = 0; lightIndex < myObjectBufferData.myNumberOfUsedPointLights; lightIndex++)
 		{
 			myObjectBufferData.myPointLights[lightIndex].myPosition = { aPointLightList[modelLightIndex][lightIndex]->GetPosition(), 1};
 			myObjectBufferData.myPointLights[lightIndex].myColor = aPointLightList[modelLightIndex][lightIndex]->GetColor();

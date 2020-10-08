@@ -51,7 +51,7 @@ CommonUtilities::VectorOnStack<CPointLight*, 8> CScene::CullLights(CModelInstanc
 	//TODO Cull With main camera
 	CommonUtilities::Vector3<float> pos = aModelInstance->GetTransform().GetPosition();
 	CommonUtilities::VectorOnStack<CPointLight*, 8> lightsAffectingModelInstance;
-	for (unsigned int lightIndex = 0; lightIndex < myPointLights.Size(); lightIndex++)
+	for (unsigned short lightIndex = 0; lightIndex < myPointLights.Size(); lightIndex++)
 	{
 		//if ( (pos-myPointLights[lightIndex]->GetPosition()).Length()< myPointLights[lightIndex]->GetRange())
 		//{
