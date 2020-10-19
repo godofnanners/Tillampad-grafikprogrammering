@@ -5,7 +5,7 @@ struct VertexInput
 
 struct VertexToPixel
 {
-    float4 myPosition : SV_Position;
+    float4 myPosition : SV_POSITION;
     float2 myUV : UV;
 };
 

@@ -16,7 +16,7 @@ public:
 	bool Init(CWindowHandler* aWindowHandler);
 	ID3D11DeviceContext* GetContext();
 	ID3D11Device* GetDevice();
-
+	ID3D11Texture2D* GetBackbufferTexture();
 	void BeginFrame(std::array<float, 4>aClearColor);
 	void EndFrame();
 private:

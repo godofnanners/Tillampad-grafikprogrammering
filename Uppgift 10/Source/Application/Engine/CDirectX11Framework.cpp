@@ -5,7 +5,7 @@
 #include "CFullscreenTexture.h"
 #include "CFullscreenTextureFactory.h"
 #pragma comment (lib,"d3d11.lib")
-CDirectX11Framework::CDirectX11Framework() :myBackBuffer(nullptr), myContext(nullptr), myDevice(nullptr), mySwapChain(nullptr)
+CDirectX11Framework::CDirectX11Framework() :myBackBufferTexture(nullptr), myContext(nullptr), myDevice(nullptr), mySwapChain(nullptr)
 {
 }
 CDirectX11Framework::~CDirectX11Framework()
@@ -62,6 +62,11 @@ ID3D11DeviceContext* CDirectX11Framework::GetContext()
 ID3D11Device* CDirectX11Framework::GetDevice()
 {
 	return myDevice;
+}
+
+ID3D11Texture2D* CDirectX11Framework::GetBackbufferTexture()
+{
+	return myBackBufferTexture;
 }
 
 void CDirectX11Framework::BeginFrame(std::array<float, 4> aClearColor)

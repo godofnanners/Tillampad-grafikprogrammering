@@ -21,6 +21,7 @@ private:
 	CFullscreenRenderer myFullscreenRenderer;
 
 	CFullscreenTexture myBackBuffer;
+	CFullscreenTexture myIntermediateTexture;
 	CFullscreenTexture myIntermediateDepth;
 };
 
