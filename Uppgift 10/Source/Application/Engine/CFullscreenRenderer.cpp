@@ -5,6 +5,9 @@
 #include <fstream>
 CFullscreenRenderer::CFullscreenRenderer()
 {
+	myPixelShaders = { nullptr };
+	myVertexShader = nullptr;
+	myContext = nullptr;
 }
 
 CFullscreenRenderer::~CFullscreenRenderer()

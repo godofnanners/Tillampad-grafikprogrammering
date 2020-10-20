@@ -19,6 +19,12 @@ private:
 	CScene& myScene;
 	CForwardRenderer myForwardRenderer;
 	CFullscreenRenderer myFullscreenRenderer;
+	
+	CFullscreenTexture myLuminanceTexture;
+	CFullscreenTexture myHalfsizeTexture;
+	CFullscreenTexture myQuartersizeTexture;
+	CFullscreenTexture myBlurTexture1;
+	CFullscreenTexture myBlurTexture2;
 
 	CFullscreenTexture myBackBuffer;
 	CFullscreenTexture myIntermediateTexture;

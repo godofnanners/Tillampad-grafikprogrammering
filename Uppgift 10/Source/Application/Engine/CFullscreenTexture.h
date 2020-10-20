@@ -1,6 +1,8 @@
 #pragma once
 #include "Vector4.hpp"
 #include <d3d11.h>
+class CFullscreenTextureFactory;
+
 class CFullscreenTexture
 {
 	friend CFullscreenTextureFactory;

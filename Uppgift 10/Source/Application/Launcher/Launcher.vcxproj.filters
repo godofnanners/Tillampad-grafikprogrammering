@@ -13,6 +13,9 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Shaders">
+      <UniqueIdentifier>{f34af5c6-e0f6-43df-8144-da73f7277a1c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Launcher.cpp">
@@ -28,15 +31,46 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <FxCompile Include="..\Engine\PixelShader.hlsl" />
-    <FxCompile Include="..\Engine\VertexShader.hlsl" />
-    <FxCompile Include="CubePixelShader.hlsl" />
-    <FxCompile Include="CubeVertexShader.hlsl" />
-    <FxCompile Include="FullscreenVertexShader.hlsl" />
+    <FxCompile Include="CubePixelShader.hlsl">
+      <Filter>Shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="CubeVertexShader.hlsl">
+      <Filter>Shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="FullscreenPixelShader_Bloom.hlsl">
+      <Filter>Shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="FullscreenPixelShader_Copy.hlsl">
+      <Filter>Shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="FullscreenPixelShader_GaussianBlurHorizontal.hlsl">
+      <Filter>Shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="FullscreenPixelShader_GaussianBlurrVertical.hlsl">
+      <Filter>Shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="FullscreenPixelShader_Luminance.hlsl">
+      <Filter>Shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="FullscreenVertexShader.hlsl">
+      <Filter>Shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="..\Engine\PixelShader.hlsl">
+      <Filter>Shaders</Filter>
+    </FxCompile>
+    <FxCompile Include="..\Engine\VertexShader.hlsl">
+      <Filter>Shaders</Filter>
+    </FxCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\Engine\ShaderStructs.hlsli" />
-    <None Include="CubeShaderStructs.hlsli" />
-    <None Include="FullscreenShaderStructs.hlsli" />
+    <None Include="CubeShaderStructs.hlsli">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="FullscreenShaderStructs.hlsli">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="..\Engine\ShaderStructs.hlsli">
+      <Filter>Shaders</Filter>
+    </None>
   </ItemGroup>
 </Project>

@@ -2,6 +2,12 @@
 
 CFullscreenTexture::CFullscreenTexture()
 {
+	myViewport = nullptr;
+	myShaderResource = nullptr;
+	myContext = nullptr;
+	myDepth = nullptr;
+	myTexture = nullptr;
+	myRenderTarget = nullptr;
 }
 
 CFullscreenTexture::~CFullscreenTexture()

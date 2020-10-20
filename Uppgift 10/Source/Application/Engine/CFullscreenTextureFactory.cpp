@@ -8,6 +8,7 @@ CFullscreenTextureFactory CFullscreenTextureFactory::myInstance;
 
 CFullscreenTextureFactory::CFullscreenTextureFactory()
 {
+	myFramework = nullptr;
 }
 
 CFullscreenTextureFactory::~CFullscreenTextureFactory()

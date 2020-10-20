@@ -54,7 +54,6 @@ PixelOutput main(VertexToPixel input)
     float3 speccularcolor = lerp((float3) 0.04, albedo, metalness);
     float3 diffusecolor = lerp((float3) 0.00, albedo, 1 - metalness);
     
-    
     float3 ambience = EvaluateAmbiance(EnvironmentCubemapTexture, normal, input.myNormal.xyz, toEye, perceptualroughness, metalness, albedo, ambientocclusion, diffusecolor, speccularcolor);
     float3 directionallight = EvaluateDirectionalLight(diffusecolor, speccularcolor, normal, perceptualroughness, directionalLightColor.xyz, toDirectionalLight.xyz, toEye.xyz);
     float3 pointLights = 0;

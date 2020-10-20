@@ -24,6 +24,7 @@ private:
 	ID3D11Device* myDevice;
 	ID3D11DeviceContext* myContext;
 	ID3D11Texture2D* myBackBufferTexture;
+	ID3D11RenderTargetView* myBackBuffer;
 	ID3D11DepthStencilView* myDepthBuffer;
 };
 

@@ -13,12 +13,15 @@
 Engine::Engine():myScene(CScene::GetInstance())
 {
 	myFramework = nullptr;
+	myRenderManager = nullptr;
 	myWindowHandler = CWindowHandler();
 }
 Engine::~Engine()
 {
 	delete myFramework;
 	myFramework = nullptr;
+	delete myRenderManager;
+	myRenderManager = nullptr;
 }
 bool Engine::Init(CWindowHandler::SWindowData aWindowData)
 {
@@ -28,12 +31,13 @@ bool Engine::Init(CWindowHandler::SWindowData aWindowData)
 	}
 
 	myFramework = new CDirectX11Framework();
-	CFullscreenTextureFactory::GetInstance().Init(myFramework);//very important that this gets initiated before framework
+	myRenderManager = new CRenderManager(myScene);
 	if (!myFramework->Init(&myWindowHandler))
 	{
 		return false;
 	}
 
+	myRenderManager->Init(myFramework, &myWindowHandler);
 	myForwardrenderer.Init(myFramework);
 	CCameraFactory::GetInstance().Init(&myWindowHandler);
 	CModelFactory::GetInstance().Init(myFramework->GetDevice());
@@ -49,19 +53,7 @@ void Engine::BeginFrame()
 
 void Engine::RenderFrame()
 {
-	CEnvironmentLight* environmentlight = myScene.GetEnvironmentLight();
-	CCamera* mainCamera = myScene.GetMainCamera();
-	std::vector<CModelInstance*>modelsToRender = myScene.CullModels(mainCamera);
-	CommonUtilities::GrowingArray<CommonUtilities::VectorOnStack<CPointLight*, 8>>pointlights;
-	for (CModelInstance*instance:modelsToRender)
-	{
-		CommonUtilities::VectorOnStack<CPointLight*, 8> lightsOninstance=myScene.CullLights(instance);
-		if (lightsOninstance.Size()>0)
-		{
-			pointlights.Add(lightsOninstance);
-		}
-	}
-	myForwardrenderer.Render(modelsToRender,mainCamera,pointlights,environmentlight);
+	myRenderManager->Render();
 }
 
 void Engine::EndFrame()
