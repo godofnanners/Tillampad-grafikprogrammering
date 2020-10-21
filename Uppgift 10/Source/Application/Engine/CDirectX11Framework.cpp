@@ -32,13 +32,20 @@ bool CDirectX11Framework::Init(CWindowHandler* aWindowHandler)
 	result = mySwapChain->GetBuffer(0, __uuidof(ID3D11Texture2D), (void**)&myBackBufferTexture);
 	if (FAILED(result))
 	{
-		std::cout << "DirectX SwapChain Failed/n";
-	}
+        assert(!"Swapchain failed in framework failed");
+    }
 	
+    result = myDevice->CreateRenderTargetView(myBackBufferTexture, nullptr, &myBackBuffer);
+    if (FAILED(result))
+    {
+        assert(!"Creaing Texture2D in framework failed");
+        return false;
+    }
+
 	result = myBackBufferTexture->Release();
 	if (FAILED(result))
 	{
-		std::cout << "DirectX backbufferTexture Failed/n";
+        assert(!"Releasing BackbufferTexture in framework failed");
 	}
 
     //Temporary
@@ -54,12 +61,14 @@ bool CDirectX11Framework::Init(CWindowHandler* aWindowHandler)
     result = myDevice->CreateTexture2D(&depthbufferDescription, nullptr, &depthbufferTexture);
     if (FAILED(result))
     {
+        assert(!"Creaing Texture2D in framework failed");
         return false;
     }
 
     result = myDevice->CreateDepthStencilView(depthbufferTexture, nullptr, &myDepthBuffer);
     if (FAILED(result))
     {
+        assert(!"Creaing DepthStencilView in framework failed");
         return false;
     }
 

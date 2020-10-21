@@ -46,22 +46,22 @@ CFullscreenTexture CFullscreenTextureFactory::CreateTexture(CommonUtilities::Vec
 	textureDesc.BindFlags = D3D11_BIND_RENDER_TARGET | D3D11_BIND_SHADER_RESOURCE;
 	textureDesc.CPUAccessFlags = 0;
 	textureDesc.MiscFlags = 0;
-	
+
 	ID3D11Texture2D* texture;
 	result = myFramework->GetDevice()->CreateTexture2D(&textureDesc, nullptr, &texture);
 	if (FAILED(result))
 	{
-		assert("Failed when trying to create a Fullscreen 2DTexture");
+		assert(!"Failed when trying to create a Fullscreen 2DTexture");
 	}
 
 	CFullscreenTexture returnTexture;
-	returnTexture= CreateTexture(texture);
+	returnTexture = CreateTexture(texture);
 
 	ID3D11ShaderResourceView* shaderResource;
 	result = myFramework->GetDevice()->CreateShaderResourceView(texture, nullptr, &shaderResource);
 	if (FAILED(result))
 	{
-		assert("Failed when trying to create afullscreen shader resuorce");
+		assert(!"Failed when trying to create afullscreen shader resuorce");
 	}
 
 
@@ -77,7 +77,7 @@ CFullscreenTexture CFullscreenTextureFactory::CreateTexture(ID3D11Texture2D* aTe
 	result = myFramework->GetDevice()->CreateRenderTargetView(aTexture, nullptr, &renderTarget);
 	if (FAILED(result))
 	{
-		assert("Failed to Create a RenderTargetView for FullscreenTexture");
+		assert(!"Failed to Create a RenderTargetView for FullscreenTexture");
 	}
 
 	D3D11_VIEWPORT* viewport = nullptr;
@@ -110,7 +110,7 @@ CFullscreenTexture CFullscreenTextureFactory::CreateDepth(CommonUtilities::Vecto
 	textureDesc.SampleDesc.Count = 1;
 	textureDesc.SampleDesc.Quality = 0;
 	textureDesc.Usage = D3D11_USAGE_DEFAULT;
-	textureDesc.BindFlags = D3D11_BIND_RENDER_TARGET | D3D11_BIND_SHADER_RESOURCE;
+	textureDesc.BindFlags = D3D11_BIND_DEPTH_STENCIL;
 	textureDesc.CPUAccessFlags = 0;
 	textureDesc.MiscFlags = 0;
 
@@ -118,14 +118,14 @@ CFullscreenTexture CFullscreenTextureFactory::CreateDepth(CommonUtilities::Vecto
 	result = myFramework->GetDevice()->CreateTexture2D(&textureDesc, nullptr, &texture);
 	if (FAILED(result))
 	{
-		assert("Failed when trying to create a DepthTexture for Fullscreen");
+		assert(!"Failed when trying to create a DepthTexture for Fullscreen");
 	}
 
 	ID3D11DepthStencilView* depth;
 	result = myFramework->GetDevice()->CreateDepthStencilView(texture, nullptr, &depth);
 	if (FAILED(result))
 	{
-		assert("Failed when trying to create a depth stencil view");
+		assert(!"Failed when trying to create a depth stencil view");
 	}
 
 	D3D11_VIEWPORT* viewport = new D3D11_VIEWPORT({ 0.0f,0.0f,aSize.x,aSize.y,0.0f,1.0f });

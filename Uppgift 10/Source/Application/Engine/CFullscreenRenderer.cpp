@@ -18,13 +18,13 @@ bool CFullscreenRenderer::Init(CDirectX11Framework* aFramework)
 {
 	if (!aFramework)
 	{
-		assert("Fullscreenrenderer was inited with a null pointer as framework");
+		assert(!"Fullscreenrenderer was inited with a null pointer as framework");
 	}
 
 	myContext = aFramework->GetContext();
 	if (!myContext)
 	{
-		assert("Fullscreenrenderer was inited with a null pointer as context");
+		assert(!"Fullscreenrenderer was inited with a null pointer as context");
 	}
 
 	ID3D11Device* device = aFramework->GetDevice();
@@ -37,7 +37,7 @@ bool CFullscreenRenderer::Init(CDirectX11Framework* aFramework)
 	result = device->CreateVertexShader(vsData.data(), vsData.size(), nullptr, &vertexShader);
 	if (FAILED(result))
 	{
-		assert("FullscreenRenderer failed to create Vertexshader");
+		assert(!"FullscreenRenderer failed to create Vertexshader");
 	}
 	vsFile.close();
 	myVertexShader = vertexShader;
@@ -58,7 +58,7 @@ bool CFullscreenRenderer::Init(CDirectX11Framework* aFramework)
 		result = device->CreatePixelShader(psData.data(), psData.size(), nullptr, &pixelShader);
 		if (FAILED(result))
 		{
-			assert("FullscreenRenderer failed to create Pixelshader");
+			assert(!"FullscreenRenderer failed to create Pixelshader");
 		}
 		psFile.close();
 		myPixelShaders[shaderIndex] = pixelShader;

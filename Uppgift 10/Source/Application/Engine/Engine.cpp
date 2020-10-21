@@ -38,7 +38,6 @@ bool Engine::Init(CWindowHandler::SWindowData aWindowData)
 	}
 
 	myRenderManager->Init(myFramework, &myWindowHandler);
-	myForwardrenderer.Init(myFramework);
 	CCameraFactory::GetInstance().Init(&myWindowHandler);
 	CModelFactory::GetInstance().Init(myFramework->GetDevice());
 	CLightFactory::GetInstance().Init(myFramework->GetDevice());

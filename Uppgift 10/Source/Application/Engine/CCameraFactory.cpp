@@ -24,7 +24,7 @@ bool CCameraFactory::Init(CWindowHandler* aWindowHandler)
 {
 	if (!aWindowHandler)
 	{
-		return false;
+		assert(!"WindowHandler was nullptr when trying to create a camera");
 	}
 	myWindowHandler = aWindowHandler;
 	return true;

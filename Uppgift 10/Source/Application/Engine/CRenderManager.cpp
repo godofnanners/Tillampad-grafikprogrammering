@@ -41,7 +41,7 @@ void CRenderManager::Render()
 	myIntermediateTexture.ClearTexture();
 	myIntermediateDepth.ClearDepth();
 
-	myBackBuffer.SetAsActiveTarget(&myIntermediateDepth);
+	myIntermediateTexture.SetAsActiveTarget(&myIntermediateDepth);
 
 	CEnvironmentLight* environmentlight = myScene.GetEnvironmentLight();
 	CCamera* mainCamera = myScene.GetMainCamera();

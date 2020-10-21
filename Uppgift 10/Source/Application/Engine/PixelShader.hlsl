@@ -65,7 +65,7 @@ PixelOutput main(VertexToPixel input)
     
     float3 emissive = albedo * emissivedata;
     ambience *= 0.2f;
-    directionallight *= 0.2f;
+    directionallight *= 1.f;
     
     float3 radiance = ambience + directionallight + emissive+ pointLights;
     

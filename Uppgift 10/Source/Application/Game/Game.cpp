@@ -19,15 +19,15 @@ int Game::Init()
 
 	CEnvironmentLight* environmentLight = lightFactory.CreateEnvironmentalLight(L"Textures/cube_1024_preblurred_angle3_Skansen3.dds");
 	environmentLight->SetDirection({ 0.0f,0.0f,-1.0f });
-	environmentLight->SetColor({ .3f,.3f ,0.3f });
-	CPointLight* pointLightBlue = lightFactory.CreatePointLight({ 6,6,42.0f }, 5.f, 50.f, { 0,0,1.f });
-	CPointLight* pointLightRed = lightFactory.CreatePointLight({ -6,6,42.0f }, 5.f, 50.f, { 1.f,0,0 });
-	CPointLight* pointLightGreen = lightFactory.CreatePointLight({ 0,3,42.0f }, 5.f, 50.f, { 0,1.f,0 });
-	CPointLight* pointLightPink = lightFactory.CreatePointLight({ -20,3,35.0f }, 5.f, 50.f, { 1.f,0,1.f });
-	scene.AddInstance(pointLightBlue);
-	scene.AddInstance(pointLightRed);
-	scene.AddInstance(pointLightGreen);
-	scene.AddInstance(pointLightPink);
+	environmentLight->SetColor({ 1.f,1.f ,1.f });
+	//CPointLight* pointLightBlue = lightFactory.CreatePointLight({ 6,6,42.0f }, 5.f, 50.f, { 0,0,1.f });
+	//CPointLight* pointLightRed = lightFactory.CreatePointLight({ -6,6,42.0f }, 5.f, 50.f, { 1.f,0,0 });
+	//CPointLight* pointLightGreen = lightFactory.CreatePointLight({ 0,3,42.0f }, 5.f, 50.f, { 0,1.f,0 });
+	//CPointLight* pointLightPink = lightFactory.CreatePointLight({ -20,3,35.0f }, 5.f, 50.f, { 1.f,0,1.f });
+	//scene.AddInstance(pointLightBlue);
+	//scene.AddInstance(pointLightRed);
+	//scene.AddInstance(pointLightGreen);
+	//scene.AddInstance(pointLightPink);
 	scene.AddInstance(environmentLight);
 	CCamera* camera = cameraFactory.CreateCamera(90.0f);
 	camera->SetTransform(CommonUtilities::Vector3<float>(0.0f, 0.0f, 0.0f), CommonUtilities::Vector3<float>(0.0f, 0.0f, -5.0f));
@@ -58,7 +58,6 @@ void Game::Update()
 	CommonUtilities::Vector3<float> movementVector = { 0,0,0 };
 	if (CommonUtilities::InputHandler::GetInstance().CheckKeyDown('W'))
 	{
-
 		movementVector += mainCamera->GetTransform().GetForward();
 	}
 	if (CommonUtilities::InputHandler::GetInstance().CheckKeyDown('A'))

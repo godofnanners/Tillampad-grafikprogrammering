@@ -9,6 +9,6 @@ PixelOutput main(VertexToPixel input)
         float luminance = dot(resource, float3(0.2126f, 0.7152f, 0.0722f));
         returnValue.myColor.rgb = resource * pow(luminance, 5);
     }
-    returnValue.myColor.a = 1, 0f;
+    returnValue.myColor.a = 1.0f;
     return returnValue;
 }
