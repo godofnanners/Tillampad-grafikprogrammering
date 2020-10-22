@@ -72,5 +72,8 @@
     <None Include="..\Engine\ShaderStructs.hlsli">
       <Filter>Shaders</Filter>
     </None>
+    <None Include="ParticleShaderStructs.hlsli">
+      <Filter>Shaders</Filter>
+    </None>
   </ItemGroup>
 </Project>

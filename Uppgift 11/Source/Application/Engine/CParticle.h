@@ -2,8 +2,15 @@
 #include "Vector2.h"
 #include "Vector4.hpp"
 #include "GrowingArray.h"
-#include <d3d11.h>
+
 class ID3D11Buffer;
+class ID3D11VertexShader;
+class ID3D11GeometryShader;
+class ID3D11PixelShader;
+class ID3D11InputLayout;
+class ID3D11ShaderResourceView;
+enum class D3D11_PRIMITIVE_TOPOLOGY;
+
 class CParticle
 {
 public:
@@ -38,7 +45,7 @@ public:
 		float myParticleStartSize = 0.0f;
 		float myParticleEndSize = 0.0f;
 	};
-
+public:
 	CParticle();
 	~CParticle();
 

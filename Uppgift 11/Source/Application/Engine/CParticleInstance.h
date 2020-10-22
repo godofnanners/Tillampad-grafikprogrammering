@@ -3,12 +3,6 @@
 #include "GrowingArray.h"
 #include "Matrix4x4.hpp"
 #include <vector>
-class CParticle
-{
-public:
-	struct SParticleVertex;
-	struct SParticleData;
-};
 
 class CParticleInstance
 {

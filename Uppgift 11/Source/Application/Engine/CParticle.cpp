@@ -2,6 +2,7 @@
 
 CParticle::CParticle()
 {
+	
 }
 
 CParticle::~CParticle()
