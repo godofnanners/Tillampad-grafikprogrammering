@@ -1,17 +1,19 @@
 #pragma once
 #include "Vector2.h"
 #include "Vector4.hpp"
+#include "GrowingArray.h"
 #include <d3d11.h>
 class ID3D11Buffer;
 class CParticle
 {
+public:
 	struct SParticleVertex
 	{
 		float myLifetime;
 		CommonUtilities::Vector4<float>myPosition;
-		CommonUtilities::Vector4<float>myPosition;
-		CommonUtilities::Vector4<float>myPosition;
-		CommonUtilities::Vector2<float>myPosition;
+		CommonUtilities::Vector4<float>myMovement;
+		CommonUtilities::Vector4<float>myColor;
+		CommonUtilities::Vector2<float>mySize;
 		float myDistanceToCamera;
 	};
 	struct SParticleData
@@ -36,5 +38,15 @@ class CParticle
 		float myParticleStartSize = 0.0f;
 		float myParticleEndSize = 0.0f;
 	};
+
+	CParticle();
+	~CParticle();
+
+	void Init(SParticleData aParticleData);
+
+	SParticleData GetParticleData();
+private:
+	SParticleData myParticleData;
+
 };
 

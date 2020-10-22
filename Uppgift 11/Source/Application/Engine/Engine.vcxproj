@@ -181,6 +181,7 @@
     <ClCompile Include="CParticle.cpp" />
     <ClCompile Include="CParticleFactory.cpp" />
     <ClCompile Include="CParticleInstance.cpp" />
+    <ClCompile Include="CParticleRenderer.cpp" />
     <ClCompile Include="CPointLight.cpp" />
     <ClCompile Include="CRenderManager.cpp" />
     <ClCompile Include="CScene.cpp" />
@@ -208,6 +209,7 @@
     <ClInclude Include="CParticle.h" />
     <ClInclude Include="CParticleFactory.h" />
     <ClInclude Include="CParticleInstance.h" />
+    <ClInclude Include="CParticleRenderer.h" />
     <ClInclude Include="CPointLight.h" />
     <ClInclude Include="CRenderManager.h" />
     <ClInclude Include="CScene.h" />

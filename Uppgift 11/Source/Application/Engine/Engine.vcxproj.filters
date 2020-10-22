@@ -25,6 +25,18 @@
     <Filter Include="Source Files\Lights">
       <UniqueIdentifier>{29c0a17a-1049-4579-9b96-8116743e67ee}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Lights">
+      <UniqueIdentifier>{c0c208eb-88d2-4d82-9657-a7eecd90a586}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\FullScreenTexture">
+      <UniqueIdentifier>{ce5d2c49-d3cc-4ba9-b2aa-dec1f731e117}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Particle">
+      <UniqueIdentifier>{7aec13a2-7a3e-4120-9e72-194f7b4ac03a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Particle">
+      <UniqueIdentifier>{d7854edb-3757-4e1d-946a-9d510993eebd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine.cpp">
@@ -84,13 +96,16 @@
     <ClCompile Include="CEnvironmentLight.cpp">
       <Filter>Source Files\Lights</Filter>
     </ClCompile>
-    <ClCompile Include="CParticleFactory.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="CParticle.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Particle</Filter>
+    </ClCompile>
+    <ClCompile Include="CParticleFactory.cpp">
+      <Filter>Source Files\Particle</Filter>
     </ClCompile>
     <ClCompile Include="CParticleInstance.cpp">
+      <Filter>Source Files\Particle</Filter>
+    </ClCompile>
+    <ClCompile Include="CParticleRenderer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -102,15 +117,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="CDirectX11Framework.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="CModelInstance.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="CModel.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="CModelFactory.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="CScene.h">
@@ -131,34 +137,46 @@
     <ClInclude Include="ModelLoader\FBXLoader.h">
       <Filter>Header Files\ModelLoader</Filter>
     </ClInclude>
-    <ClInclude Include="CLightFactory.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="CEnvironmentLight.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="CPointLight.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="CFullscreenTexture.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="CFullscreenTextureFactory.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="CFullscreenRenderer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="CRenderManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="CParticleFactory.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="CFullscreenRenderer.h">
+      <Filter>Header Files\FullScreenTexture</Filter>
+    </ClInclude>
+    <ClInclude Include="CFullscreenTexture.h">
+      <Filter>Header Files\FullScreenTexture</Filter>
+    </ClInclude>
+    <ClInclude Include="CFullscreenTextureFactory.h">
+      <Filter>Header Files\FullScreenTexture</Filter>
+    </ClInclude>
+    <ClInclude Include="CModel.h">
+      <Filter>Header Files\ModelLoader</Filter>
+    </ClInclude>
+    <ClInclude Include="CModelFactory.h">
+      <Filter>Header Files\ModelLoader</Filter>
+    </ClInclude>
+    <ClInclude Include="CModelInstance.h">
+      <Filter>Header Files\ModelLoader</Filter>
+    </ClInclude>
+    <ClInclude Include="CEnvironmentLight.h">
+      <Filter>Header Files\Lights</Filter>
+    </ClInclude>
+    <ClInclude Include="CLightFactory.h">
+      <Filter>Header Files\Lights</Filter>
+    </ClInclude>
+    <ClInclude Include="CPointLight.h">
+      <Filter>Header Files\Lights</Filter>
     </ClInclude>
     <ClInclude Include="CParticle.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Particle</Filter>
+    </ClInclude>
+    <ClInclude Include="CParticleFactory.h">
+      <Filter>Header Files\Particle</Filter>
     </ClInclude>
     <ClInclude Include="CParticleInstance.h">
+      <Filter>Header Files\Particle</Filter>
+    </ClInclude>
+    <ClInclude Include="CParticleRenderer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -1,7 +1,14 @@
 #pragma once
 #include "Vector3.hpp"
 #include "GrowingArray.h"
-class CParticle;
+#include "Matrix4x4.hpp"
+#include <vector>
+class CParticle
+{
+public:
+	struct SParticleVertex;
+	struct SParticleData;
+};
 
 class CParticleInstance
 {
@@ -19,7 +26,11 @@ public:
 	void Update(float aDeltatime, CommonUtilities::Vector3<float>aCameraPosition);
 
 	CParticle* GetParticle();
-	CommonUtilities::GrowingArray<CParticle::>
+	std::vector<CParticle::SParticleVertex>& GetParticleVerteces();
+	CommonUtilities::Matrix4x4<float>GetTransform();
 private:
+	CParticle* myParticle;
+	CommonUtilities::Matrix4x4<float>myTransform;
+	std::vector<CParticle::SParticleVertex>myParticleVertices;
 };
 
