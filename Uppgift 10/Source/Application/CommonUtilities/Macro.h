@@ -18,4 +18,8 @@ a=nullptr
 
 #define PI 3.14159265359f
 
+#define SC_FLOAT(a)\
+static_cast<float>(a)
 
+#define SC_INT(a)\
+static_cast<int>(a)

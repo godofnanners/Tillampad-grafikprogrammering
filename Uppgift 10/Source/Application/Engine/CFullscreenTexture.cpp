@@ -21,7 +21,7 @@ void CFullscreenTexture::ClearTexture(CommonUtilities::Vector4<float> aClearColo
 
 void CFullscreenTexture::ClearDepth(float aClearDepth, unsigned int aClearStencil)
 {
-	myContext->ClearDepthStencilView(myDepth, D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0);
+	myContext->ClearDepthStencilView(myDepth, D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, aClearDepth, (UINT8)aClearStencil);
 }
 
 void CFullscreenTexture::SetAsActiveTarget(CFullscreenTexture* aDepth)

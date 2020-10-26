@@ -1,14 +1,15 @@
 #pragma once
 #include <array>
+#include "Macro.h"
 class CDirectX11Framework;
-class ID3D11DeviceContext;
-class ID3D11VertexShader;
-class ID3D11PixelShader;
+struct ID3D11DeviceContext;
+struct ID3D11VertexShader;
+struct ID3D11PixelShader;
 
 class CFullscreenRenderer
 {
 public:
-	enum FullscreenShader
+	enum class FullscreenShader
 	{
 		FULLSCREENSHADER_COPY,
 		FULLSCREENSHADER_LUMINANCE,
@@ -28,6 +29,6 @@ public:
 private:
 	ID3D11DeviceContext* myContext;
 	ID3D11VertexShader* myVertexShader;
-	std::array<ID3D11PixelShader*, FullscreenShader::FULLSCREENSHADER_COUNT>myPixelShaders;
+	std::array<ID3D11PixelShader*, SC_INT(FullscreenShader::FULLSCREENSHADER_COUNT)>myPixelShaders;
 };
 

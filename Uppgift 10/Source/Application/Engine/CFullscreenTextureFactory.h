@@ -1,10 +1,9 @@
 #pragma once
 #include "Vector2.h"
-
+#include <dxgiformat.h>
 class CDirectX11Framework;
 class CFullscreenTexture;
 struct ID3D11Texture2D;
-enum DXGI_FORMAT;
 
 class CFullscreenTextureFactory
 {
