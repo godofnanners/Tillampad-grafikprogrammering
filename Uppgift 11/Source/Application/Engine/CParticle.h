@@ -49,7 +49,7 @@ public:
 	CParticle();
 	~CParticle();
 
-	void Init(SParticleData aParticleData);
+	void Init(const SParticleData& aParticleData);
 
 	SParticleData GetParticleData();
 private:

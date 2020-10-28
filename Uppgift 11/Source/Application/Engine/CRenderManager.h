@@ -2,6 +2,7 @@
 #include "CForwardRenderer.h"
 #include "CFullscreenRenderer.h"
 #include "CFullscreenTexture.h"
+#include "CParticleRenderer.h"
 class CScene;
 class CDirectX11Framework;
 class CWindowHandler;
@@ -19,7 +20,8 @@ private:
 	CScene& myScene;
 	CForwardRenderer myForwardRenderer;
 	CFullscreenRenderer myFullscreenRenderer;
-	
+	CParticleRenderer myParticleRenderer;
+
 	CFullscreenTexture myLuminanceTexture;
 	CFullscreenTexture myHalfsizeTexture;
 	CFullscreenTexture myQuartersizeTexture;

@@ -106,7 +106,7 @@
       <Filter>Source Files\Particle</Filter>
     </ClCompile>
     <ClCompile Include="CParticleRenderer.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Particle</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -179,5 +179,8 @@
     <ClInclude Include="CParticleRenderer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
 </Project>

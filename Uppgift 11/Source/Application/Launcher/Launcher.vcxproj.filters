@@ -16,6 +16,12 @@
     <Filter Include="Shaders">
       <UniqueIdentifier>{f34af5c6-e0f6-43df-8144-da73f7277a1c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Shaders\Particle">
+      <UniqueIdentifier>{03947f43-63ab-4686-a79a-915959906ef9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shaders\Fullscreen">
+      <UniqueIdentifier>{2b1a98e9-d902-43ca-81ea-d4b412801c76}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Launcher.cpp">
@@ -37,43 +43,52 @@
     <FxCompile Include="CubeVertexShader.hlsl">
       <Filter>Shaders</Filter>
     </FxCompile>
-    <FxCompile Include="FullscreenPixelShader_Bloom.hlsl">
-      <Filter>Shaders</Filter>
-    </FxCompile>
-    <FxCompile Include="FullscreenPixelShader_Copy.hlsl">
-      <Filter>Shaders</Filter>
-    </FxCompile>
-    <FxCompile Include="FullscreenPixelShader_GaussianBlurHorizontal.hlsl">
-      <Filter>Shaders</Filter>
-    </FxCompile>
-    <FxCompile Include="FullscreenPixelShader_GaussianBlurrVertical.hlsl">
-      <Filter>Shaders</Filter>
-    </FxCompile>
-    <FxCompile Include="FullscreenPixelShader_Luminance.hlsl">
-      <Filter>Shaders</Filter>
-    </FxCompile>
-    <FxCompile Include="FullscreenVertexShader.hlsl">
-      <Filter>Shaders</Filter>
-    </FxCompile>
     <FxCompile Include="..\Engine\PixelShader.hlsl">
       <Filter>Shaders</Filter>
     </FxCompile>
     <FxCompile Include="..\Engine\VertexShader.hlsl">
       <Filter>Shaders</Filter>
     </FxCompile>
+    <FxCompile Include="ParticleVertexShader.hlsl">
+      <Filter>Shaders\Particle</Filter>
+    </FxCompile>
+    <FxCompile Include="ParticleGeometryShader.hlsl">
+      <Filter>Shaders\Particle</Filter>
+    </FxCompile>
+    <FxCompile Include="FullscreenPixelShader_Bloom.hlsl">
+      <Filter>Shaders\Fullscreen</Filter>
+    </FxCompile>
+    <FxCompile Include="FullscreenPixelShader_Copy.hlsl">
+      <Filter>Shaders\Fullscreen</Filter>
+    </FxCompile>
+    <FxCompile Include="FullscreenPixelShader_GaussianBlurHorizontal.hlsl">
+      <Filter>Shaders\Fullscreen</Filter>
+    </FxCompile>
+    <FxCompile Include="FullscreenPixelShader_GaussianBlurrVertical.hlsl">
+      <Filter>Shaders\Fullscreen</Filter>
+    </FxCompile>
+    <FxCompile Include="FullscreenPixelShader_Luminance.hlsl">
+      <Filter>Shaders\Fullscreen</Filter>
+    </FxCompile>
+    <FxCompile Include="FullscreenVertexShader.hlsl">
+      <Filter>Shaders\Fullscreen</Filter>
+    </FxCompile>
+    <FxCompile Include="ParticlePixelShader.hlsl">
+      <Filter>Shaders\Particle</Filter>
+    </FxCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="CubeShaderStructs.hlsli">
-      <Filter>Shaders</Filter>
-    </None>
-    <None Include="FullscreenShaderStructs.hlsli">
       <Filter>Shaders</Filter>
     </None>
     <None Include="..\Engine\ShaderStructs.hlsli">
       <Filter>Shaders</Filter>
     </None>
     <None Include="ParticleShaderStructs.hlsli">
-      <Filter>Shaders</Filter>
+      <Filter>Shaders\Particle</Filter>
+    </None>
+    <None Include="FullscreenShaderStructs.hlsli">
+      <Filter>Shaders\Fullscreen</Filter>
     </None>
   </ItemGroup>
 </Project>

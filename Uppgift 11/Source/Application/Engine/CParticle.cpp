@@ -9,8 +9,9 @@ CParticle::~CParticle()
 {
 }
 
-void CParticle::Init(SParticleData aParticleData)
+void CParticle::Init(const SParticleData& aParticleData)
 {
+	myParticleData = aParticleData;
 }
 
 CParticle::SParticleData CParticle::GetParticleData()

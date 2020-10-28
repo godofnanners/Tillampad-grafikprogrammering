@@ -4,6 +4,8 @@
 #include "CDirectX11Framework.h"
 #include "CWindowHandler.h"
 #include "CFullscreenTextureFactory.h"
+#include "CParticleInstance.h"
+
 CRenderManager::CRenderManager(CScene& aScene) :myScene(aScene)
 {
 }
@@ -16,6 +18,7 @@ bool CRenderManager::Init(CDirectX11Framework* aFramework, CWindowHandler* aWind
 {
 	myForwardRenderer.Init(aFramework);
 	myFullscreenRenderer.Init(aFramework);
+	myParticleRenderer.Init(aFramework);
 	CFullscreenTextureFactory::GetInstance().Init(aFramework);
 
 	ID3D11Texture2D* backbufferTexture = aFramework->GetBackbufferTexture();
@@ -52,6 +55,9 @@ void CRenderManager::Render()
 		pointlights.Add(myScene.CullLights(instance));
 	}
 	myForwardRenderer.Render(modelsToRender, mainCamera, pointlights, environmentlight);
+
+	std::vector<CParticleInstance*>particlesToRender = myScene.CullParticles(mainCamera);
+	myParticleRenderer.Render(mainCamera, particlesToRender);
 
 	myLuminanceTexture.SetAsActiveTarget();
 	myIntermediateTexture.SetAsResourceOnSlot(0);

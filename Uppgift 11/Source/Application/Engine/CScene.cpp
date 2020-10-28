@@ -67,6 +67,11 @@ CommonUtilities::VectorOnStack<CPointLight*, 8> CScene::CullLights(CModelInstanc
 	return lightsAffectingModelInstance;
 }
 
+std::vector<CParticleInstance*> CScene::CullParticles(CCamera* aCamera)
+{
+	return std::vector<CParticleInstance*>();
+}
+
 CCamera* CScene::GetMainCamera()
 {
 	return myMainCamera;

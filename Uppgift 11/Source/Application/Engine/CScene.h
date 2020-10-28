@@ -6,6 +6,7 @@ class CModelInstance;
 class CCamera;
 class CEnvironmentLight;
 class CPointLight;
+class CParticleInstance;
 class CScene
 {
 public:
@@ -18,6 +19,7 @@ public:
 	CEnvironmentLight* GetEnvironmentLight();
 	std::vector<CModelInstance*> CullModels(CCamera* aCamera);
 	CommonUtilities::VectorOnStack<CPointLight*,8> CullLights(CModelInstance* aModelInstance);
+	std::vector<CParticleInstance*>CullParticles(CCamera* aCamera);
 	CCamera *GetMainCamera();
 	void SetMainCamera(CCamera* aCamera);
 private:
