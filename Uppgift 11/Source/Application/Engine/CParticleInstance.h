@@ -3,6 +3,8 @@
 #include "GrowingArray.h"
 #include "Matrix4x4.hpp"
 #include <vector>
+#include "CParticle.h"
+
 
 class CParticleInstance
 {
@@ -25,6 +27,7 @@ public:
 private:
 	CParticle* myParticle;
 	CommonUtilities::Matrix4x4<float>myTransform;
+	float myTimeSinceLastParticle;
 	std::vector<CParticle::SParticleVertex>myParticleVertices;
 };
 

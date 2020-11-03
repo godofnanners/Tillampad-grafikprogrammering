@@ -3,6 +3,7 @@
 #include "GrowingArray.h"
 class ID3D11Device;
 class CParticle;
+class CDirectX11Framework;
 class CParticleFactory
 {
 public:

@@ -10,6 +10,7 @@
 #include "CLightFactory.h"
 #include "VectorOnStack.h"
 #include "CFullscreenTextureFactory.h"
+#include "CParticleFactory.h"
 Engine::Engine():myScene(CScene::GetInstance())
 {
 	myFramework = nullptr;
@@ -41,6 +42,7 @@ bool Engine::Init(CWindowHandler::SWindowData aWindowData)
 	CCameraFactory::GetInstance().Init(&myWindowHandler);
 	CModelFactory::GetInstance().Init(myFramework->GetDevice());
 	CLightFactory::GetInstance().Init(myFramework->GetDevice());
+	CParticleFactory::GetInstance().Init(myFramework);
 	return true;
 }
 

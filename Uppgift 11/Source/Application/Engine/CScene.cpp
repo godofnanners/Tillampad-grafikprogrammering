@@ -34,6 +34,12 @@ bool CScene::AddInstance(CPointLight* aPointLight)
 	return true;
 }
 
+bool CScene::AddInstance(CParticleInstance* aParticleInstance)
+{
+	myParticles.push_back(aParticleInstance);
+	return true;
+}
+
 CEnvironmentLight* CScene::GetEnvironmentLight()
 {
 	return myEnvironmentLight;
@@ -67,9 +73,9 @@ CommonUtilities::VectorOnStack<CPointLight*, 8> CScene::CullLights(CModelInstanc
 	return lightsAffectingModelInstance;
 }
 
-std::vector<CParticleInstance*> CScene::CullParticles(CCamera* aCamera)
+std::vector<CParticleInstance*>CScene::CullParticles(CCamera* aCamera)
 {
-	return std::vector<CParticleInstance*>();
+	return myParticles;
 }
 
 CCamera* CScene::GetMainCamera()

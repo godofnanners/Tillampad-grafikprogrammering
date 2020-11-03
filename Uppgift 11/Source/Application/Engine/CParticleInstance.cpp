@@ -10,8 +10,10 @@ CParticleInstance::~CParticleInstance()
 {
 }
 
-void CParticleInstance::Init(CParticle* aParicle)
+void CParticleInstance::Init(CParticle* aParticle)
 {
+	myParticle = aParticle;
+
 }
 
 void CParticleInstance::SetTransform(CommonUtilities::Vector3<float> aPosition, CommonUtilities::Vector3<float> aRotation)
@@ -44,15 +46,33 @@ void CParticleInstance::Update(float aDeltatime, CommonUtilities::Vector3<float>
 {
 	CParticle::SParticleData particleData = myParticle->GetParticleData();
 
+	myTimeSinceLastParticle += aDeltatime;
+
+	if (myTimeSinceLastParticle > particleData.mySpawnRate)
+	{
+		myTimeSinceLastParticle = 0;
+		myParticleVertices.emplace_back(CParticle::SParticleVertex());
+		myParticleVertices.back().myPosition = { myTransform.GetPosition(),1 };
+	}
+
 	//Update particles
 	for (size_t i = 0; i < myParticleVertices.size(); i++)
 	{
-		myParticleVertices[i].myLifetime += aDeltatime;
+		myParticleVertices[i].myLifetime -= aDeltatime;
+		if (myParticleVertices[i].myLifetime < 0)
+		{
+			myParticleVertices.erase(myParticleVertices.begin() + i);
+			i--;
+			continue;
+		}
+
+
+
 	}
 	std::sort(myParticleVertices.begin(), myParticleVertices.end(), [](const CParticle::SParticleVertex& aFirstParticle, const CParticle::SParticleVertex& aSecondParticle)
-	{
-		return aFirstParticle.myDistanceToCamera > aSecondParticle.myDistanceToCamera;
-	});
+		{
+			return aFirstParticle.myDistanceToCamera > aSecondParticle.myDistanceToCamera;
+		});
 
 }
 

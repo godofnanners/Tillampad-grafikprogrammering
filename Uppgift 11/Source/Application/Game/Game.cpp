@@ -10,6 +10,10 @@
 #include "CLightFactory.h"
 #include "CEnvironmentLight.h"
 #include "CPointLight.h"
+#include "CParticleFactory.h"
+#include "CParticle.h"
+#include "CParticleInstance.h"
+
 int Game::Init()
 {
 	CScene& scene = CScene::GetInstance();
@@ -49,6 +53,23 @@ int Game::Init()
 
 	modelInstance->SetPosition(CommonUtilities::Vector3<float>(0.0f, 0.0f, 50.0f));
 	modelInstance->Scale({ 0.1f, 0.1f, 0.1f });
+
+	CParticleFactory& particlefactory = CParticleFactory::GetInstance();
+	CParticle* particle = particlefactory.GetPartticle("Particle.json");
+	if (!particle)
+	{
+		particle = particlefactory.LoadParticle("Particle.json");
+		if (!particle)
+		{
+			return EXIT_FAILURE;
+		}
+	}
+	CParticleInstance* particleInstance = new CParticleInstance();
+	particleInstance->Init(particle);
+	particleInstance->SetPosition(CommonUtilities::Vector3<float>(0.0f, -0.5f, 0.0f));
+	particleInstance->SetRotation(CommonUtilities::Vector3<float>(0.0f, 0.0f, 0.0f));
+	scene.AddInstance(particleInstance);
+
 	return 0;
 }
 

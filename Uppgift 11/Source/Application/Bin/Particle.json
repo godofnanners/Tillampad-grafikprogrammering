@@ -1,5 +1,5 @@
 {
-  "NumberOfParticles": 0,
+  "NumberOfParticles": 1,
   "Stride": 1,
   "Offset": 4,
   "SpawnRate": 4.0,
@@ -11,7 +11,7 @@
   "StartColor": [1.0,1.0,1.0,1.0],
   "EndColor":[0.0,1.0,0.0,1.0],
 
-  "SpritePath": "Data/Particle.dds",
+  "SpritePath": "Textures/Texture.dds",
   "GeometryShader": "ParticleGeometryShader.cso",
   "PixelShader": "ParticlePixelShader.cso",
   "VertexShader": "ParticleVertexShader.cso"

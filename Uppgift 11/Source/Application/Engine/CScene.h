@@ -16,6 +16,7 @@ public:
 	bool AddInstance(CCamera* aCameraInstance);
 	bool AddInstance(CEnvironmentLight* anEnvironmentLight);
 	bool AddInstance(CPointLight* anEnvironmentLight);
+	bool AddInstance(CParticleInstance* aParticleInstance);
 	CEnvironmentLight* GetEnvironmentLight();
 	std::vector<CModelInstance*> CullModels(CCamera* aCamera);
 	CommonUtilities::VectorOnStack<CPointLight*,8> CullLights(CModelInstance* aModelInstance);
@@ -28,6 +29,7 @@ private:
 	CommonUtilities::GrowingArray<CCamera*>myCameras;
 	CEnvironmentLight* myEnvironmentLight;
 	CommonUtilities::GrowingArray<CPointLight*>myPointLights;
+	std::vector<CParticleInstance*> myParticles;
 	CCamera* myMainCamera;
 	static CScene myInstance;
 };

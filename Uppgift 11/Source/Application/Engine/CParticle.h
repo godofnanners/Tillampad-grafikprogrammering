@@ -2,14 +2,7 @@
 #include "Vector2.h"
 #include "Vector4.hpp"
 #include "GrowingArray.h"
-
-class ID3D11Buffer;
-class ID3D11VertexShader;
-class ID3D11GeometryShader;
-class ID3D11PixelShader;
-class ID3D11InputLayout;
-class ID3D11ShaderResourceView;
-enum class D3D11_PRIMITIVE_TOPOLOGY;
+#include <d3d11.h>
 
 class CParticle
 {
@@ -32,7 +25,7 @@ public:
 		ID3D11VertexShader* myVertexShader = nullptr;
 		ID3D11GeometryShader* myGeometryShader = nullptr;
 		ID3D11PixelShader* myPixelShader = nullptr;
-		D3D11_PRIMITIVE_TOPOLOGY myPrimitiveTopology;
+		D3D11_PRIMITIVE_TOPOLOGY myPrimitiveTopology = D3D11_PRIMITIVE_TOPOLOGY::D3D10_PRIMITIVE_TOPOLOGY_POINTLIST;
 		ID3D11InputLayout* myInputLayout = nullptr;
 		ID3D11ShaderResourceView* myTexture = nullptr;
 
