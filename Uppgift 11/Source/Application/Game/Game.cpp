@@ -73,25 +73,28 @@ int Game::Init()
 	return 0;
 }
 
-void Game::Update()
+void Game::Update(float aDeltaTime)
 {
 	CCamera* mainCamera = CScene::GetInstance().GetMainCamera();
 	CommonUtilities::Vector3<float> movementVector = { 0,0,0 };
+
+	float speed = 10.f;
+
 	if (CommonUtilities::InputHandler::GetInstance().CheckKeyDown('W'))
 	{
-		movementVector += mainCamera->GetTransform().GetForward();
+		movementVector += mainCamera->GetTransform().GetForward()*speed * aDeltaTime;
 	}
 	if (CommonUtilities::InputHandler::GetInstance().CheckKeyDown('A'))
 	{
-		movementVector -= mainCamera->GetTransform().GetRight();
+		movementVector -= mainCamera->GetTransform().GetRight() * speed * aDeltaTime;
 	}
 	if (CommonUtilities::InputHandler::GetInstance().CheckKeyDown('S'))
 	{
-		movementVector -= mainCamera->GetTransform().GetForward();
+		movementVector -= mainCamera->GetTransform().GetForward() * speed * aDeltaTime;
 	}
 	if (CommonUtilities::InputHandler::GetInstance().CheckKeyDown('D'))
 	{
-		movementVector += mainCamera->GetTransform().GetRight();
+		movementVector += mainCamera->GetTransform().GetRight() * speed * aDeltaTime;
 	}
 
 	CommonUtilities::Vector3<float> rotationVector = { 0,0,0 };
@@ -115,6 +118,13 @@ void Game::Update()
 
 	mainCamera->Move(movementVector);
 	mainCamera->Rotate(rotationVector);
+
+	std::vector<CParticleInstance*> particleEmitters = CScene::GetInstance().CullParticles(mainCamera);
+
+	for (size_t i = 0; i < particleEmitters.size(); i++)
+	{
+		particleEmitters[i]->Update(aDeltaTime, mainCamera->GetTransform().GetPosition());
+	}
 }
 
 

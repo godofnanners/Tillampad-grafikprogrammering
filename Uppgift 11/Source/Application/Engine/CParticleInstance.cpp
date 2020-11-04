@@ -52,12 +52,18 @@ void CParticleInstance::Update(float aDeltatime, CommonUtilities::Vector3<float>
 	{
 		myTimeSinceLastParticle = 0;
 		myParticleVertices.emplace_back(CParticle::SParticleVertex());
-		myParticleVertices.back().myPosition = { myTransform.GetPosition(),1 };
+		CParticle::SParticleVertex& particleVertex= myParticleVertices.back();
+		particleVertex.myPosition = { myTransform.GetPosition(),1 };
+		particleVertex.myMovement = CommonUtilities::Vector4<float>(0, 1, 0, 0) * particleData.myParticleSpeed * aDeltatime;
+		particleVertex.myLifetime = particleData.myParticleLifetime;
+		particleVertex.myColor = particleData.myParticleStartColor;
+		particleVertex.myDistanceToCamera = (particleVertex.myPosition - CommonUtilities::Vector4<float>(aCameraPosition,1)).Length();
 	}
 
 	//Update particles
 	for (size_t i = 0; i < myParticleVertices.size(); i++)
 	{
+		
 		myParticleVertices[i].myLifetime -= aDeltatime;
 		if (myParticleVertices[i].myLifetime < 0)
 		{
@@ -65,9 +71,6 @@ void CParticleInstance::Update(float aDeltatime, CommonUtilities::Vector3<float>
 			i--;
 			continue;
 		}
-
-
-
 	}
 	std::sort(myParticleVertices.begin(), myParticleVertices.end(), [](const CParticle::SParticleVertex& aFirstParticle, const CParticle::SParticleVertex& aSecondParticle)
 		{

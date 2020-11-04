@@ -13,6 +13,8 @@
 #include "Vector3.hpp"
 #include "CScene.h"
 #include "InputHandler.h"
+#include "Timer.h"
+
 int WINAPI wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _In_ LPWSTR lpCmdLine, _In_ int nSHowCmd)
 {
 	hInstance; hPrevInstance; lpCmdLine; nSHowCmd;
@@ -37,6 +39,7 @@ int WINAPI wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 
 
 	MSG windowmessage = { 0 };
+	CommonUtilities::Timer timer;
 
 	while (shouldRun)
 	{
@@ -53,7 +56,9 @@ int WINAPI wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, 
 			}
 
 		}
-		game.Update();
+		
+		timer.Update();
+		game.Update(timer.GetDeltaTime());
 		//modelInstance->Rotate(CommonUtilities::Vector3<float>(0, 1.f, 0));
 
 		graphicsEngine.BeginFrame();

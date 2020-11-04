@@ -14,7 +14,7 @@ namespace CommonUtilities
 		float GetDeltaTime() const;
 		double GetTotalTime() const;
 	private:
-		float myMicroConversion = 0.000001f;
+		double myMicroConversion = 0.000001;
 		double myTotalTime;
 		std::chrono::time_point<std::chrono::steady_clock> myLastFrameTime;
 		std::chrono::time_point<std::chrono::steady_clock> myCurrentTime;

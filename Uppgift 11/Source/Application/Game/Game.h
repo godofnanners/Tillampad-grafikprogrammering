@@ -3,7 +3,7 @@ class Game
 {
 public:
 	int Init();
-	void Update();
+	void Update(float aDeltaTime);
 	
 private:
 };

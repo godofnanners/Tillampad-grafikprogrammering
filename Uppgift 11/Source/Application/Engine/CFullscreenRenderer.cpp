@@ -73,7 +73,7 @@ void CFullscreenRenderer::Render(FullscreenShader aEffect)
 	myContext->IASetInputLayout(nullptr);
 	myContext->IASetVertexBuffers(0, 0, nullptr, nullptr, nullptr);
 	myContext->IASetIndexBuffer(nullptr, DXGI_FORMAT_UNKNOWN, 0);
-
+	myContext->GSSetShader(nullptr, nullptr, 0);
 	myContext->VSSetShader(myVertexShader, nullptr, 0);
 	myContext->PSSetShader(myPixelShaders[aEffect], nullptr, 0);
 

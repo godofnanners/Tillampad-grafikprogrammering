@@ -10,6 +10,7 @@ namespace CommonUtilities
 	Timer::Timer()
 	{
 		myStartTime = StartTime();
+		myCurrentTime = std::chrono::high_resolution_clock::now();
 	}
 
 	void Timer::Update()
@@ -20,8 +21,7 @@ namespace CommonUtilities
 
 	float Timer::GetDeltaTime() const
 	{
-
-		float deltaTime = (float)std::chrono::duration_cast<std::chrono::microseconds>(myCurrentTime - myLastFrameTime).count();
+		double deltaTime = std::chrono::duration_cast<std::chrono::microseconds>(myCurrentTime - myLastFrameTime).count();
 
 		if (myLastFrameTime.time_since_epoch().count() == 0)
 		{
@@ -29,12 +29,11 @@ namespace CommonUtilities
 		}
 
 		return deltaTime * myMicroConversion;
-
 	}
 
 	double Timer::GetTotalTime() const
 	{
-		double totalTime = (double)std::chrono::duration_cast<std::chrono::microseconds>(myCurrentTime - myStartTime).count();
+		double totalTime = std::chrono::duration_cast<std::chrono::microseconds>(myCurrentTime - myStartTime).count();
 
 		return totalTime * myMicroConversion;
 	}
