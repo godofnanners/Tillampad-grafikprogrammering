@@ -18,6 +18,8 @@ public:
 	};
 	struct SParticleData
 	{
+		friend class CParticleInstance;
+		friend class CParticle;
 		unsigned int myNumberOfParticles = 0;
 		unsigned int myStride = 0;
 		unsigned int myOffset = 0;
@@ -32,11 +34,15 @@ public:
 		float mySpawnRate = 0.0f;
 		float mySpawnAngle = 0.0f;
 		float myParticleLifetime = 0.0f;
+		float myCurrentParticleLifeTime = 0.0f;
 		float myParticleSpeed = 0.0f;
 		CommonUtilities::Vector4<float>myParticleStartColor = { 0.0f,0.0f,0.0f,0.0f };
 		CommonUtilities::Vector4<float>myParticleEndColor = { 0.0f,0.0f,0.0f,0.0f };
 		float myParticleStartSize = 0.0f;
 		float myParticleEndSize = 0.0f;
+	private:
+		float myPerSecSizeDiff = 0.0f;
+		CommonUtilities::Vector4<float> myPerSecColorDiff = { 0.0f,0.0f,0.0f,0.0f };
 	};
 public:
 	CParticle();
@@ -44,7 +50,7 @@ public:
 
 	void Init(const SParticleData& aParticleData);
 
-	SParticleData GetParticleData();
+	const SParticleData& GetParticleData();
 private:
 	SParticleData myParticleData;
 

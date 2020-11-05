@@ -1,13 +1,13 @@
 {
-  "NumberOfParticles": 1,
+  "NumberOfParticles": 100,
   "Stride": 1,
   "Offset": 4,
-  "SpawnRate": 4.0,
+  "SpawnRate": 50.0,
   "Angle": 1.0,
   "Lifetime": 2.5,
   "Speed": 0.5,
-  "StartSize": 1.0,
-  "EndSize": 0.0,
+  "StartSize": 100.0,
+  "EndSize": 50.0,
   "StartColor": [1.0,1.0,1.0,1.0],
   "EndColor":[0.0,1.0,0.0,1.0],
 

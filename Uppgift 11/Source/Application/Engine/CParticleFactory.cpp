@@ -49,12 +49,12 @@ CParticle* CParticleFactory::LoadParticle(std::string aFilePath)
 	CParticle::SParticleData ParticleData;
 	assert(particleDocument["NumberOfParticles"].IsInt());
 	ParticleData.myNumberOfParticles = particleDocument["NumberOfParticles"].GetInt();
-	assert(particleDocument["NumberOfParticles"].IsInt());
+	assert(particleDocument["Stride"].IsInt());
 	ParticleData.myStride = particleDocument["Stride"].GetInt();
 	assert(particleDocument["Offset"].IsInt());
 	ParticleData.myOffset = particleDocument["Offset"].GetInt();
 	assert(particleDocument["SpawnRate"].IsDouble());
-	ParticleData.mySpawnRate = particleDocument["NumberOfParticles"].GetDouble();
+	ParticleData.mySpawnRate = particleDocument["SpawnRate"].GetDouble();
 	assert(particleDocument["Angle"].IsDouble());
 	ParticleData.mySpawnAngle = particleDocument["Angle"].GetDouble();
 	assert(particleDocument["Lifetime"].IsDouble());
@@ -69,12 +69,11 @@ CParticle* CParticleFactory::LoadParticle(std::string aFilePath)
 	const rapidjson::Value& StartColor = particleDocument["StartColor"];
 	assert(StartColor.IsArray());
 	ParticleData.myParticleStartColor = { (float)StartColor[0].GetDouble(),(float)StartColor[1].GetDouble() ,(float)StartColor[2].GetDouble() ,(float)StartColor[3].GetDouble() };
+	
 	const rapidjson::Value& EndColor = particleDocument["EndColor"];
 	assert(EndColor.IsArray());
 	ParticleData.myParticleEndColor = { (float)EndColor[0].GetDouble(),(float)EndColor[1].GetDouble() ,(float)EndColor[2].GetDouble() ,(float)EndColor[3].GetDouble() };
 
-	//assert(particleDocument["SpritePath"].IsString());
-	//ParticleData.myTexture = particleDocument["SpritePath"].GetString();
 	HRESULT result;
 	assert(particleDocument["GeometryShader"].IsString());
 	std::ifstream gsFile;
@@ -117,12 +116,12 @@ CParticle* CParticleFactory::LoadParticle(std::string aFilePath)
 	//Start Layout
 	D3D11_INPUT_ELEMENT_DESC layout[] =
 	{
-		{"LIFETIME",0,DXGI_FORMAT_R32G32B32A32_FLOAT,0,D3D11_APPEND_ALIGNED_ELEMENT,D3D11_INPUT_PER_VERTEX_DATA,0},
+		{"LIFETIME",0,DXGI_FORMAT_R32_FLOAT,0,D3D11_APPEND_ALIGNED_ELEMENT,D3D11_INPUT_PER_VERTEX_DATA,0},
 		{"POSITION",0,DXGI_FORMAT_R32G32B32A32_FLOAT,0,D3D11_APPEND_ALIGNED_ELEMENT,D3D11_INPUT_PER_VERTEX_DATA,0},
 		{"MOVEMENT",0,DXGI_FORMAT_R32G32B32A32_FLOAT,0,D3D11_APPEND_ALIGNED_ELEMENT,D3D11_INPUT_PER_VERTEX_DATA,0},
 		{"COLOR",0,DXGI_FORMAT_R32G32B32A32_FLOAT,0,D3D11_APPEND_ALIGNED_ELEMENT,D3D11_INPUT_PER_VERTEX_DATA,0},
 		{"SIZE",0,DXGI_FORMAT_R32G32_FLOAT,0,D3D11_APPEND_ALIGNED_ELEMENT,D3D11_INPUT_PER_VERTEX_DATA,0 },
-		{"DISTANCE",0,DXGI_FORMAT_R32G32_FLOAT,0,D3D11_APPEND_ALIGNED_ELEMENT,D3D11_INPUT_PER_VERTEX_DATA,0 },
+		{"DISTANCE",0,DXGI_FORMAT_R32_FLOAT,0,D3D11_APPEND_ALIGNED_ELEMENT,D3D11_INPUT_PER_VERTEX_DATA,0 },
 	};
 
 	ID3D11InputLayout* inputLayout;
@@ -151,8 +150,9 @@ CParticle* CParticleFactory::LoadParticle(std::string aFilePath)
 	D3D11_BUFFER_DESC vertexBufferDescription = { 0 };
 	vertexBufferDescription.ByteWidth = ceilf(ParticleData.myParticleLifetime*ParticleData.mySpawnRate)*sizeof(CParticle::SParticleVertex);
 	vertexBufferDescription.Usage = D3D11_USAGE_DYNAMIC;
-	vertexBufferDescription.BindFlags = D3D11_BIND_CONSTANT_BUFFER;
+	vertexBufferDescription.BindFlags = D3D11_BIND_VERTEX_BUFFER;
 	vertexBufferDescription.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
+
 
 	result = myDevice->CreateBuffer(&vertexBufferDescription, nullptr, &ParticleData.myPartcleVertexBuffer);
 	if (FAILED(result))
@@ -161,24 +161,8 @@ CParticle* CParticleFactory::LoadParticle(std::string aFilePath)
 	}
 	//End Vertex
 
-
-
 	particle->Init(ParticleData);
-	//assert(particleDocument["StartGcolor"].IsDouble());
-	//ParticleData.myParticleSpeed = particleDocument["StartGcolor"].GetDouble();
-	//assert(particleDocument["StartBcolor"].IsDouble());
-	//ParticleData.myParticleSpeed = particleDocument["StartBcolor"].GetDouble();
-	//assert(particleDocument["StartAcolor"].IsDouble());
-	//ParticleData.myParticleSpeed = particleDocument["StartAcolor"].GetDouble();
-	//assert(particleDocument["EndRcolor"].IsDouble());
-	//ParticleData.myParticleSpeed = particleDocument["EndRcolor"].GetDouble();
-	//assert(particleDocument["EndGcolor"].IsDouble());
-	//ParticleData.myParticleSpeed = particleDocument["EndGcolor"].GetDouble();
-	//assert(particleDocument["EndBcolor"].IsDouble());
-	//ParticleData.myParticleSpeed = particleDocument["EndBcolor"].GetDouble();
-	//assert(particleDocument["EndAcolor"].IsDouble());
-	//ParticleData.myParticleSpeed = particleDocument["EndAcolor"].GetDouble();
-
+	
 	return particle;
 }
 

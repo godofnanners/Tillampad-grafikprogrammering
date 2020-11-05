@@ -28,6 +28,7 @@ private:
 	CParticle* myParticle;
 	CommonUtilities::Matrix4x4<float>myTransform;
 	float myTimeSinceLastParticle;
+	float mySpawnPerSec;
 	std::vector<CParticle::SParticleVertex>myParticleVertices;
 };
 
