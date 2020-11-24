@@ -108,6 +108,9 @@
     <ClCompile Include="CParticleRenderer.cpp">
       <Filter>Source Files\Particle</Filter>
     </ClCompile>
+    <ClCompile Include="CRenderStateManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine.h">
@@ -177,6 +180,9 @@
       <Filter>Header Files\Particle</Filter>
     </ClInclude>
     <ClInclude Include="CParticleRenderer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CRenderStateManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

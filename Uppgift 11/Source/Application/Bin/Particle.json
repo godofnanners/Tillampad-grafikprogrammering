@@ -1,19 +1,18 @@
 {
   "NumberOfParticles": 100,
-  "Stride": 1,
-  "Offset": 4,
-  "SpawnRate": 50.0,
+  "Stride": 64,
+  "Offset": 0,
+  "SpawnRate": 1.0,
   "Angle": 1.0,
-  "Lifetime": 2.5,
-  "Speed": 0.5,
-  "StartSize": 100.0,
-  "EndSize": 50.0,
-  "StartColor": [1.0,1.0,1.0,1.0],
-  "EndColor":[0.0,1.0,0.0,1.0],
+  "Lifetime": 2.534,
+  "Speed": 30.0,
+  "StartSize": 2.0,
+  "EndSize": 0.1,
+  "StartColor": [1.0,0.0,0.0,1.0],
+  "EndColor":[1.0,1.0,0.0,1.0],
 
   "SpritePath": "Textures/Texture.dds",
   "GeometryShader": "ParticleGeometryShader.cso",
   "PixelShader": "ParticlePixelShader.cso",
   "VertexShader": "ParticleVertexShader.cso"
-
 }

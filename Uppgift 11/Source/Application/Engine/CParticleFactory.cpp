@@ -9,6 +9,7 @@
 #include <DDSTextureLoader.h>
 #include <locale>
 #include <codecvt>
+#include "CParticle.h"
 
 CParticleFactory CParticleFactory::ourInstance;
 
@@ -49,8 +50,7 @@ CParticle* CParticleFactory::LoadParticle(std::string aFilePath)
 	CParticle::SParticleData ParticleData;
 	assert(particleDocument["NumberOfParticles"].IsInt());
 	ParticleData.myNumberOfParticles = particleDocument["NumberOfParticles"].GetInt();
-	assert(particleDocument["Stride"].IsInt());
-	ParticleData.myStride = particleDocument["Stride"].GetInt();
+	ParticleData.myStride = sizeof(CParticle::SParticleVertex);
 	assert(particleDocument["Offset"].IsInt());
 	ParticleData.myOffset = particleDocument["Offset"].GetInt();
 	assert(particleDocument["SpawnRate"].IsDouble());

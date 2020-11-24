@@ -1,6 +1,7 @@
 #include "CParticleInstance.h"
 #include "CParticle.h"
 #include <algorithm>
+#include "Random.hpp"
 
 CParticleInstance::CParticleInstance()
 {
@@ -14,6 +15,8 @@ void CParticleInstance::Init(CParticle* aParticle)
 {
 	myParticle = aParticle;	
 	mySpawnPerSec = 1 / myParticle->GetParticleData().mySpawnRate;
+	CParticle::SParticleData particleData=myParticle->GetParticleData();
+	myParticleVertices.reserve(ceilf(particleData.myParticleLifetime * particleData.mySpawnRate));
 }
 
 void CParticleInstance::SetTransform(CommonUtilities::Vector3<float> aPosition, CommonUtilities::Vector3<float> aRotation)
@@ -48,12 +51,12 @@ void CParticleInstance::Update(float aDeltatime, CommonUtilities::Vector3<float>
 
 	myTimeSinceLastParticle += aDeltatime;
 
-	if (myTimeSinceLastParticle > mySpawnPerSec)
+	while (myTimeSinceLastParticle > mySpawnPerSec)
 	{
 		myTimeSinceLastParticle -= mySpawnPerSec;
 		CParticle::SParticleVertex particleVertex;
 		particleVertex.myPosition = { myTransform.GetPosition(),1 };
-		particleVertex.myMovement = CommonUtilities::Vector4<float>(0, 1, 0, 0) * particleData.myParticleSpeed * aDeltatime;
+		particleVertex.myMovement = CommonUtilities::Vector4<float>(CommonUtilities::GetRandomFloat(1.f, 10.f), CommonUtilities::GetRandomFloat(1.f, 10.f), 0, 0).GetNormalized() * particleData.myParticleSpeed;
 		particleVertex.myLifetime = particleData.myParticleLifetime;
 		particleVertex.myColor = particleData.myParticleStartColor;
 		particleVertex.myDistanceToCamera = (particleVertex.myPosition - CommonUtilities::Vector4<float>(aCameraPosition, 1)).Length();
@@ -75,7 +78,7 @@ void CParticleInstance::Update(float aDeltatime, CommonUtilities::Vector3<float>
 			continue;
 		}
 
-		particleVertex.myPosition += particleVertex.myMovement;
+		particleVertex.myPosition += particleVertex.myMovement * aDeltatime;
 		float frameSizeChange = particleData.myPerSecSizeDiff * aDeltatime;
 		particleVertex.mySize += CommonUtilities::Vector2<float>(frameSizeChange, frameSizeChange);
 		particleVertex.myColor += particleData.myPerSecColorDiff * aDeltatime;

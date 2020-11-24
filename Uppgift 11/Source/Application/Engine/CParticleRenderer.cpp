@@ -82,7 +82,7 @@ void CParticleRenderer::Render(CCamera* aCamera, std::vector<CParticleInstance*>
 			{
 				assert(!"Couldnt map objectbuffer in CParticleRender");
 			}
-			memcpy(bufferData.pData, &myObjectBuffer, sizeof(ObjectBufferData));
+			memcpy(bufferData.pData, &myObjectBufferData, sizeof(ObjectBufferData));
 			myContext->Unmap(myObjectBuffer, 0);
 
 			CParticle::SParticleData particleData = particle->GetParticleData();
@@ -93,7 +93,9 @@ void CParticleRenderer::Render(CCamera* aCamera, std::vector<CParticleInstance*>
 			{
 				assert(!"Couldnt map VertexBuffer in CParticleRenderer");
 			}
-			memcpy(bufferData.pData, &(instance->GetParticleVerteces()[0]), sizeof(CParticle::SParticleVertex) * instance->GetParticleVerteces().size());
+
+			auto buffersize = sizeof(CParticle::SParticleVertex) * instance->GetParticleVerteces().capacity();
+			memcpy(bufferData.pData, &(instance->GetParticleVerteces()[0]), sizeof(CParticle::SParticleVertex) * instance->GetParticleVerteces().capacity());
 			myContext->Unmap(particleData.myPartcleVertexBuffer, 0);
 
 			myContext->IASetPrimitiveTopology(particleData.myPrimitiveTopology);

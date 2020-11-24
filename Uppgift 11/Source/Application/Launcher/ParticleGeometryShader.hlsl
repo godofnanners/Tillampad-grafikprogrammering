@@ -8,7 +8,7 @@ void main(
 {
     const float2 offset[4] =
     {
-        { -1.0f, -1.0f },
+        { -1.0f, 1.0f },
         { 1.0f, 1.0f },
         { -1.0f, -1.0f },
         { 1.0f, -1.0f }

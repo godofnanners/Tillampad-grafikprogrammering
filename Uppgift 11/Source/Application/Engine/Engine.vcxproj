@@ -184,6 +184,7 @@
     <ClCompile Include="CParticleRenderer.cpp" />
     <ClCompile Include="CPointLight.cpp" />
     <ClCompile Include="CRenderManager.cpp" />
+    <ClCompile Include="CRenderStateManager.cpp" />
     <ClCompile Include="CScene.cpp" />
     <ClCompile Include="CWindowHandler.cpp" />
     <ClCompile Include="DirectXTK\Src\DDSTextureLoader.cpp" />
@@ -212,6 +213,7 @@
     <ClInclude Include="CParticleRenderer.h" />
     <ClInclude Include="CPointLight.h" />
     <ClInclude Include="CRenderManager.h" />
+    <ClInclude Include="CRenderStateManager.h" />
     <ClInclude Include="CScene.h" />
     <ClInclude Include="CWindowHandler.h" />
     <ClInclude Include="DirectXTK\Inc\DDSTextureLoader.h" />
