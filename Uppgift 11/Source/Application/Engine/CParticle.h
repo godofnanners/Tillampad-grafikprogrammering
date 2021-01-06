@@ -9,12 +9,12 @@ class CParticle
 public:
 	struct SParticleVertex
 	{
-		float myLifetime;
-		CommonUtilities::Vector4<float>myPosition;
-		CommonUtilities::Vector4<float>myMovement;
-		CommonUtilities::Vector4<float>myColor;
-		CommonUtilities::Vector2<float>mySize;
-		float myDistanceToCamera;
+		float myLifetime = 0;
+		CommonUtilities::Vector4<float>myPosition = { 0,0,0,0 };
+		CommonUtilities::Vector4<float>myMovement = { 0,0,0,0 };
+		CommonUtilities::Vector4<float>myColor = { 0,0,0,0 };
+		CommonUtilities::Vector2<float>mySize = { 0,0 };
+		float myDistanceToCamera = 0;
 	};
 	struct SParticleData
 	{

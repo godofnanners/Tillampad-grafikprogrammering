@@ -3,6 +3,7 @@
 #include "CFullscreenRenderer.h"
 #include "CFullscreenTexture.h"
 #include "CParticleRenderer.h"
+#include "CRenderStateManager.h"
 class CScene;
 class CDirectX11Framework;
 class CWindowHandler;
@@ -21,6 +22,7 @@ private:
 	CForwardRenderer myForwardRenderer;
 	CFullscreenRenderer myFullscreenRenderer;
 	CParticleRenderer myParticleRenderer;
+	CRenderStateManager myRenderStateManager;
 
 	CFullscreenTexture myLuminanceTexture;
 	CFullscreenTexture myHalfsizeTexture;

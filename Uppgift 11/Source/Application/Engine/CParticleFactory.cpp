@@ -48,8 +48,6 @@ CParticle* CParticleFactory::LoadParticle(std::string aFilePath)
 	CParticle* particle = new CParticle();
 
 	CParticle::SParticleData ParticleData;
-	assert(particleDocument["NumberOfParticles"].IsInt());
-	ParticleData.myNumberOfParticles = particleDocument["NumberOfParticles"].GetInt();
 	ParticleData.myStride = sizeof(CParticle::SParticleVertex);
 	assert(particleDocument["Offset"].IsInt());
 	ParticleData.myOffset = particleDocument["Offset"].GetInt();
@@ -65,6 +63,7 @@ CParticle* CParticleFactory::LoadParticle(std::string aFilePath)
 	ParticleData.myParticleStartSize = particleDocument["StartSize"].GetDouble();
 	assert(particleDocument["EndSize"].IsDouble());
 	ParticleData.myParticleEndSize = particleDocument["EndSize"].GetDouble();
+	ParticleData.myNumberOfParticles = ceilf(ParticleData.myParticleLifetime * ParticleData.mySpawnRate);
 
 	const rapidjson::Value& StartColor = particleDocument["StartColor"];
 	assert(StartColor.IsArray());
@@ -152,7 +151,6 @@ CParticle* CParticleFactory::LoadParticle(std::string aFilePath)
 	vertexBufferDescription.Usage = D3D11_USAGE_DYNAMIC;
 	vertexBufferDescription.BindFlags = D3D11_BIND_VERTEX_BUFFER;
 	vertexBufferDescription.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
-
 
 	result = myDevice->CreateBuffer(&vertexBufferDescription, nullptr, &ParticleData.myPartcleVertexBuffer);
 	if (FAILED(result))

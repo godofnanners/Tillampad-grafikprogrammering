@@ -19,6 +19,7 @@ bool CRenderManager::Init(CDirectX11Framework* aFramework, CWindowHandler* aWind
 	myForwardRenderer.Init(aFramework);
 	myFullscreenRenderer.Init(aFramework);
 	myParticleRenderer.Init(aFramework);
+	myRenderStateManager.Init(aFramework);
 	CFullscreenTextureFactory::GetInstance().Init(aFramework);
 
 	ID3D11Texture2D* backbufferTexture = aFramework->GetBackbufferTexture();
@@ -40,6 +41,7 @@ bool CRenderManager::Init(CDirectX11Framework* aFramework, CWindowHandler* aWind
 
 void CRenderManager::Render()
 {
+	myRenderStateManager.SetAllDefault();
 	myBackBuffer.ClearTexture();
 	myIntermediateTexture.ClearTexture();
 	myIntermediateDepth.ClearDepth();
@@ -56,8 +58,12 @@ void CRenderManager::Render()
 	}
 	myForwardRenderer.Render(modelsToRender, mainCamera, pointlights, environmentlight);
 
+	myRenderStateManager.SetBlendStates(CRenderStateManager::BlendStates::BLENDSTATE_ALPHABLEND);
+	myRenderStateManager.SetDepthStencilState(CRenderStateManager::DepthStencilStates::DEPTHSTENCILSTATE_ONLYREAD);
 	std::vector<CParticleInstance*>particlesToRender = myScene.CullParticles(mainCamera);
 	myParticleRenderer.Render(mainCamera, particlesToRender);
+	myRenderStateManager.SetBlendStates(CRenderStateManager::BlendStates::BLENDSTATE_DISABLE);
+	myRenderStateManager.SetDepthStencilState(CRenderStateManager::DepthStencilStates::DEPTHSTENCILSTATE_DEFAULT);
 
 	myLuminanceTexture.SetAsActiveTarget();
 	myIntermediateTexture.SetAsResourceOnSlot(0);

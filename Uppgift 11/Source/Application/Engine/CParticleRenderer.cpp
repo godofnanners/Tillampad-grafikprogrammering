@@ -77,11 +77,13 @@ void CParticleRenderer::Render(CCamera* aCamera, std::vector<CParticleInstance*>
 			CParticle* particle = instance->GetParticle();
 			myObjectBufferData.myToWorld = instance->GetTransform();
 			ZeroMemory(&bufferData, sizeof(D3D11_MAPPED_SUBRESOURCE));
+			
 			result = myContext->Map(myObjectBuffer, 0, D3D11_MAP_WRITE_DISCARD, 0, &bufferData);
 			if (FAILED(result))
 			{
 				assert(!"Couldnt map objectbuffer in CParticleRender");
 			}
+
 			memcpy(bufferData.pData, &myObjectBufferData, sizeof(ObjectBufferData));
 			myContext->Unmap(myObjectBuffer, 0);
 
@@ -94,8 +96,8 @@ void CParticleRenderer::Render(CCamera* aCamera, std::vector<CParticleInstance*>
 				assert(!"Couldnt map VertexBuffer in CParticleRenderer");
 			}
 
-			auto buffersize = sizeof(CParticle::SParticleVertex) * instance->GetParticleVerteces().capacity();
-			memcpy(bufferData.pData, &(instance->GetParticleVerteces()[0]), sizeof(CParticle::SParticleVertex) * instance->GetParticleVerteces().capacity());
+			auto buffersize = sizeof(CParticle::SParticleVertex) * instance->GetParticleVerteces().size();
+			memcpy(bufferData.pData, &(instance->GetParticleVerteces()[0]), sizeof(CParticle::SParticleVertex) * instance->GetParticleVerteces().size());
 			myContext->Unmap(particleData.myPartcleVertexBuffer, 0);
 
 			myContext->IASetPrimitiveTopology(particleData.myPrimitiveTopology);
@@ -111,7 +113,7 @@ void CParticleRenderer::Render(CCamera* aCamera, std::vector<CParticleInstance*>
 			myContext->PSSetShaderResources(0, 1, &particleData.myTexture);
 			myContext->PSSetShader(particleData.myPixelShader, nullptr, 0);
 
-			myContext->Draw(particleData.myNumberOfParticles, 0);
+			myContext->Draw(instance->GetParticleVerteces().size(), 0);
 		}
 	}
 }

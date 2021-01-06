@@ -5,6 +5,11 @@
 
 CParticleInstance::CParticleInstance()
 {
+	myParticle = nullptr;
+	CommonUtilities::Matrix4x4<float>myTransform = CommonUtilities::Matrix4x4<float>();
+	myTimeSinceLastParticle = 0;
+	mySpawnPerSec = 0;
+	myParticleVertices = std::vector<CParticle::SParticleVertex>();
 }
 
 CParticleInstance::~CParticleInstance()
@@ -13,9 +18,9 @@ CParticleInstance::~CParticleInstance()
 
 void CParticleInstance::Init(CParticle* aParticle)
 {
-	myParticle = aParticle;	
+	myParticle = aParticle;
 	mySpawnPerSec = 1 / myParticle->GetParticleData().mySpawnRate;
-	CParticle::SParticleData particleData=myParticle->GetParticleData();
+	CParticle::SParticleData particleData = myParticle->GetParticleData();
 	myParticleVertices.reserve(ceilf(particleData.myParticleLifetime * particleData.mySpawnRate));
 }
 
@@ -51,19 +56,6 @@ void CParticleInstance::Update(float aDeltatime, CommonUtilities::Vector3<float>
 
 	myTimeSinceLastParticle += aDeltatime;
 
-	while (myTimeSinceLastParticle > mySpawnPerSec)
-	{
-		myTimeSinceLastParticle -= mySpawnPerSec;
-		CParticle::SParticleVertex particleVertex;
-		particleVertex.myPosition = { myTransform.GetPosition(),1 };
-		particleVertex.myMovement = CommonUtilities::Vector4<float>(CommonUtilities::GetRandomFloat(1.f, 10.f), CommonUtilities::GetRandomFloat(1.f, 10.f), 0, 0).GetNormalized() * particleData.myParticleSpeed;
-		particleVertex.myLifetime = particleData.myParticleLifetime;
-		particleVertex.myColor = particleData.myParticleStartColor;
-		particleVertex.myDistanceToCamera = (particleVertex.myPosition - CommonUtilities::Vector4<float>(aCameraPosition, 1)).Length();
-		particleVertex.mySize = { particleData.myParticleStartSize,particleData.myParticleStartSize };
-		myParticleVertices.emplace_back(particleVertex);
-	}
-
 	CommonUtilities::Vector4<float>startNendColorDiff = particleData.myParticleEndColor - particleData.myParticleStartColor;
 	float startNendSizeDiff = particleData.myParticleEndSize - particleData.myParticleStartSize;
 	//Update particles
@@ -83,6 +75,20 @@ void CParticleInstance::Update(float aDeltatime, CommonUtilities::Vector3<float>
 		particleVertex.mySize += CommonUtilities::Vector2<float>(frameSizeChange, frameSizeChange);
 		particleVertex.myColor += particleData.myPerSecColorDiff * aDeltatime;
 	}
+	//Add new Particles
+	while (myTimeSinceLastParticle > mySpawnPerSec)
+	{
+		myTimeSinceLastParticle -= mySpawnPerSec;
+		CParticle::SParticleVertex particleVertex;
+		particleVertex.myPosition = { myTransform.GetPosition(),1 };
+		particleVertex.myMovement = CommonUtilities::Vector4<float>(CommonUtilities::GetRandomFloat(1.f, 10.f), CommonUtilities::GetRandomFloat(1.f, 10.f), 0, 0).GetNormalized() * particleData.myParticleSpeed;
+		particleVertex.myLifetime = particleData.myParticleLifetime;
+		particleVertex.myColor = particleData.myParticleStartColor;
+		particleVertex.myDistanceToCamera = (particleVertex.myPosition - CommonUtilities::Vector4<float>(aCameraPosition, 1)).Length();
+		particleVertex.mySize = { particleData.myParticleStartSize,particleData.myParticleStartSize };
+		myParticleVertices.emplace_back(particleVertex);
+	}
+
 	std::sort(myParticleVertices.begin(), myParticleVertices.end(), [](const CParticle::SParticleVertex& aFirstParticle, const CParticle::SParticleVertex& aSecondParticle)
 		{
 			return aFirstParticle.myDistanceToCamera > aSecondParticle.myDistanceToCamera;

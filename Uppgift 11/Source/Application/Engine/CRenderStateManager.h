@@ -14,26 +14,26 @@ class CRenderStateManager
 {
 
 public:
-	enum BlendStates
+	enum class BlendStates
 	{
 		BLENDSTATE_DISABLE,
 		BLENDSTATE_ALPHABLEND,
 		BLENDSTATE_ADDITATIVEBLEND,
 		BLENDSTATE_COUNT
 	};
-	enum DepthStencilStates
+	enum class DepthStencilStates
 	{
 		DEPTHSTENCILSTATE_DEFAULT,
 		DEPTHSTENCILSTATE_ONLYREAD,
 		DEPTHSTENCILSTATE_COUNT
 	};
-	enum RasterizerStates
+	enum class RasterizerStates
 	{
 		RASTERIZERSTATE_DEFAULT,
 		RASTERIZERSTATE_WIREFRAME,
 		RASTERIZESTATE_COUNT
 	};
-	enum SamplerStates
+	enum class SamplerStates
 	{
 		SAMPLERSTATE_TRILINEAR,
 		SAMPLERSTATE_POINT,
@@ -59,10 +59,10 @@ private:
 	bool CreateSamplerState(ID3D11Device* aDevice);
 
 	ID3D11DeviceContext* myContext;
-	std::array<ID3D11BlendState*, BlendStates::BLENDSTATE_COUNT>myBlendStates;
-	std::array<ID3D11DepthStencilState*, DepthStencilStates::DEPTHSTENCILSTATE_COUNT>myDepthStencilStates;
-	std::array<ID3D11RasterizerState*, RasterizerStates::RASTERIZESTATE_COUNT>myRasterizerStates;
-	std::array<ID3D11SamplerState*, SamplerStates::SAMPLERSTATE_COUNT>mySamplerStates;
+	std::array<ID3D11BlendState*, static_cast<int>(BlendStates::BLENDSTATE_COUNT)>myBlendStates;
+	std::array<ID3D11DepthStencilState*, static_cast<int>(DepthStencilStates::DEPTHSTENCILSTATE_COUNT)>myDepthStencilStates;
+	std::array<ID3D11RasterizerState*, static_cast<int>(RasterizerStates::RASTERIZESTATE_COUNT)>myRasterizerStates;
+	std::array<ID3D11SamplerState*, static_cast<int>(SamplerStates::SAMPLERSTATE_COUNT)>mySamplerStates;
 
 };
 
