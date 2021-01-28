@@ -99,7 +99,6 @@ bool CRenderStateManager::CreateBlendStates(ID3D11Device* aDevice)
 		assert(!"additativeBlendState failed to be created in RenderStateManager");
 	}
 
-
 	myBlendStates[static_cast<int>(BlendStates::BLENDSTATE_DISABLE)] = nullptr;
 	myBlendStates[static_cast<int>(BlendStates::BLENDSTATE_ALPHABLEND)] = alphaBlendState;
 	myBlendStates[static_cast<int>(BlendStates::BLENDSTATE_ADDITATIVEBLEND)] = additativeBlendState;
