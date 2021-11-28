@@ -1,0 +1,17 @@
+{
+  "Stride": 64,
+  "Offset": 0,
+  "SpawnRate": 20.53342,
+  "Angle": 1.0,
+  "Lifetime": 1.0,
+  "Speed": 30.0,
+  "StartSize": 2.0,
+  "EndSize": 0.1,
+  "StartColor": [1.0,0.0,0.0,1.0],
+  "EndColor":[1.0,1.0,0.0,0.0],
+
+  "SpritePath": "Textures/Texture.dds",
+  "GeometryShader": "ParticleGeometryShader.cso",
+  "PixelShader": "ParticlePixelShader.cso",
+  "VertexShader": "ParticleVertexShader.cso"
+}
